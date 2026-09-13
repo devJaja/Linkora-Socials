@@ -1,93 +1,35 @@
 # Linkora
 
-> **Social payments on Stellar — non-custodial by design, private by default.**
+> **Social media on Stellar — creators own their content, communities capture the value.**
 
-Linkora is a React Native social payment application that combines a familiar social feed, peer-to-peer payments, and real-time chat with institutional-grade security infrastructure powered by [Ika](https://solana-pre-alpha.ika.xyz) and [Encrypt](https://docs.encrypt.xyz).
-
----
-
-## The Problem
-
-Every social payment app today makes the same two compromises:
-
-1. **Custodial risk.** The platform holds your private keys. One server breach drains every wallet. Users trust the company, not cryptography.
-2. **Zero privacy.** All on-chain payment amounts are permanently public. Anyone — competitors, stalkers, tax authorities — can see exactly what you send and to whom.
-
-Linkora eliminates both without sacrificing usability.
+Linkora is a mobile-first social platform built on the [Stellar blockchain](https://stellar.org): a familiar social feed, real-time chat, an integrated wallet, cashless tipping, and mini-apps — all powered by fast, low-cost Stellar transactions. Non-custodial custody and confidential payments via Ika and Encrypt are on the roadmap for cross-chain support.
 
 ---
 
-## Target Users & Use Cases
+## Features
 
-| User | Use Case |
+- **Social feed** — create posts, like, comment, reply, and follow. Post tokenization lets creators monetize directly from supporters.
+- **Integrated wallet** — seamless XLM, USDC, USDT, and SEEKER (SKR) balances with send, receive (QR), and transaction history. No seed-phrase anxiety: keys are handled for you.
+- **Social tipping** — instant, near-zero-cost tips on posts and inside chats, powered by Stellar's fast finality.
+- **Token swaps** — built-in swaps with real-time prices (DexScreener / CoinGecko) and swap history.
+- **Real-time chat** — encrypted messaging with integrated crypto tips, delivered via Pusher.
+- **Mini-apps** — spin, coin flip, dice, food, and swap games — earn crypto while having fun.
+- **Security** — email verification, Two-Factor Authentication (TOTP + recovery codes), biometric login, and recovery phrase support.
+- **Localized** — 12 languages (i18next), dark/light theme, push notifications.
+
+---
+
+## Why Stellar?
+
+| | |
 |---|---|
-| Creators & influencers | Receive tips from followers without exposing income on-chain |
-| Freelancers | Send invoices and receive payments with confidential amounts |
-| Friend groups | Split bills and send money socially without a custodial intermediary |
-| Institutions | Require non-custodial, policy-enforced signing for treasury operations |
+| **Speed** | Sub-second finality enables real-time social interactions |
+| **Cost** | Minimal fees make micro-tipping economically viable |
+| **Scalability** | High throughput supports millions of daily active users |
+| **Mobile-first** | Infrastructure designed for mobile experiences |
+| **Ecosystem** | XLM, USDC, USDT, and SDEX liquidity built in |
 
----
-
-## How Linkora Uses Ika and Encrypt
-
-### Ika — Zero-Trust Custody
-
-**Program:** `programs/linkora-custody` | **SDK:** `ika-dwallet-anchor`
-
-The current industry standard for social payment apps is a custodial backend — the server holds every user's private key. Linkora replaces this with **dWallets**: programmable signing keys co-controlled by the user and the Ika Network via 2PC-MPC.
-
-**Flow:**
-
-```
-User signs up
-    → Backend calls Ika gRPC (DKG)
-    → Ika Network produces a dWallet keypair
-    → linkora-custody program transfers authority to its CPI PDA
-    → Backend can enforce rules (2FA, spending limits) but cannot sign alone
-
-User sends XLM
-    → Backend verifies guards (2FA, daily cap)
-    → Calls approve_transfer on-chain → creates MessageApproval PDA
-    → Ika Network detects PDA → produces signature via 2PC-MPC
-    → Transaction broadcasts with a signature the backend never held
-```
-
-**What this means:** Even if the Linkora backend is fully compromised, an attacker cannot move user funds. The signing authority is distributed across the Ika validator network.
-
----
-
-### Encrypt — Confidential Payments
-
-**Program:** `programs/linkora-privacy` | **SDK:** `encrypt-anchor`, `@encrypt.xyz/pre-alpha-solana-client`
-
-Tip amounts sent inside Linkora chat are encrypted using **Fully Homomorphic Encryption (FHE)**. The computation runs on ciphertexts — no plaintext amount ever appears on-chain, in logs, or in any explorer.
-
-**Flow:**
-
-```
-User sends a private tip
-    → Backend encrypts the amount via Encrypt gRPC → creates ciphertext account
-    → execute_private_tip instruction runs confidential_transfer FHE graph on-chain
-    → Encrypt executor evaluates the graph → commits new encrypted balances
-    → Chat UI shows 🔒 "Private tip" — amount hidden from everyone except sender & receiver
-```
-
-**FHE function (on-chain):**
-```rust
-#[encrypt_fn]
-fn confidential_transfer(
-    sender_balance: EUint64,
-    receiver_balance: EUint64,
-    amount: EUint64,
-) -> (EUint64, EUint64) {
-    let has_funds    = sender_balance >= amount;
-    let new_sender   = if has_funds { sender_balance   - amount } else { sender_balance };
-    let new_receiver = if has_funds { receiver_balance + amount } else { receiver_balance };
-    (new_sender, new_receiver)
-}
-```
-
-Validators compute on ciphertexts. The actual values are never decrypted on-chain.
+Supported tokens: **XLM** (native), **USDC**, **USDT**, and **SEEKER (SKR)** — Linkora's platform token for rewards, tips, and governance.
 
 ---
 
@@ -96,46 +38,71 @@ Validators compute on ciphertexts. The actual values are never decrypted on-chai
 ```
 ┌─────────────────────────────────────────────┐
 │           Linkora Mobile (Expo / RN)          │
-│  Feed · Wallet · Chat · Pay · Mini-Apps      │
-└────────────────────┬────────────────────────┘
-                     │ REST + Pusher
-┌────────────────────▼────────────────────────┐
+│  Feed · Chat · Wallet · Pay · Mini-Apps      │
+└──────────────────────┬──────────────────────┘
+                       │ REST + Pusher
+┌──────────────────────▼──────────────────────┐
 │         Backend (NestJS · MongoDB)           │
 │                                              │
-│  POST /chats/:id/tip          → XLM transfer │
-│  POST /chats/:id/private-tip  → FHE tip      │
-│  POST /auth/signup            → DKG dWallet  │
-│  POST /wallet/send            → approve_tx   │
+│  POST /wallet/send           → XLM transfer │
+│  POST /chats/:id/tip         → Stellar tip  │
+│  POST /posts/:id/tip         → post tip     │
+│  POST /mini-apps/swap        → token swap   │
 │                                              │
-│  services/ika.ts     → Ika gRPC wrapper      │
-│  services/encrypt.ts → Encrypt gRPC wrapper  │
-│  bin/ika-dwallet-helper → Rust DKG binary    │
-└────────────────────┬────────────────────────┘
-                     │ Stellar Testnet (frontend) · Stellar Devnet (backend)
-┌────────────────────▼────────────────────────┐
-│              On-Chain Programs               │
-│                                              │
-│  linkora-custody  (Ika dWallet custody)       │
-│  linkora-privacy  (Encrypt FHE private tips)  │
-│                                              │
-│  Ika Program   87W54kGYFQ1rgWqMeu4XTPHWXWmX │
-│  Encrypt Prog  4ebfzWdKnrnGseuQpezXdG8yCdHq │
+│  services/ika.ts     → Ika dWallet gRPC     │
+│  services/encrypt.ts → Encrypt FHE gRPC     │
+└──────────────────────┬──────────────────────┘
+                       │ Horizon (Stellar)
+┌──────────────────────▼──────────────────────┐
+│         Stellar Network (Horizon)            │
+│  XLM · USDC · USDT · SEEKER (SKR) · SDEX    │
 └─────────────────────────────────────────────┘
 ```
 
 ---
 
-## Program IDs
+## Cross-Chain Roadmap · Ika & Encrypt
 
-| Program | Network | Address |
-|---|---|---|
-| Ika dWallet | Devnet | `87W54kGYFQ1rgWqMeu4XTPHWXWmXSQCcjm8vCTfiq1oY` |
-| Encrypt | Devnet | `4ebfzWdKnrnGseuQpezXdG8yCdHqwQ1SSBHD3bWArND8` |
-| linkora-custody | Devnet | `8nWefFt12D1t6TyjBfk6V4CuTeVwjKNXHMcpZQqSpJVF` |
-| linkora-privacy | Devnet | `9SszUmTNFZq2Hnb4Y3XPLAsDwc4CVQZuaxcDbxmtqWe4` |
+Stellar is the primary chain today. Non-custodial custody and confidential payments extend the platform toward other ecosystems:
 
-**Live Backend:** `https://linkora-backend.onrender.com/api`  
-**Health:** `https://linkora-backend.onrender.com/api/health`
+### Ika — Zero-Trust Custody (dWallets)
+
+**Program:** `programs/linkora-custody` | **SDK:** `ika-dwallet-anchor`
+
+Replaces custodial key storage with **dWallets**: programmable signing keys co-controlled by the user and the Ika Network via 2PC-MPC. Even a fully compromised backend cannot move user funds — signing authority is distributed across the Ika validator network.
+
+```
+User signs up
+    → Backend calls Ika gRPC (DKG)
+    → Ika Network produces a dWallet keypair
+    → linkora-custody transfers authority to its CPI PDA
+    → Backend can enforce rules (2FA, limits) but cannot sign alone
+```
+
+### Encrypt — Confidential (FHE) Payments
+
+**Program:** `programs/linkora-privacy` | **SDK:** `encrypt-anchor`, `@encrypt.xyz/pre-alpha-solana-client`
+
+Tip amounts inside Linkora chat are encrypted using **Fully Homomorphic Encryption (FHE)**. Computation runs on ciphertexts — no plaintext amount ever appears on-chain, in logs, or in an explorer.
+
+```
+User sends a private tip
+    → Backend encrypts the amount via Encrypt gRPC → ciphertext account
+    → execute_private_tip runs the confidential_transfer FHE graph on-chain
+    → Encrypt executor commits new encrypted balances
+    → Chat UI shows a 🔒 "Private tip" — amount hidden from everyone else
+```
+
+> **Note:** Ika and Encrypt are pre-alpha integrations. The on-chain programs, gRPC APIs, and account structures are fully implemented, but the cryptographic guarantees are currently simulated by a single mock server. No code changes are required at launch — only environment variables.
+
+---
+
+## Tech Stack
+
+- **Mobile:** React Native, Expo (SDK 54) + Expo Router, NativeWind (Tailwind), TanStack Query, Zustand, i18next
+- **Backend:** NestJS, MongoDB, Pusher, Stellar (Horizon)
+- **On-chain (roadmap):** Anchor v1, `ika-dwallet-anchor`, `encrypt-anchor`, `encrypt-dsl`
+- **Prices:** DexScreener (Stellar pairs) + CoinGecko
 
 ---
 
@@ -147,142 +114,55 @@ Validators compute on ciphertexts. The actual values are never decrypted on-chai
 |---|---|
 | Node.js | 18+ |
 | pnpm | 9+ |
-| Rust | edition 2021 |
-| Anchor CLI | 1.x (`avm install 1.0.0 && avm use 1.0.0`) |
-| Stellar CLI | 3.x |
 | Expo CLI | latest |
 
----
-
-### 1. Deploy On-Chain Programs
+### Run the mobile app
 
 ```bash
-solana config set --url devnet
-solana airdrop 2   # fund your deploy wallet
-
-# Custody program (Ika)
-cd programs/linkora-custody
-anchor build && anchor deploy
-# → note the Program ID
-
-# Privacy program (Encrypt)
-cd ../linkora-privacy
-anchor build && anchor deploy
-# → note the Program ID
+pnpm install
+pnpm start
+# Press 'a' → Android  |  'i' → iOS  |  'w' → Web
 ```
 
----
+### Environment
 
-### 2. Build the Ika gRPC Helper
+Copy the values in `.env` (git-ignored) — the app talks to a hosted backend by default:
 
-The Ika gRPC protocol uses BCS serialization (Rust-native). This binary handles DKG and returns JSON to the Node.js backend.
-
-```bash
-cd programs/ika-helper
-cargo build --release
-mkdir -p ../../bin
-cp target/release/ika-dwallet-helper ../../bin/
-```
-
----
-
-### 3. Configure Environment
-
-**Backend** (`Sol-App/apps/backend/.env`):
-```env
-SOLANA_RPC_URL=https://api.devnet.solana.com
-ENCRYPTION_KEY=<32-byte hex key>
-LINKORA_CUSTODY_PROGRAM_ID=<from step 1>
-LINKORA_PRIVACY_PROGRAM_ID=<from step 1>
-IKA_HELPER_BIN=./bin/ika-dwallet-helper
-```
-
-**Mobile App** (`Linkora/.env`):
 ```env
 EXPO_PUBLIC_API_URL=https://linkora-backend.onrender.com/api
 EXPO_PUBLIC_PUSHER_KEY=<pusher key>
 EXPO_PUBLIC_PUSHER_CLUSTER=mt1
 ```
 
----
+Nothing in the mobile repo deploys on-chain programs; the backend (in a separate repository) handles Stellar wallet operations and the Ika/Encrypt gRPC integrations.
 
-### 4. Run
+### Scripts
 
 ```bash
-# Backend
-cd Sol-App/apps/backend
-pnpm install && pnpm start:dev
-
-# Mobile (separate terminal)
-cd Linkora
-pnpm install && pnpm start
-# Press 'a' → Android  |  'i' → iOS  |  'w' → Web
+pnpm test          # jest (watch)
+pnpm lint          # eslint
+pnpm type-check    # tsc --noEmit
+pnpm build:android # EAS build
+pnpm build:ios     # EAS build
 ```
-
----
-
-## Testing the Features
-
-### Private Tip (Encrypt FHE)
-
-1. Sign in and open any chat conversation
-2. Tap the **$** icon in the message bar
-3. Enter an amount and toggle **Private Tip** on
-4. Tap **Send Privately**
-
-**Expected result:** The message thread shows a purple 🔒 bubble — *"Sent a private tip · Amount encrypted via FHE"*. No SOL amount appears on-chain or in any block explorer.
-
----
-
-### dWallet Custody (Ika)
-
-1. Sign up with a new account
-2. Check backend logs — you will see `DKG complete: dWalletId=...`
-3. Send XLM from the Wallet tab
-4. Check backend logs — you will see `MessageApproval created`, then `Signature committed by Ika network`
-
-**Expected result:** The transaction is signed by the Ika network. The backend keypair alone cannot produce a valid signature.
 
 ---
 
 ## Repository Structure
 
 ```
-Linkora/                          # React Native mobile app
-├── app/                         # Expo Router screens
-├── components/                  # UI components
-├── hooks/                       # React Query hooks
-├── lib/api.ts                   # API client
-├── services/
-│   ├── ika.ts                   # Ika dWallet backend service
-│   └── encrypt.ts               # Encrypt FHE backend service
-├── types/index.ts               # Shared TypeScript types
-└── programs/
-    ├── linkora-custody/          # Anchor program — Ika dWallet custody
-    ├── linkora-privacy/          # Anchor program — Encrypt FHE private tips
-    └── ika-helper/              # Rust binary — Ika gRPC DKG client
-
-Sol-App/apps/backend/            # NestJS backend
-├── src/modules/
-│   ├── chats/                   # Chat + private tip routes
-│   ├── wallet/                  # Wallet + dWallet send
-│   └── auth/                    # Signup + dWallet creation
-└── src/schemas/
-    └── message.schema.ts        # isPrivateTip, ciphertextId fields
+├── app/             # Expo Router screens (feed, chats, wallet, pay, mini-apps, auth)
+├── components/      # UI components (feed, chat, wallet, profile, auth, settings)
+├── hooks/           # TanStack Query hooks (posts, chats, wallet, notifications…)
+├── lib/             # API client, Stellar config, storage, theme, i18n, 2FA, uploads
+├── locales/         # 12 language translations (i18next)
+├── services/        # coingecko · dexscreener · ika (dWallet) · encrypt (FHE)
+├── store/           # Zustand stores (theme)
+├── programs/        # On-chain reference programs (Solana / Ika / Encrypt)
+├── scripts/         # Translation + API validation tooling
+└── types/           # Shared TypeScript types
 ```
 
 ---
 
-## Pre-Alpha Notice
-
-Both Ika and Encrypt are pre-alpha. The on-chain programs, gRPC APIs, and account structures are fully implemented and live on Stellar devnet. The cryptographic guarantees — distributed 2PC-MPC signing and real FHE computation — are currently simulated by a single mock server. No code changes are required when mainnet launches; only environment variable updates are needed.
-
----
-
-## Tech Stack
-
-- **Mobile:** React Native, Expo Router, NativeWind (Tailwind), TanStack Query, Zustand
-- **Backend:** NestJS, MongoDB, Pusher, `@solana/web3.js`, `@encrypt.xyz/pre-alpha-solana-client`
-- **On-chain:** Anchor v1, `ika-dwallet-anchor`, `encrypt-anchor`, `encrypt-dsl`
-- **Infrastructure:** Stellar Testnet (frontend) · Stellar Devnet (backend), Ika gRPC (`pre-alpha-dev-1.ika.ika-network.net`), Encrypt gRPC (`pre-alpha-dev-1.encrypt.ika-network.net`)
-# Linkora-Socials
+*Linkora — Own Your Social.*
