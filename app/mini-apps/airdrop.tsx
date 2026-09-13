@@ -168,7 +168,7 @@ export default function AirdropScreen() {
                 }`}
               >
                 {isClaiming ? (
-                  <ActivityIndicator color="#9333ea" />
+                  <ActivityIndicator color="#673AB7" />
                 ) : (
                   <Text className={`font-semibold ${!canClaim ? 'text-white/60' : 'text-purple-600'}`}>
                     {canClaim ? '🎁 Claim Airdrop' : 'Come Back Later'}

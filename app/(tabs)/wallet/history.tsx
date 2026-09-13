@@ -37,7 +37,7 @@ export default function TransactionHistoryScreen() {
         <View className="mt-6 pb-6">
           {isLoadingTransactions && transactions.length === 0 ? (
             <View className="items-center py-10">
-              <ActivityIndicator size="large" color="#9333ea" />
+              <ActivityIndicator size="large" color="#673AB7" />
             </View>
           ) : transactions.length === 0 ? (
             <View className="items-center py-10">
@@ -60,7 +60,7 @@ export default function TransactionHistoryScreen() {
               ))}
               {isFetchingNextPage && (
                 <View className="py-4">
-                  <ActivityIndicator size="small" color="#9333ea" />
+                  <ActivityIndicator size="small" color="#673AB7" />
                 </View>
               )}
               {!hasNextPage && transactions.length > 0 && (

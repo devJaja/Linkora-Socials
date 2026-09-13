@@ -28,7 +28,7 @@ export async function getFCMToken(): Promise<string | null> {
         name: 'Default',
         importance: Notifications.AndroidImportance.MAX,
         vibrationPattern: [0, 250, 250, 250],
-        lightColor: '#9333ea',
+        lightColor: '#673AB7',
         sound: 'default',
       });
     }

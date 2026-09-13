@@ -9,14 +9,14 @@ import { toast } from 'sonner-native';
 import { api } from '@/lib/api';
 
 const multipliers = [
-  { value: 0, color: '#ef4444', label: '0x' },
-  { value: 1.5, color: '#f59e0b', label: '1.5x' },
-  { value: 2, color: '#10b981', label: '2x' },
-  { value: 0.5, color: '#6b7280', label: '0.5x' },
-  { value: 3, color: '#8b5cf6', label: '3x' },
-  { value: 1, color: '#3b82f6', label: '1x' },
-  { value: 5, color: '#ec4899', label: '5x' },
-  { value: 0, color: '#ef4444', label: '0x' },
+  { value: 0, color: '#FF3F00', label: '0x' },
+  { value: 1.5, color: '#FDDA24', label: '1.5x' },
+  { value: 2, color: '#00A7B5', label: '2x' },
+  { value: 0.5, color: '#7A7A7A', label: '0.5x' },
+  { value: 3, color: '#673AB7', label: '3x' },
+  { value: 1, color: '#B7ACE8', label: '1x' },
+  { value: 5, color: '#7F6FC9', label: '5x' },
+  { value: 0, color: '#FF3F00', label: '0x' },
 ];
 
 export default function SpinScreen() {
@@ -181,7 +181,7 @@ export default function SpinScreen() {
               placeholder="0.1"
               keyboardType="decimal-pad"
               className="mt-2 text-2xl font-bold text-foreground"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
             />
             <Text className="mt-2 text-sm text-muted-foreground">
               Balance: {balance.toFixed(4)} XLM

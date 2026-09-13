@@ -129,7 +129,7 @@ export default function FoodOrderingScreen() {
               onChangeText={setSearchQuery}
               placeholder="Search for food..."
               className="flex-1 text-base text-foreground"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
             />
           </View>
         </View>
@@ -262,7 +262,7 @@ export default function FoodOrderingScreen() {
                     onChangeText={setDeliveryAddress}
                     placeholder="Enter your address..."
                     className="flex-1 text-base text-foreground"
-                    placeholderTextColor="#9ca3af"
+                    placeholderTextColor="#969696"
                   />
                 </View>
               </View>

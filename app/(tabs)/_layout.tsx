@@ -24,15 +24,15 @@ export default function TabsLayout() {
   const effectiveTheme = theme === 'system' ? systemTheme : theme;
   const isDark = effectiveTheme === 'dark';
   
-  const tabBarBg = isDark ? '#121212' : '#ffffff';
-  const tabBarBorderColor = isDark ? '#374151' : '#e5e7eb';
+  const tabBarBg = isDark ? '#1C1C1C' : '#ffffff';
+  const tabBarBorderColor = isDark ? '#5E5E5E' : '#E4E2D8';
 
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#9333ea',
-        tabBarInactiveTintColor: isDark ? '#9ca3af' : '#6b7280',
+        tabBarActiveTintColor: '#673AB7',
+        tabBarInactiveTintColor: isDark ? '#969696' : '#7A7A7A',
         tabBarStyle: {
           backgroundColor: tabBarBg,
           borderTopColor: tabBarBorderColor,

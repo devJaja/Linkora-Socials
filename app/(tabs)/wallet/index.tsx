@@ -136,7 +136,7 @@ export default function WalletScreen() {
             {/* Token Holdings */}
             {isLoadingHoldings ? (
               <View className="items-center py-4">
-                <ActivityIndicator size="small" color="#9333ea" />
+                <ActivityIndicator size="small" color="#673AB7" />
               </View>
             ) : holdings.length > 0 ? (
               <>
@@ -203,7 +203,7 @@ export default function WalletScreen() {
           <View className="mt-4">
             {isLoadingTransactions && transactions.length === 0 ? (
               <View className="items-center py-10">
-                <ActivityIndicator size="large" color="#9333ea" />
+                <ActivityIndicator size="large" color="#673AB7" />
               </View>
             ) : transactions.length === 0 ? (
               <View className="items-center py-10">

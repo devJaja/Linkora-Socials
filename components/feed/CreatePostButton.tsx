@@ -22,7 +22,7 @@ export function CreatePostButton({ onPress }: CreatePostButtonProps) {
       onPress={handlePress}
       className="absolute bottom-6 right-6 h-14 w-14 items-center justify-center rounded-full bg-purple-600 shadow-lg"
       style={{
-        shadowColor: '#9333ea',
+        shadowColor: '#673AB7',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,

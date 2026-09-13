@@ -99,7 +99,7 @@ export default function TransactionDetailsScreen() {
   if (isLoading) {
     return (
       <View className="flex-1 items-center justify-center bg-background">
-        <ActivityIndicator size="large" color="#9333ea" />
+        <ActivityIndicator size="large" color="#673AB7" />
       </View>
     );
   }

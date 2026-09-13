@@ -51,7 +51,7 @@ export default function SignUpScreen() {
               numberOfLines={4}
               textAlignVertical="top"
               className="h-24 rounded-xl bg-card px-4 py-3 text-base text-foreground"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
             />
           </View>
 
@@ -67,7 +67,7 @@ export default function SignUpScreen() {
                 <Image
                   source={require('@/assets/images/icon.png')}
                   className="h-8 w-8"
-                  style={{ tintColor: selectedAvatar === null ? '#7c3aed' : '#9ca3af' }}
+                  style={{ tintColor: selectedAvatar === null ? '#673AB7' : '#969696' }}
                 />
               </Pressable>
               {AVATAR_OPTIONS.map((avatar, index) => (

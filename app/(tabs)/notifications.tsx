@@ -74,7 +74,7 @@ export default function NotificationsScreen() {
       >
         {isLoading && notifications.length === 0 ? (
           <View className="items-center py-20">
-            <ActivityIndicator size="large" color="#9333ea" />
+            <ActivityIndicator size="large" color="#673AB7" />
           </View>
         ) : notifications.length === 0 ? (
           <View className="items-center py-20">
@@ -95,7 +95,7 @@ export default function NotificationsScreen() {
         
         {isFetchingNextPage && (
           <View className="py-4">
-            <ActivityIndicator size="small" color="#9333ea" />
+            <ActivityIndicator size="small" color="#673AB7" />
           </View>
         )}
       </ScrollView>

@@ -47,7 +47,7 @@ export default function SwapHistoryScreen() {
         <View className="mt-6 pb-6">
           {isLoading ? (
             <View className="items-center py-10">
-              <ActivityIndicator size="large" color="#2563eb" />
+              <ActivityIndicator size="large" color="#673AB7" />
             </View>
           ) : swaps.length === 0 ? (
             <View className="items-center py-10">
@@ -106,7 +106,7 @@ export default function SwapHistoryScreen() {
               ))}
               {isFetchingNextPage && (
                 <View className="py-4">
-                  <ActivityIndicator size="small" color="#2563eb" />
+                  <ActivityIndicator size="small" color="#673AB7" />
                 </View>
               )}
               {!hasNextPage && swaps.length > 0 && (

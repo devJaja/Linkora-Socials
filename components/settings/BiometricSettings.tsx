@@ -96,7 +96,7 @@ export function BiometricSettings({ onToggle }: BiometricSettingsProps) {
         <Switch
           value={isEnabled}
           onValueChange={handleToggle}
-          trackColor={{ false: '#d1d5db', true: '#9333ea' }}
+          trackColor={{ false: '#D6D3C4', true: '#673AB7' }}
           thumbColor="#ffffff"
         />
       </View>

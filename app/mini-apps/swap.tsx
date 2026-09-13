@@ -233,7 +233,7 @@ export default function SwapScreen() {
                 placeholder="0.00"
                 keyboardType="decimal-pad"
                 className="flex-1 text-3xl font-bold text-foreground"
-                placeholderTextColor="#9ca3af"
+                placeholderTextColor="#969696"
               />
               <TouchableOpacity
                 onPress={() => setShowFromModal(true)}
@@ -267,7 +267,7 @@ export default function SwapScreen() {
             <View className="mt-2 flex-row items-center justify-between">
               <View className="flex-1 flex-row items-center gap-2">
                 {isCalculating ? (
-                  <ActivityIndicator size="small" color="#9333ea" />
+                  <ActivityIndicator size="small" color="#673AB7" />
                 ) : (
                   <Text className="text-3xl font-bold">{toAmount}</Text>
                 )}
@@ -325,7 +325,7 @@ export default function SwapScreen() {
         <View className="mx-4 mt-6">
           <View className="flex-row items-center justify-between">
             <Text className="text-lg font-bold">Available Tokens</Text>
-            {isLoadingPrices && <ActivityIndicator size="small" color="#9333ea" />}
+            {isLoadingPrices && <ActivityIndicator size="small" color="#673AB7" />}
           </View>
           <View className="mt-3 gap-2">
             {TOKENS.map((token) => (

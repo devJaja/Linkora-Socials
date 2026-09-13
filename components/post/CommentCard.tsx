@@ -89,7 +89,7 @@ export function CommentCard({
                   as={Heart}
                   size={16}
                   className={comment.isLiked ? 'text-red-500' : 'text-muted-foreground'}
-                  fill={comment.isLiked ? '#ef4444' : 'none'}
+                  fill={comment.isLiked ? '#FF3F00' : 'none'}
                 />
                 <Text className={`text-sm ${comment.isLiked ? 'text-red-500' : 'text-muted-foreground'}`}>
                   {comment.likesCount || 0}

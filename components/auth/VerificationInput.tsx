@@ -73,7 +73,7 @@ export function VerificationInput({
               focusedIndex === index ? 'border-purple-600' : 'border-transparent'
             }`}
             placeholder="0"
-            placeholderTextColor="#d1d5db"
+            placeholderTextColor="#D6D3C4"
             autoFocus={index === 0}
           />
         ))}

@@ -11,7 +11,7 @@
     "splash": {
       "image": "./assets/images/appicon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#E6E4DB"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -24,7 +24,7 @@
       "edgeToEdgeEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/appicon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#E6E4DB"
       },
       "softwareKeyboardLayoutMode":"pan",
       "package": "app.linkora",

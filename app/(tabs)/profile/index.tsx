@@ -134,7 +134,7 @@ export default function ProfileScreen() {
             refreshing={refreshing}
             onRefresh={handleRefresh}
             tintColor="#ffffff"
-            colors={['#9333ea']}
+            colors={['#673AB7']}
           />
         }
       >

@@ -57,7 +57,7 @@ export default function ExploreScreen() {
           value={searchQuery}
           onChangeText={setSearchQuery}
           className="flex-1 text-base text-foreground"
-          placeholderTextColor="#9ca3af"
+          placeholderTextColor="#969696"
         />
       </View>
 
@@ -80,7 +80,7 @@ export default function ExploreScreen() {
         <View className="mt-4">
           {isLoadingFeed && posts.length === 0 ? (
             <View className="items-center py-20">
-              <ActivityIndicator size="large" color="#9333ea" />
+              <ActivityIndicator size="large" color="#673AB7" />
             </View>
           ) : filteredPosts.length === 0 ? (
             <View className="items-center py-20">
@@ -162,7 +162,7 @@ export default function ExploreScreen() {
                       as={Heart} 
                       size={20} 
                       className={post.isLiked ? "text-purple-600" : "text-muted-foreground"}
-                      fill={post.isLiked ? "#9333ea" : "none"}
+                      fill={post.isLiked ? "#673AB7" : "none"}
                     />
                     <Text className={`${post.isLiked ? 'text-purple-600 font-semibold' : 'text-muted-foreground'}`}>
                       {post.likesCount || 0}
@@ -195,7 +195,7 @@ export default function ExploreScreen() {
 
           {isFetchingNextPage && (
             <View className="py-4">
-              <ActivityIndicator size="small" color="#9333ea" />
+              <ActivityIndicator size="small" color="#673AB7" />
             </View>
           )}
         </View>

@@ -31,7 +31,7 @@ export function FeedActions({
           as={Heart}
           size={20}
           className={isLiked ? 'text-red-500' : 'text-muted-foreground'}
-          fill={isLiked ? '#ef4444' : 'none'}
+          fill={isLiked ? '#FF3F00' : 'none'}
         />
         <Text className={isLiked ? 'text-red-500' : 'text-muted-foreground'}>
           {likesCount || 0}

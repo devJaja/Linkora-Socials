@@ -52,7 +52,7 @@ export function BiometricButton({ onAuthenticate, biometricName }: BiometricButt
       className="mb-4 h-14 flex-row items-center justify-center gap-2 rounded-2xl border-2 border-purple-600 bg-background active:bg-purple-50"
     >
       {isAuthenticating ? (
-        <ActivityIndicator color="#9333ea" />
+        <ActivityIndicator color="#673AB7" />
       ) : (
         <>
           <Icon as={Fingerprint} size={24} className="text-purple-600" />

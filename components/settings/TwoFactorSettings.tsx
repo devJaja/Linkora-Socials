@@ -142,7 +142,7 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
           <Switch
             value={isEnabled}
             onValueChange={(value) => value ? handleEnable() : handleDisable()}
-            trackColor={{ false: '#d1d5db', true: '#9333ea' }}
+            trackColor={{ false: '#D6D3C4', true: '#673AB7' }}
             thumbColor="#ffffff"
           />
         </View>

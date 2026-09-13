@@ -170,7 +170,7 @@ async function registerForPushNotificationsAsync() {
       name: 'default',
       importance: ExpoNotifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
+      lightColor: '#FF3F0080',
     });
   }
 

@@ -161,7 +161,7 @@ export default function EditProfileScreen() {
   if (isLoadingUser) {
     return (
       <View className="flex-1 items-center justify-center bg-background">
-        <ActivityIndicator size="large" color="#9333ea" />
+        <ActivityIndicator size="large" color="#673AB7" />
       </View>
     );
   }
@@ -242,7 +242,7 @@ export default function EditProfileScreen() {
                   setErrors({ ...errors, name: '' });
                 }}
                 placeholder="Enter your display name"
-                placeholderTextColor="#9ca3af"
+                placeholderTextColor="#969696"
                 className="text-base text-foreground"
                 maxLength={50}
               />
@@ -273,7 +273,7 @@ export default function EditProfileScreen() {
                   setErrors({ ...errors, bio: '' });
                 }}
                 placeholder="Tell us about yourself"
-                placeholderTextColor="#9ca3af"
+                placeholderTextColor="#969696"
                 multiline
                 numberOfLines={4}
                 textAlignVertical="top"

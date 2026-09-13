@@ -166,7 +166,7 @@ export default function DiceGameScreen() {
               placeholder="0.1"
               keyboardType="decimal-pad"
               className="mt-2 text-2xl font-bold text-foreground"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
             />
             <Text className="mt-2 text-sm text-muted-foreground">
               Balance: {balance.toFixed(4)} XLM
@@ -209,7 +209,7 @@ export default function DiceGameScreen() {
               placeholder="50"
               keyboardType="numeric"
               className="mt-2 text-2xl font-bold text-foreground"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
             />
           </View>
 

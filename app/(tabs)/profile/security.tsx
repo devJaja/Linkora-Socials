@@ -63,7 +63,7 @@ export default function SecurityPrivacyScreen() {
                 setTwoFactorEnabled(value);
                 toast.success(value ? '2FA enabled' : '2FA disabled');
               }}
-              trackColor={{ false: '#d1d5db', true: '#9333ea' }}
+              trackColor={{ false: '#D6D3C4', true: '#673AB7' }}
               thumbColor="#ffffff"
             />
           </View>
@@ -84,7 +84,7 @@ export default function SecurityPrivacyScreen() {
                 setBiometricEnabled(value);
                 toast.success(value ? 'Biometric enabled' : 'Biometric disabled');
               }}
-              trackColor={{ false: '#d1d5db', true: '#9333ea' }}
+              trackColor={{ false: '#D6D3C4', true: '#673AB7' }}
               thumbColor="#ffffff"
             />
           </View>
@@ -106,7 +106,7 @@ export default function SecurityPrivacyScreen() {
                 value={currentPassword}
                 onChangeText={setCurrentPassword}
                 placeholder="Enter current password"
-                placeholderTextColor="#9ca3af"
+                placeholderTextColor="#969696"
                 secureTextEntry={!showCurrentPassword}
                 className="flex-1 py-4 text-base text-foreground"
               />
@@ -130,7 +130,7 @@ export default function SecurityPrivacyScreen() {
                 value={newPassword}
                 onChangeText={setNewPassword}
                 placeholder="Enter new password"
-                placeholderTextColor="#9ca3af"
+                placeholderTextColor="#969696"
                 secureTextEntry={!showNewPassword}
                 className="flex-1 py-4 text-base text-foreground"
               />
@@ -154,7 +154,7 @@ export default function SecurityPrivacyScreen() {
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
                 placeholder="Confirm new password"
-                placeholderTextColor="#9ca3af"
+                placeholderTextColor="#969696"
                 secureTextEntry
                 className="text-base text-foreground"
               />

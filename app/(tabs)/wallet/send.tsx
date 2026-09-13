@@ -151,7 +151,7 @@ export default function SendMoneyScreen() {
                 setErrors({ ...errors, recipient: '' });
               }}
               placeholder="Enter Stellar wallet address"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
               className="text-base text-foreground"
               autoCapitalize="none"
               autoCorrect={false}
@@ -197,7 +197,7 @@ export default function SendMoneyScreen() {
               keyboardType="decimal-pad"
               className="text-2xl font-semibold text-foreground"
               placeholder="0.00"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
             />
           </View>
           {errors.amount ? (
@@ -229,7 +229,7 @@ export default function SendMoneyScreen() {
               value={memo}
               onChangeText={setMemo}
               placeholder="Add a note..."
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
               className="text-base text-foreground"
               maxLength={100}
             />
@@ -399,7 +399,7 @@ export default function SendMoneyScreen() {
                 value={searchQuery}
                 onChangeText={handleSearch}
                 placeholder="Search by username or name..."
-                placeholderTextColor="#9ca3af"
+                placeholderTextColor="#969696"
                 className="flex-1 text-base text-foreground"
                 autoCapitalize="none"
               />
@@ -410,7 +410,7 @@ export default function SendMoneyScreen() {
           <View className="flex-1 px-4 pt-4">
             {isSearching ? (
               <View className="items-center py-20">
-                <ActivityIndicator size="large" color="#9333ea" />
+                <ActivityIndicator size="large" color="#673AB7" />
               </View>
             ) : searchResults.length === 0 ? (
               <View className="items-center py-20">

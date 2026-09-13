@@ -45,7 +45,7 @@ export default function TransactionsScreen() {
         <View className="px-4 py-6">
           {isLoadingTransactions && transactions.length === 0 ? (
             <View className="items-center py-10">
-              <ActivityIndicator size="large" color="#9333ea" />
+              <ActivityIndicator size="large" color="#673AB7" />
             </View>
           ) : transactions.length === 0 ? (
             <View className="items-center py-10">
@@ -87,7 +87,7 @@ export default function TransactionsScreen() {
               
               {isFetchingNextPage && (
                 <View className="py-4">
-                  <ActivityIndicator size="small" color="#9333ea" />
+                  <ActivityIndicator size="small" color="#673AB7" />
                 </View>
               )}
               

@@ -50,7 +50,7 @@ export function CommentInput({
         value={content}
         onChangeText={setContent}
         placeholder={replyingTo ? `Reply to @${replyingTo}...` : placeholder}
-        placeholderTextColor="#9ca3af"
+        placeholderTextColor="#969696"
         multiline
         maxLength={500}
         className="mb-3 min-h-[80px] rounded-lg border border-border bg-card px-4 py-3 text-foreground"

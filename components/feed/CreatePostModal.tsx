@@ -96,7 +96,7 @@ export function CreatePostModal({
               value={content}
               onChangeText={setContent}
               placeholder={t('feed.whatsHappening')}
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
               multiline
               autoFocus
               className="min-h-[100px] text-base text-foreground"
@@ -130,7 +130,7 @@ export function CreatePostModal({
                 <Switch
                   value={isTokenized}
                   onValueChange={setIsTokenized}
-                  trackColor={{ false: '#d1d5db', true: '#9333ea' }}
+                  trackColor={{ false: '#D6D3C4', true: '#673AB7' }}
                   thumbColor="#ffffff"
                 />
               </View>

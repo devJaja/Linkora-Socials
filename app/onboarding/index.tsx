@@ -105,7 +105,7 @@ function OnboardingSlide({
   return (
     <View style={{ width: screenWidth }} className="items-center justify-center px-8 pt-20">
       <View className="mb-12 h-24 w-24 items-center justify-center rounded-full bg-card shadow-sm">
-        <Icon size={48} color="#7c3aed" strokeWidth={2} />
+        <Icon size={48} color="#673AB7" strokeWidth={2} />
       </View>
 
       <Text className="mb-4 text-center text-3xl font-bold leading-tight text-foreground">

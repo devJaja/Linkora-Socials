@@ -91,7 +91,7 @@ export default function ChatsScreen() {
             <Icon as={Search} size={20} className="text-muted-foreground" />
             <TextInput
               placeholder="Search messages"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#969696"
               className="flex-1 text-base text-foreground"
             />
           </View>
@@ -101,7 +101,7 @@ export default function ChatsScreen() {
         <View className="mt-6 px-4 pb-6">
           {isLoading && chats.length === 0 ? (
             <View className="items-center py-20">
-              <ActivityIndicator size="large" color="#9333ea" />
+              <ActivityIndicator size="large" color="#673AB7" />
             </View>
           ) : chats.length === 0 ? (
             <View className="items-center py-20">
@@ -168,7 +168,7 @@ export default function ChatsScreen() {
                   placeholder="Search users..."
                   value={searchQuery}
                   onChangeText={handleSearch}
-                  placeholderTextColor="#9ca3af"
+                  placeholderTextColor="#969696"
                   className="flex-1 text-base text-foreground"
                   autoFocus
                 />
@@ -179,7 +179,7 @@ export default function ChatsScreen() {
             <ScrollView className="flex-1 px-4">
               {isSearching ? (
                 <View className="items-center py-10">
-                  <ActivityIndicator size="large" color="#9333ea" />
+                  <ActivityIndicator size="large" color="#673AB7" />
                 </View>
               ) : searchResults.length === 0 && searchQuery.length >= 2 ? (
                 <View className="items-center py-10">
