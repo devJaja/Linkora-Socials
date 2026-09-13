@@ -16,7 +16,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "icon": "./assets/images/not.png",
+      "icon": "./assets/images/appicon.png",
       "bundleIdentifier": "app.linkora",
       "associatedDomains": ["applinks:linkora.app"]
     },
@@ -29,7 +29,7 @@
       "softwareKeyboardLayoutMode":"pan",
       "package": "app.linkora",
       "notification": {
-        "icon": "./assets/images/not.png",
+        "icon": "./assets/images/appicon.png",
         "color": "#ffffff"
       },
       "intentFilters": [
@@ -61,7 +61,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/not.png",
+          "icon": "./assets/images/appicon.png",
           "color": "#ffffff",
           "sounds": []
         }
