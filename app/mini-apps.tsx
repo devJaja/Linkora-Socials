@@ -77,7 +77,7 @@ export default function MiniAppsScreen() {
     <View className="flex-1 bg-background">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View className="bg-purple-600 px-4 pb-8 pt-12">
+        <View className="bg-[#002E5F] px-4 pb-8 pt-12">
           <View className="flex-row items-center gap-3">
             <TouchableOpacity onPress={() => router.back()}>
               <Icon as={ArrowLeft} size={24} className="text-white" />
@@ -116,7 +116,7 @@ export default function MiniAppsScreen() {
                 onPress={() => router.push(app.route as any)}
                 className="overflow-hidden rounded-2xl bg-card active:opacity-80"
               >
-                <View className="bg-purple-600 dark:bg-purple-700 p-4">
+                <View className="bg-[#002E5F] p-4">
                   <View className="flex-row items-center gap-3">
                     <View className="h-14 w-14 items-center justify-center rounded-2xl bg-white/20">
                       <Icon as={app.icon} size={28} className="text-white" />

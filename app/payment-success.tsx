@@ -63,9 +63,9 @@ export default function PaymentSuccessScreen() {
             router.dismissAll();
             router.push('/(tabs)/wallet/send');
           }}
-          className="flex-1 items-center rounded-2xl bg-purple-600 py-4"
+          className="flex-1 items-center rounded-2xl bg-primary py-4"
         >
-          <Text className="text-lg font-semibold text-white">Send Again</Text>
+          <Text className="text-lg font-semibold text-[#002E5F]">Send Again</Text>
         </TouchableOpacity>
       </View>
     </View>

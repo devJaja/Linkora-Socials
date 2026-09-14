@@ -45,10 +45,10 @@ export function ConfirmDialog({
             <TouchableOpacity
               onPress={onConfirm}
               className={`flex-1 rounded-full py-3 ${
-                destructive ? 'bg-red-600' : 'bg-purple-600'
+                destructive ? 'bg-red-600' : 'bg-primary'
               }`}
             >
-              <Text className="text-center font-semibold text-white">{confirmText}</Text>
+              <Text className={`text-center font-semibold ${destructive ? 'text-white' : 'text-[#002E5F]'}`}>{confirmText}</Text>
             </TouchableOpacity>
           </View>
         </View>

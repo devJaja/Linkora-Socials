@@ -10,10 +10,10 @@ import { api } from '@/lib/api';
 
 const multipliers = [
   { value: 0, color: '#FF3F00', label: '0x' },
-  { value: 1.5, color: '#FDDA24', label: '1.5x' },
-  { value: 2, color: '#00A7B5', label: '2x' },
+  { value: 1.5, color: '#FDDB24', label: '1.5x' },
+  { value: 2, color: '#00A8B5', label: '2x' },
   { value: 0.5, color: '#7A7A7A', label: '0.5x' },
-  { value: 3, color: '#673AB7', label: '3x' },
+  { value: 3, color: '#002E5F', label: '3x' },
   { value: 1, color: '#B7ACE8', label: '1x' },
   { value: 5, color: '#7F6FC9', label: '5x' },
   { value: 0, color: '#FF3F00', label: '0x' },

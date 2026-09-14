@@ -97,15 +97,15 @@ export default function FollowsScreen() {
             onPress={() => handleFollowToggle(user.id, isFollowingUser)}
             disabled={isFollowingLoading || isUnfollowing}
             className={`flex-row items-center gap-2 rounded-full px-4 py-2 ${
-              isFollowingUser ? 'bg-gray-200 dark:bg-gray-700' : 'bg-purple-600'
+              isFollowingUser ? 'bg-gray-200 dark:bg-gray-700' : 'bg-primary'
             }`}
           >
             <Icon 
               as={isFollowingUser ? UserMinus : UserPlus} 
               size={16} 
-              className={isFollowingUser ? "text-foreground" : "text-white"}
+              className={isFollowingUser ? "text-foreground" : "text-[#002E5F]"}
             />
-            <Text className={`font-semibold text-sm ${isFollowingUser ? 'text-foreground' : 'text-white'}`}>
+            <Text className={`font-semibold text-sm ${isFollowingUser ? 'text-foreground' : 'text-[#002E5F]'}`}>
               {isFollowingUser ? 'Unfollow' : 'Follow'}
             </Text>
           </TouchableOpacity>
@@ -183,7 +183,7 @@ export default function FollowsScreen() {
       {/* Users List */}
       {isLoading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#673AB7" />
+          <ActivityIndicator size="large" color="#002E5F" />
         </View>
       ) : filteredUsers.length === 0 ? (
         <View className="flex-1 items-center justify-center px-8">

@@ -101,7 +101,7 @@ export default function ChatsScreen() {
         <View className="mt-6 px-4 pb-6">
           {isLoading && chats.length === 0 ? (
             <View className="items-center py-20">
-              <ActivityIndicator size="large" color="#673AB7" />
+              <ActivityIndicator size="large" color="#002E5F" />
             </View>
           ) : chats.length === 0 ? (
             <View className="items-center py-20">
@@ -134,9 +134,9 @@ export default function ChatsScreen() {
       {/* Floating New Message Button */}
       <TouchableOpacity 
         onPress={() => setShowNewMessageModal(true)}
-        className="absolute bottom-6 right-6 h-14 w-14 items-center justify-center rounded-full bg-purple-600 shadow-lg"
+        className="absolute bottom-6 right-6 h-14 w-14 items-center justify-center rounded-full bg-primary shadow-lg"
       >
-        <Icon as={Plus} size={24} className="text-white" />
+        <Icon as={Plus} size={24} className="text-[#002E5F]" />
       </TouchableOpacity>
 
       {/* New Message Modal */}
@@ -179,7 +179,7 @@ export default function ChatsScreen() {
             <ScrollView className="flex-1 px-4">
               {isSearching ? (
                 <View className="items-center py-10">
-                  <ActivityIndicator size="large" color="#673AB7" />
+                  <ActivityIndicator size="large" color="#002E5F" />
                 </View>
               ) : searchResults.length === 0 && searchQuery.length >= 2 ? (
                 <View className="items-center py-10">

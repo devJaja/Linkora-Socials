@@ -77,8 +77,8 @@ export default function OnboardingScreen() {
           ))}
         </View>
 
-        <Button className="mb-4 h-14 rounded-2xl bg-purple-600 active:bg-purple-700" onPress={handleCreateAccount}>
-          <Text className="text-base font-medium text-white">Create Account</Text>
+        <Button className="mb-4 h-14 rounded-2xl bg-primary active:bg-primary/90" onPress={handleCreateAccount}>
+          <Text className="text-base font-medium text-[#002E5F]">Create Account</Text>
         </Button>
 
         <Button variant="ghost" className="h-14" onPress={handleSignIn}>
@@ -105,7 +105,7 @@ function OnboardingSlide({
   return (
     <View style={{ width: screenWidth }} className="items-center justify-center px-8 pt-20">
       <View className="mb-12 h-24 w-24 items-center justify-center rounded-full bg-card shadow-sm">
-        <Icon size={48} color="#673AB7" strokeWidth={2} />
+        <Icon size={48} color="#002E5F" strokeWidth={2} />
       </View>
 
       <Text className="mb-4 text-center text-3xl font-bold leading-tight text-foreground">
@@ -137,7 +137,7 @@ function Dot({ index, scrollX, screenWidth }: { index: number; scrollX: SharedVa
   return (
     <Animated.View
       style={animatedStyle}
-      className="h-2 rounded-full bg-purple-600"
+      className="h-2 rounded-full bg-[#002E5F]"
     />
   );
 }

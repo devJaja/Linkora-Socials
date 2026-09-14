@@ -89,12 +89,12 @@ export function SignInForm({ onSubmit, onSignUp, onForgotPassword, isSubmitting 
         <Button
           onPress={handleSubmit}
           disabled={isSubmitting}
-          className="mb-6 h-14 rounded-2xl bg-purple-600 active:bg-purple-700"
+          className="mb-6 h-14 rounded-2xl bg-primary active:bg-primary/90"
         >
           {isSubmitting ? (
-            <ActivityIndicator color="white" />
+            <ActivityIndicator color="#002E5F" />
           ) : (
-            <Text className="text-base font-medium text-white">{t('auth.signIn')}</Text>
+            <Text className="text-base font-medium text-[#002E5F]">{t('auth.signIn')}</Text>
           )}
         </Button>
 

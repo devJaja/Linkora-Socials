@@ -19,42 +19,42 @@ const features = [
     title: 'Tokenized Posts',
     description: 'Every post you create becomes a tradeable token on the Stellar blockchain. Your content has intrinsic value that grows as your influence expands.',
     details: 'Create, trade, and invest in creator tokens. Your posts are stored on-chain, making them truly yours forever.',
-    color: 'from-purple-500 to-purple-700'
+    color: 'from-[#002E5F] to-[#00A8B5]'
   },
   {
     icon: Zap,
     title: 'Lightning Fast',
     description: 'Built on Stellar - the fastest blockchain with sub-second transactions and near-zero fees. Experience Web3 without the friction.',
     details: '100,000+ TPS throughput. Transactions settle in under 400ms. No waiting, no gas wars.',
-    color: 'from-yellow-400 to-orange-500'
+    color: 'from-[#FDDB24] to-[#D4A800]'
   },
   {
     icon: Shield,
     title: 'True Ownership',
     description: 'Your data, your wallet, your rules. No platform can ban you, censor you, or take your earnings. Decentralization done right.',
     details: 'Self-custody wallet. On-chain content. Censorship-resistant. You are the sole owner of your digital identity.',
-    color: 'from-green-500 to-emerald-700'
+    color: 'from-[#00A8B5] to-[#002E5F]'
   },
   {
     icon: MessageCircle,
     title: 'SocialFi Ecosystem',
     description: 'The first social platform that combines social networking with DeFi. Follow, engage, and earn - all in one place.',
     details: 'Follow creators, send tips, join communities, and earn rewards for your participation in the ecosystem.',
-    color: 'from-pink-500 to-rose-700'
+    color: 'from-[#B7ACE8] to-[#00A8B5]'
   },
   {
     icon: TrendingUp,
     title: 'Creator Economy',
     description: 'Trade creator tokens like stocks. Early supporters earn as creators grow. Everyone wins in the creator economy.',
     details: 'Buy tokens when creators are undervalued. Earn from their growth. Participate in governance decisions.',
-    color: 'from-blue-500 to-indigo-700'
+    color: 'from-[#002E5F] to-[#B7ACE8]'
   },
   {
     icon: Users,
     title: 'Community Driven',
     description: 'Build your network with genuine connections. No algorithms hiding your content. What you post is what you get.',
     details: 'Organic reach. Real engagement. No pay-to-play. Your content reaches your audience, not a corporate agenda.',
-    color: 'from-indigo-500 to-violet-700'
+    color: 'from-[#FDDB24] to-[#00A8B5]'
   }
 ]
 
@@ -104,7 +104,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-950 text-white overflow-x-hidden">
+    <main className="min-h-screen bg-[#001A33] text-white overflow-x-hidden">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Animated glowy circles */}
@@ -120,7 +120,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[100px]"
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#FDDB24]/15 rounded-full blur-[100px]"
         />
         <motion.div
           animate={{
@@ -134,7 +134,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px]"
+          className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#00A8B5]/15 rounded-full blur-[120px]"
         />
         <motion.div
           animate={{
@@ -146,7 +146,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-pink-600/10 rounded-full blur-[140px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#B7ACE8]/10 rounded-full blur-[140px]"
         />
         <motion.div
           animate={{
@@ -170,7 +170,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute bottom-1/3 left-1/3 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[90px]"
+          className="absolute bottom-1/3 left-1/3 w-[450px] h-[450px] bg-[#002E5F]/20 rounded-full blur-[90px]"
         />
         {/* Grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_100%)]" />
@@ -211,7 +211,7 @@ export default function Home() {
                 repeat: Infinity,
                 ease: "linear"
               }}
-              className="inline-block bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-300 bg-[length:200%_auto] bg-clip-text text-transparent"
+              className="inline-block bg-gradient-to-r from-[#FDDB24] via-[#FFE066] to-[#FDDB24] bg-[length:200%_auto] bg-clip-text text-transparent"
             >
               Pays You
             </motion.span>
@@ -226,7 +226,7 @@ export default function Home() {
           >
             Own your content. Own your earnings. Every post becomes a tradeable token on Stellar blockchain.
             <br className="hidden md:block" />
-            The first <span className="text-purple-400 font-semibold">SocialFi</span> platform redefining social media.
+            The first <span className="text-[#B7ACE8] font-semibold">SocialFi</span> platform redefining social media.
           </motion.p>
 
           {/* Waitlist Form */}
@@ -246,7 +246,7 @@ export default function Home() {
             className="flex flex-wrap items-center justify-center gap-8 text-gray-400 mt-12"
           >
             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full backdrop-blur-sm border border-white/10">
-              <Sparkles className="w-5 h-5 text-yellow-400" />
+              <Sparkles className="w-5 h-5 text-[#FDDB24]" />
               <span>Built on Stellar</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full backdrop-blur-sm border border-white/10">
@@ -254,11 +254,11 @@ export default function Home() {
               <span>Secure & Decentralized</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full backdrop-blur-sm border border-white/10">
-              <Zap className="w-5 h-5 text-yellow-400" />
+              <Zap className="w-5 h-5 text-[#FDDB24]" />
               <span>Lightning Fast</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full backdrop-blur-sm border border-white/10">
-              <Activity className="w-5 h-5 text-purple-400" />
+              <Activity className="w-5 h-5 text-[#00A8B5]" />
               <span>Real-Time</span>
             </div>
           </motion.div>
@@ -280,7 +280,7 @@ export default function Home() {
                 className="text-center group"
               >
                 <div className="mb-4 flex justify-center">
-                  <stat.icon className="w-8 h-8 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                  <stat.icon className="w-8 h-8 text-[#FDDB24] group-hover:text-[#FFE066] transition-colors" />
                 </div>
                 <motion.div
                   animate={{ scale: [1, 1.1, 1] }}
@@ -306,7 +306,7 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Linkora</span>?
+              Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDDB24] to-[#B7ACE8]">Linkora</span>?
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               The first social platform where creators truly own their success and earn directly from their community.
@@ -324,13 +324,13 @@ export default function Home() {
                 whileHover={{ y: -10 }}
                 className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all group"
               >
-                <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/20`}>
+                <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#002E5F]/30`}>
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">{feature.title}</h3>
                 <p className="text-gray-400 mb-4 leading-relaxed">{feature.description}</p>
                 <div className="pt-4 border-t border-white/10">
-                  <p className="text-sm text-purple-300 font-medium">{feature.details}</p>
+                  <p className="text-sm text-[#B7ACE8] font-medium">{feature.details}</p>
                 </div>
               </motion.div>
             ))}
@@ -339,7 +339,7 @@ export default function Home() {
       </section>
 
       {/* Mini Apps Section */}
-      <section id="mini-apps" className="relative py-32 px-4 bg-gradient-to-b from-gray-950 to-black/50">
+      <section id="mini-apps" className="relative py-32 px-4 bg-gradient-to-b from-[#001A33] to-black/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -348,7 +348,7 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              More Than Just <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Social</span>
+              More Than Just <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A8B5] to-[#B7ACE8]">Social</span>
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               A complete ecosystem of mini-apps built right into the platform for entertainment, trading, and rewards.
@@ -364,9 +364,9 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all cursor-pointer group"
+                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-white/10 hover:border-[#FDDB24]/50 transition-all cursor-pointer group"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#002E5F] to-[#00A8B5] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <app.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">{app.name}</h3>
@@ -387,7 +387,7 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              How It <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">Works</span>
+              How It <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDDB24] to-[#00A8B5]">Works</span>
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Three simple steps to start earning from your content on the blockchain.
@@ -396,7 +396,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-12 relative">
             {/* Connecting line */}
-            <div className="hidden md:block absolute top-16 left-1/4 right-1/4 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full" />
+            <div className="hidden md:block absolute top-16 left-1/4 right-1/4 h-1 bg-gradient-to-r from-[#FDDB24] via-[#B7ACE8] to-[#00A8B5] rounded-full" />
             
             {[
               { step: '1', title: 'Create Content', desc: 'Post photos, videos, or thoughts just like any social platform. Your content is stored on-chain.', icon: Activity },
@@ -414,7 +414,7 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 360 }}
                   transition={{ duration: 0.6 }}
-                  className="w-24 h-24 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-purple-500/30"
+                  className="w-24 h-24 bg-gradient-to-br from-[#002E5F] to-[#00A8B5] rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-[#002E5F]/30"
                 >
                   <span className="text-4xl font-bold text-white">{item.step}</span>
                 </motion.div>
@@ -437,7 +437,7 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Everything You Need in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">One App</span>
+              Everything You Need in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A8B5] to-[#FDDB24]">One App</span>
             </h2>
           </motion.div>
 
@@ -471,7 +471,7 @@ export default function Home() {
                     transition={{ duration: 0.4, delay: index * 0.05 }}
                     className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[#002E5F] to-[#00A8B5] rounded-lg flex items-center justify-center">
                       <Check className="w-5 h-5 text-white" />
                     </div>
                     <span className="text-lg text-gray-300">{item}</span>
@@ -490,14 +490,14 @@ export default function Home() {
               <motion.div
                 animate={{ y: [0, -20, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="bg-gradient-to-br from-gray-900 to-black rounded-3xl shadow-2xl shadow-purple-500/20 p-8 border border-white/10"
+                className="bg-gradient-to-br from-gray-900 to-black rounded-3xl shadow-2xl shadow-[#00A8B5]/20 p-8 border border-white/10"
               >
-                <div className="aspect-[9/16] bg-gradient-to-br from-purple-900/50 to-blue-900/50 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                <div className="aspect-[9/16] bg-gradient-to-br from-[#002E5F]/50 to-[#00A8B5]/30 rounded-2xl flex items-center justify-center relative overflow-hidden">
                   {/* Animated background elements */}
                   <motion.div
                     animate={{ scale: [1, 1.5, 1], rotate: [0, 180, 360] }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full blur-3xl" 
+                    className="absolute inset-0 bg-gradient-to-br from-[#FDDB24]/15 to-[#00A8B5]/15 rounded-full blur-3xl" 
                   />
                   <div className="text-center relative z-10">
                     <Logo size={140} />
@@ -511,7 +511,7 @@ export default function Home() {
               <motion.div
                 animate={{ y: [0, -30, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                className="absolute -top-10 -right-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl p-4 shadow-xl"
+                className="absolute -top-10 -right-10 bg-gradient-to-br from-[#002E5F] to-[#00A8B5] rounded-2xl p-4 shadow-xl"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
@@ -527,7 +527,7 @@ export default function Home() {
               <motion.div
                 animate={{ y: [0, 20, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
-                className="absolute -bottom-8 -left-8 bg-gradient-to-br from-green-600 to-emerald-600 rounded-2xl p-4 shadow-xl"
+                className="absolute -bottom-8 -left-8 bg-gradient-to-br from-[#00A8B5] to-[#002E5F] rounded-2xl p-4 shadow-xl"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
@@ -546,7 +546,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="relative py-32 px-4">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-blue-900/30 to-pink-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#002E5F]/30 via-[#00A8B5]/20 to-[#B7ACE8]/20" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -555,7 +555,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-5xl md:text-7xl font-bold mb-8">
-              Ready to Own Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">Social Future</span>?
+              Ready to Own Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDDB24] to-[#B7ACE8]">Social Future</span>?
             </h2>
             <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
               Join the waitlist and be among the first to experience social media that actually rewards creators.
@@ -594,28 +594,28 @@ export default function Home() {
             <div>
               <h4 className="text-white font-semibold mb-6">Product</h4>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li><a href="#features" className="hover:text-purple-400 transition">Features</a></li>
-                <li><a href="#mini-apps" className="hover:text-purple-400 transition">Mini Apps</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">Tokenomics</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">Roadmap</a></li>
+                <li><a href="#features" className="hover:text-[#FDDB24] transition">Features</a></li>
+                <li><a href="#mini-apps" className="hover:text-[#FDDB24] transition">Mini Apps</a></li>
+                <li><a href="#" className="hover:text-[#FDDB24] transition">Tokenomics</a></li>
+                <li><a href="#" className="hover:text-[#FDDB24] transition">Roadmap</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-6">Resources</h4>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-purple-400 transition">Documentation</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">Blog</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">Support</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">FAQ</a></li>
+                <li><a href="#" className="hover:text-[#FDDB24] transition">Documentation</a></li>
+                <li><a href="#" className="hover:text-[#FDDB24] transition">Blog</a></li>
+                <li><a href="#" className="hover:text-[#FDDB24] transition">Support</a></li>
+                <li><a href="#" className="hover:text-[#FDDB24] transition">FAQ</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-6">Connect</h4>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-purple-400 transition">Twitter</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">Discord</a></li>
-                <li><a href="#" className="hover:text-purple-400 transition">Telegram</a></li>
-                <li><a href="mailto:team@linkora.social" className="hover:text-purple-400 transition">Contact</a></li>
+                <li><a href="#" className="hover:text-[#FDDB24] transition">Twitter</a></li>
+                <li><a href="#" className="hover:text-[#FDDB24] transition">Discord</a></li>
+                <li><a href="#" className="hover:text-[#FDDB24] transition">Telegram</a></li>
+                <li><a href="mailto:team@linkora.social" className="hover:text-[#FDDB24] transition">Contact</a></li>
               </ul>
             </div>
           </div>

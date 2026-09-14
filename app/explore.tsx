@@ -80,7 +80,7 @@ export default function ExploreScreen() {
         <View className="mt-4">
           {isLoadingFeed && posts.length === 0 ? (
             <View className="items-center py-20">
-              <ActivityIndicator size="large" color="#673AB7" />
+              <ActivityIndicator size="large" color="#002E5F" />
             </View>
           ) : filteredPosts.length === 0 ? (
             <View className="items-center py-20">
@@ -162,7 +162,7 @@ export default function ExploreScreen() {
                       as={Heart} 
                       size={20} 
                       className={post.isLiked ? "text-purple-600" : "text-muted-foreground"}
-                      fill={post.isLiked ? "#673AB7" : "none"}
+                      fill={post.isLiked ? "#002E5F" : "none"}
                     />
                     <Text className={`${post.isLiked ? 'text-purple-600 font-semibold' : 'text-muted-foreground'}`}>
                       {post.likesCount || 0}
@@ -183,9 +183,9 @@ export default function ExploreScreen() {
                   </TouchableOpacity>
 
                   {post.isTokenized && (
-                    <TouchableOpacity className="ml-auto flex-row items-center gap-1 rounded-lg bg-purple-600 px-3 py-1.5">
-                      <Icon as={Coins} size={16} className="text-white" />
-                      <Text className="text-sm font-medium text-white">Buy</Text>
+                    <TouchableOpacity className="ml-auto flex-row items-center gap-1 rounded-lg bg-primary px-3 py-1.5">
+                      <Icon as={Coins} size={16} className="text-[#002E5F]" />
+                      <Text className="text-sm font-medium text-[#002E5F]">Buy</Text>
                     </TouchableOpacity>
                   )}
                 </View>
@@ -195,7 +195,7 @@ export default function ExploreScreen() {
 
           {isFetchingNextPage && (
             <View className="py-4">
-              <ActivityIndicator size="small" color="#673AB7" />
+              <ActivityIndicator size="small" color="#002E5F" />
             </View>
           )}
         </View>

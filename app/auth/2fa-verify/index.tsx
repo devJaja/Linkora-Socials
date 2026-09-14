@@ -145,13 +145,13 @@ export default function TwoFactorVerifyScreen() {
           onPress={handleVerify}
           disabled={isVerifying}
           className={`mb-4 h-14 items-center justify-center rounded-2xl ${
-            isVerifying ? 'bg-gray-300' : 'bg-purple-600'
+            isVerifying ? 'bg-gray-300' : 'bg-primary'
           }`}
         >
           {isVerifying ? (
             <ActivityIndicator color="white" />
           ) : (
-            <Text className="text-base font-medium text-white">{t('auth.verify')}</Text>
+            <Text className="text-base font-medium text-[#002E5F]">{t('auth.verify')}</Text>
           )}
         </TouchableOpacity>
 

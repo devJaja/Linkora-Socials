@@ -35,7 +35,7 @@ export default function ScanQRScreen() {
           
           {/* Scanning line */}
           {isScanning && (
-            <View className="absolute h-1 w-full bg-purple-600" />
+            <View className="absolute h-1 w-full bg-[#002E5F]" />
           )}
         </View>
       </View>
@@ -44,10 +44,10 @@ export default function ScanQRScreen() {
       <View className="gap-4 p-4">
         <TouchableOpacity
           onPress={handleStartScan}
-          className="flex-row items-center justify-center gap-2 rounded-2xl bg-purple-600 py-4"
+          className="flex-row items-center justify-center gap-2 rounded-2xl bg-primary py-4"
         >
-          <Icon as={Zap} size={20} className="text-white" />
-          <Text className="text-lg font-semibold text-white">
+          <Icon as={Zap} size={20} className="text-[#002E5F]" />
+          <Text className="text-lg font-semibold text-[#002E5F]">
             {isScanning ? 'Scanning...' : 'Start Scan'}
           </Text>
         </TouchableOpacity>

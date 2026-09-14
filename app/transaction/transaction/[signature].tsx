@@ -99,7 +99,7 @@ export default function TransactionDetailsScreen() {
   if (isLoading) {
     return (
       <View className="flex-1 items-center justify-center bg-background">
-        <ActivityIndicator size="large" color="#673AB7" />
+        <ActivityIndicator size="large" color="#002E5F" />
       </View>
     );
   }
@@ -108,8 +108,8 @@ export default function TransactionDetailsScreen() {
     return (
       <View className="flex-1 items-center justify-center bg-background">
         <Text className="text-muted-foreground">Transaction not found</Text>
-        <TouchableOpacity onPress={() => router.back()} className="mt-4 rounded-xl bg-purple-600 px-6 py-3">
-          <Text className="font-semibold text-white">Go Back</Text>
+        <TouchableOpacity onPress={() => router.back()} className="mt-4 rounded-xl bg-primary px-6 py-3">
+          <Text className="font-semibold text-[#002E5F]">Go Back</Text>
         </TouchableOpacity>
       </View>
     );
@@ -139,7 +139,7 @@ export default function TransactionDetailsScreen() {
         </View>
 
         {/* Amount Card */}
-        <View className="mx-4 mb-4 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 p-6">
+        <View className="mx-4 mb-4 rounded-2xl bg-gradient-to-r from-[#002E5F] to-[#00A8B5] p-6">
           <View className="flex-row items-center justify-center gap-2">
             {getTypeIcon(transaction.type)}
             <Text className="text-sm text-white/80 capitalize">{transaction.type}</Text>
@@ -232,10 +232,10 @@ export default function TransactionDetailsScreen() {
         <View className="mx-4 mb-6 gap-3">
           <TouchableOpacity
             onPress={openInExplorer}
-            className="flex-row items-center justify-center gap-2 rounded-xl bg-purple-600 py-4"
+            className="flex-row items-center justify-center gap-2 rounded-xl bg-primary py-4"
           >
-            <Icon as={ExternalLink} size={20} className="text-white" />
-            <Text className="font-semibold text-white">View on StellarExpert</Text>
+            <Icon as={ExternalLink} size={20} className="text-[#002E5F]" />
+            <Text className="font-semibold text-[#002E5F]">View on StellarExpert</Text>
           </TouchableOpacity>
 
           <TouchableOpacity

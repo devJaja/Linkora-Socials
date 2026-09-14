@@ -100,7 +100,7 @@ export default function ChatScreen() {
       >
         {isLoading && messages.length === 0 ? (
           <View className="items-center py-20">
-            <ActivityIndicator size="large" color="#673AB7" />
+            <ActivityIndicator size="large" color="#002E5F" />
           </View>
         ) : messages.length === 0 ? (
           <View className="items-center py-20">
@@ -171,7 +171,7 @@ export default function ChatScreen() {
                   )}
                   <View
                     className={`max-w-[75%] rounded-2xl px-4 py-3 ${
-                      msg.isMine ? 'bg-purple-600' : 'bg-card'
+                      msg.isMine ? 'bg-[#002E5F]' : 'bg-card'
                     }`}
                   >
                     <Text className={msg.isMine ? 'text-white' : 'text-foreground'}>
@@ -210,12 +210,12 @@ export default function ChatScreen() {
         <TouchableOpacity 
           onPress={handleSendMessage}
           disabled={isSendingMessage || !message.trim()}
-          className="h-14 w-14 items-center justify-center rounded-2xl bg-purple-600"
+          className="h-14 w-14 items-center justify-center rounded-2xl bg-primary"
         >
           {isSendingMessage ? (
-            <ActivityIndicator size="small" color="#ffffff" />
+            <ActivityIndicator size="small" color="#002E5F" />
           ) : (
-            <Icon as={Send} size={20} className="text-white" />
+            <Icon as={Send} size={20} className="text-[#002E5F]" />
           )}
         </TouchableOpacity>
       </View>
@@ -264,7 +264,7 @@ export default function ChatScreen() {
               <Switch
                 value={isPrivateTip}
                 onValueChange={setIsPrivateTip}
-                trackColor={{ true: '#673AB7' }}
+                trackColor={{ true: '#002E5F' }}
               />
             </View>
 
@@ -291,13 +291,13 @@ export default function ChatScreen() {
                 onPress={handleSendTip}
                 disabled={!tipAmount || parseFloat(tipAmount) <= 0 || isSendingTip || isSendingPrivateTip}
                 className={`flex-1 items-center rounded-2xl py-4 ${
-                  tipAmount && parseFloat(tipAmount) > 0 ? 'bg-purple-600' : 'bg-gray-300'
+                  tipAmount && parseFloat(tipAmount) > 0 ? 'bg-primary' : 'bg-gray-300'
                 }`}
               >
                 {(isSendingTip || isSendingPrivateTip) ? (
-                  <ActivityIndicator size="small" color="#ffffff" />
+                  <ActivityIndicator size="small" color="#002E5F" />
                 ) : (
-                  <Text className={`text-lg font-semibold ${tipAmount && parseFloat(tipAmount) > 0 ? 'text-white' : 'text-gray-500'}`}>
+                  <Text className={`text-lg font-semibold ${tipAmount && parseFloat(tipAmount) > 0 ? 'text-[#002E5F]' : 'text-gray-500'}`}>
                     {isPrivateTip ? 'Send Privately' : 'Send'}
                   </Text>
                 )}

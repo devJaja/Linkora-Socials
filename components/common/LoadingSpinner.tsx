@@ -6,7 +6,7 @@ interface LoadingSpinnerProps {
   fullScreen?: boolean;
 }
 
-export function LoadingSpinner({ size = 'large', color = '#673AB7', fullScreen = false }: LoadingSpinnerProps) {
+export function LoadingSpinner({ size = 'large', color = '#002E5F', fullScreen = false }: LoadingSpinnerProps) {
   if (fullScreen) {
     return (
       <View className="flex-1 items-center justify-center bg-background">

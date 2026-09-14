@@ -51,10 +51,10 @@ export function ProfileCard({
             </TouchableOpacity>
             <TouchableOpacity 
               onPress={onFollowToggle}
-              className={`flex-row items-center gap-2 rounded-full px-4 py-2 ${isFollowing ? 'bg-gray-200 dark:bg-black' : 'bg-purple-600'}`}
+              className={`flex-row items-center gap-2 rounded-full px-4 py-2 ${isFollowing ? 'bg-gray-200 dark:bg-black' : 'bg-primary'}`}
             >
-              <Icon as={isFollowing ? UserMinus : UserPlus} size={18} className={isFollowing ? "text-foreground" : "text-white"} />
-              <Text className={`font-semibold ${isFollowing ? 'text-foreground' : 'text-white'}`}>
+              <Icon as={isFollowing ? UserMinus : UserPlus} size={18} className={isFollowing ? "text-foreground" : "text-[#002E5F]"} />
+              <Text className={`font-semibold ${isFollowing ? 'text-foreground' : 'text-[#002E5F]'}`}>
                 {isFollowing ? 'Unfollow' : 'Follow'}
               </Text>
             </TouchableOpacity>

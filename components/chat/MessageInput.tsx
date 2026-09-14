@@ -43,10 +43,10 @@ export function MessageInput({ onSend, onTip, isSending }: MessageInputProps) {
         onPress={handleSend}
         disabled={!message.trim() || isSending}
         className={`h-10 w-10 items-center justify-center rounded-full ${
-          message.trim() && !isSending ? 'bg-purple-600' : 'bg-gray-300'
+          message.trim() && !isSending ? 'bg-primary' : 'bg-gray-300'
         }`}
       >
-        <Icon as={Send} size={20} className="text-white" />
+        <Icon as={Send} size={20} className="text-[#002E5F]" />
       </TouchableOpacity>
     </View>
   );

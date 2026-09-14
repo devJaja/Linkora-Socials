@@ -31,7 +31,7 @@ export function MessageBubble({
         type === 'tip'
           ? 'bg-green-100 dark:bg-green-950'
           : isOwn
-          ? 'bg-purple-600'
+          ? 'bg-[#002E5F]'
           : 'bg-card'
       }`}>
         {type === 'tip' && tipAmount && (

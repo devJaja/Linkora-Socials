@@ -203,7 +203,7 @@ export default function SwapScreen() {
     <View className="flex-1 bg-background">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View className="bg-blue-600 px-4 pb-8 pt-12">
+        <View className="bg-[#002E5F] px-4 pb-8 pt-12">
           <View className="flex-row items-center gap-3">
             <TouchableOpacity onPress={() => router.back()}>
               <Icon as={ArrowLeft} size={24} className="text-white" />
@@ -255,9 +255,9 @@ export default function SwapScreen() {
           <View className="my-4 items-center">
             <TouchableOpacity
               onPress={switchTokens}
-              className="h-12 w-12 items-center justify-center rounded-full bg-purple-600"
+              className="h-12 w-12 items-center justify-center rounded-full bg-primary"
             >
-              <Icon as={ArrowDownUp} size={24} className="text-white" />
+              <Icon as={ArrowDownUp} size={24} className="text-[#002E5F]" />
             </TouchableOpacity>
           </View>
 
@@ -267,7 +267,7 @@ export default function SwapScreen() {
             <View className="mt-2 flex-row items-center justify-between">
               <View className="flex-1 flex-row items-center gap-2">
                 {isCalculating ? (
-                  <ActivityIndicator size="small" color="#673AB7" />
+                  <ActivityIndicator size="small" color="#002E5F" />
                 ) : (
                   <Text className="text-3xl font-bold">{toAmount}</Text>
                 )}
@@ -308,13 +308,13 @@ export default function SwapScreen() {
             onPress={handleSwap}
             disabled={isSwapping || !fromAmount}
             className={`mt-6 items-center rounded-xl py-4 ${
-              isSwapping || !fromAmount ? 'bg-gray-300' : 'bg-purple-600'
+              isSwapping || !fromAmount ? 'bg-gray-300' : 'bg-primary'
             }`}
           >
             {isSwapping ? (
               <ActivityIndicator color="#ffffff" />
             ) : (
-              <Text className="font-semibold text-white">
+              <Text className="font-semibold text-[#002E5F]">
                 {fromAmount ? 'Swap Tokens' : 'Enter Amount'}
               </Text>
             )}
@@ -325,7 +325,7 @@ export default function SwapScreen() {
         <View className="mx-4 mt-6">
           <View className="flex-row items-center justify-between">
             <Text className="text-lg font-bold">Available Tokens</Text>
-            {isLoadingPrices && <ActivityIndicator size="small" color="#673AB7" />}
+            {isLoadingPrices && <ActivityIndicator size="small" color="#002E5F" />}
           </View>
           <View className="mt-3 gap-2">
             {TOKENS.map((token) => (

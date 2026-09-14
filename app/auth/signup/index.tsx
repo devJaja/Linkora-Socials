@@ -67,7 +67,7 @@ export default function SignUpScreen() {
                 <Image
                   source={require('@/assets/images/icon.png')}
                   className="h-8 w-8"
-                  style={{ tintColor: selectedAvatar === null ? '#673AB7' : '#969696' }}
+                  style={{ tintColor: selectedAvatar === null ? '#002E5F' : '#969696' }}
                 />
               </Pressable>
               {AVATAR_OPTIONS.map((avatar, index) => (
@@ -89,9 +89,9 @@ export default function SignUpScreen() {
       <View className="px-5 pb-12">
         <Button
           onPress={handleSetup}
-          className="mb-4 h-14 rounded-2xl bg-purple-600 active:bg-purple-700"
+          className="mb-4 h-14 rounded-2xl bg-primary active:bg-primary/90"
         >
-          <Text className="text-base font-medium text-white">Setup and Continue</Text>
+          <Text className="text-base font-medium text-[#002E5F]">Setup and Continue</Text>
         </Button>
 
         <Pressable onPress={handleBack}>

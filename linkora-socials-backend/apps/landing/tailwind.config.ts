@@ -9,8 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#9333ea',
-        secondary: '#6366f1',
+        primary: '#FDDB24',
+        secondary: '#B7ACE8',
+        'stellar-teal': '#00A8B5',
+        'stellar-navy': '#002E5F',
+        'stellar-cream': '#D6D3C4',
       },
     },
   },

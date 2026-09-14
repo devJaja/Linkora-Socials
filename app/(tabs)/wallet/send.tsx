@@ -258,15 +258,15 @@ export default function SendMoneyScreen() {
           onPress={handleSend}
           disabled={isSending || !amount || !recipient}
           className={`flex-row items-center justify-center gap-2 rounded-2xl py-4 ${
-            isSending || !amount || !recipient ? 'bg-gray-300' : 'bg-purple-600'
+            isSending || !amount || !recipient ? 'bg-gray-300' : 'bg-primary'
           }`}
         >
           {isSending ? (
             <ActivityIndicator size="small" color="#ffffff" />
           ) : (
             <>
-              <Icon as={Send} size={20} className="text-white" />
-              <Text className="text-lg font-semibold text-white">
+              <Icon as={Send} size={20} className="text-[#002E5F]" />
+              <Text className="text-lg font-semibold text-[#002E5F]">
                 Send {amount || '0'} XLM
               </Text>
             </>
@@ -328,12 +328,12 @@ export default function SendMoneyScreen() {
               <TouchableOpacity
                 onPress={confirmSend}
                 disabled={isSending}
-                className="flex-1 items-center rounded-2xl bg-purple-600 py-4"
+                className="flex-1 items-center rounded-2xl bg-primary py-4"
               >
                 {isSending ? (
-                  <ActivityIndicator size="small" color="#ffffff" />
+                  <ActivityIndicator size="small" color="#002E5F" />
                 ) : (
-                  <Text className="text-lg font-semibold text-white">Confirm</Text>
+                  <Text className="text-lg font-semibold text-[#002E5F]">Confirm</Text>
                 )}
               </TouchableOpacity>
             </View>
@@ -410,7 +410,7 @@ export default function SendMoneyScreen() {
           <View className="flex-1 px-4 pt-4">
             {isSearching ? (
               <View className="items-center py-20">
-                <ActivityIndicator size="large" color="#673AB7" />
+                <ActivityIndicator size="large" color="#002E5F" />
               </View>
             ) : searchResults.length === 0 ? (
               <View className="items-center py-20">

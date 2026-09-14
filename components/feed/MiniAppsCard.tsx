@@ -8,7 +8,7 @@ export function MiniAppsCard() {
   return (
     <TouchableOpacity
       onPress={() => router.push('/mini-apps')}
-      className="mx-4 mt-4 relative overflow-hidden rounded-2xl bg-purple-600 dark:bg-purple-700"
+      className="mx-4 mt-4 relative overflow-hidden rounded-2xl bg-[#002E5F]"
     >
       <Image source={require('@/assets/images/ec1.png')} className='absolute w-[57px] h-[57px] bottom-0 left-0'/>
       <Image source={require('@/assets/images/ec3.png')} className='absolute w-[57px] h-[57px] -bottom-8 right-[120px] rounded-full'/>

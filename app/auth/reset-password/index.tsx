@@ -60,9 +60,9 @@ export default function ResetPasswordScreen() {
           </Text>
           <Button
             onPress={() => router.replace('/auth/signin')}
-            className="w-full h-14 rounded-2xl bg-purple-600"
+            className="w-full h-14 rounded-2xl bg-primary"
           >
-            <Text className="text-base font-medium text-white">{t('auth.signIn')}</Text>
+            <Text className="text-base font-medium text-[#002E5F]">{t('auth.signIn')}</Text>
           </Button>
         </View>
       </AuthLayout>
@@ -110,12 +110,12 @@ export default function ResetPasswordScreen() {
           <Button
             onPress={handleResetPassword}
             disabled={isResetting}
-            className="h-14 rounded-2xl bg-purple-600 active:bg-purple-700"
+            className="h-14 rounded-2xl bg-primary active:bg-primary/90"
           >
             {isResetting ? (
-              <ActivityIndicator color="white" />
+              <ActivityIndicator color="#002E5F" />
             ) : (
-              <Text className="text-base font-medium text-white">{t('auth.resetPassword')}</Text>
+              <Text className="text-base font-medium text-[#002E5F]">{t('auth.resetPassword')}</Text>
             )}
           </Button>
         </View>

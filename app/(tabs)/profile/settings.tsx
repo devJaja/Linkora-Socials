@@ -145,7 +145,7 @@ export default function SettingsScreen() {
           name: 'default',
           importance: ExpoNotifications.AndroidImportance.MAX,
           vibrationPattern: [0, 250, 250, 250],
-          lightColor: '#673AB7',
+          lightColor: '#002E5F',
         });
       }
 
@@ -255,7 +255,7 @@ export default function SettingsScreen() {
             <Switch
               value={notifications}
               onValueChange={handleNotificationToggle}
-              trackColor={{ false: '#D6D3C4', true: '#673AB7' }}
+              trackColor={{ false: '#D6D3C4', true: '#002E5F' }}
               thumbColor="#ffffff"
             />
           </View>
@@ -273,7 +273,7 @@ export default function SettingsScreen() {
             <Switch
               value={theme === 'dark'}
               onValueChange={handleThemeToggle}
-              trackColor={{ false: '#D6D3C4', true: '#673AB7' }}
+              trackColor={{ false: '#D6D3C4', true: '#002E5F' }}
               thumbColor="#ffffff"
             />
           </View>
@@ -338,10 +338,10 @@ export default function SettingsScreen() {
         <View className="px-4 pb-8">
           <TouchableOpacity
             onPress={handleLogout}
-            className="flex-row items-center justify-center gap-2 rounded-2xl bg-purple-600 py-4"
+            className="flex-row items-center justify-center gap-2 rounded-2xl bg-primary py-4"
           >
-            <Icon as={LogOut} size={20} className="text-white" />
-            <Text className="text-lg font-semibold text-white">{t('auth.signOut')}</Text>
+            <Icon as={LogOut} size={20} className="text-[#002E5F]" />
+            <Text className="text-lg font-semibold text-[#002E5F]">{t('auth.signOut')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

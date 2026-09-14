@@ -95,7 +95,7 @@ export default function AirdropScreen() {
     <View className="flex-1 bg-background">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View className="bg-purple-600 px-4 pb-8 pt-12">
+        <View className="bg-[#002E5F] px-4 pb-8 pt-12">
           <View className="flex-row items-center gap-3">
             <TouchableOpacity onPress={() => router.back()}>
               <Icon as={ArrowLeft} size={24} className="text-white" />
@@ -137,7 +137,7 @@ export default function AirdropScreen() {
 
         {/* Claim Card */}
         <View className="mx-4 mt-6">
-          <View className="overflow-hidden rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600">
+          <View className="overflow-hidden rounded-2xl bg-gradient-to-br from-[#002E5F] to-[#00A8B5]">
             <View className="p-6">
               <View className="items-center">
                 <Text className="text-sm text-white/80">Available to Claim</Text>
@@ -168,7 +168,7 @@ export default function AirdropScreen() {
                 }`}
               >
                 {isClaiming ? (
-                  <ActivityIndicator color="#673AB7" />
+                  <ActivityIndicator color="#002E5F" />
                 ) : (
                   <Text className={`font-semibold ${!canClaim ? 'text-white/60' : 'text-purple-600'}`}>
                     {canClaim ? '🎁 Claim Airdrop' : 'Come Back Later'}

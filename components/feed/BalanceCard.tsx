@@ -32,7 +32,7 @@ export function BalanceCard({
   const isSmall = width < 375;
   
   return (
-    <View className="overflow-hidden rounded-b-3xl bg-purple-600 shadow-lg">
+    <View className="overflow-hidden rounded-b-3xl bg-[#002E5F] shadow-lg">
       <ImageBackground
         source={require('@/assets/images/wrapper.png')}
         resizeMode="cover"
@@ -107,7 +107,7 @@ export function BalanceCard({
 
           {/* Network Badge */}
           <View className="mt-4 flex-row items-center gap-2 self-start rounded-full bg-white/10 px-3 py-1.5">
-            <Icon as={Circle} size={8} className="text-green-400" fill="#00A7B5" />
+            <Icon as={Circle} size={8} className="text-green-400" fill="#00A8B5" />
             <Text className="text-xs font-medium text-white">{t('wallet.stellarTestnet')}</Text>
           </View>
         </View>

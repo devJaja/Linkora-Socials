@@ -45,7 +45,7 @@ export default function WaitlistForm() {
           className="relative group"
         >
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Mail className="w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+            <Mail className="w-5 h-5 text-gray-400 group-focus-within:text-[#FDDB24] transition-colors" />
           </div>
           <input
             type="email"
@@ -54,7 +54,7 @@ export default function WaitlistForm() {
             placeholder="Enter your email address"
             required
             disabled={isLoading || isSuccess}
-            className="w-full pl-12 pr-4 py-5 rounded-2xl text-gray-900 text-lg focus:outline-none focus:ring-4 focus:ring-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed bg-white/10 backdrop-blur-sm border border-white/10 placeholder-gray-500 transition-all"
+            className="w-full pl-12 pr-4 py-5 rounded-2xl text-gray-900 text-lg focus:outline-none focus:ring-4 focus:ring-[#FDDB24]/30 disabled:opacity-50 disabled:cursor-not-allowed bg-white/10 backdrop-blur-sm border border-white/10 placeholder-gray-500 transition-all"
           />
         </motion.div>
 
@@ -64,7 +64,7 @@ export default function WaitlistForm() {
           whileTap={{ scale: 0.95 }}
           type="submit"
           disabled={isLoading || isSuccess}
-          className="w-full py-5 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-2xl text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50"
+          className="w-full py-5 bg-gradient-to-r from-[#FDDB24] to-[#D4A800] hover:from-[#FFC800] hover:to-[#FDDB24] text-[#002E5F] font-bold rounded-2xl text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg shadow-[#FDDB24]/30 hover:shadow-[#FDDB24]/50"
         >
           {isLoading ? (
             <>
@@ -122,7 +122,7 @@ export default function WaitlistForm() {
           <motion.span
             key={count}
             initial={{ scale: 1.5, color: '#fbbf24' }}
-            animate={{ scale: 1, color: '#a78bfa' }}
+            animate={{ scale: 1, color: '#FDDB24' }}
             transition={{ duration: 0.3 }}
             className="font-bold text-lg"
           >

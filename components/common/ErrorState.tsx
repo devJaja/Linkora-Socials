@@ -16,10 +16,10 @@ export function ErrorState({ message = 'Something went wrong', onRetry }: ErrorS
       {onRetry && (
         <TouchableOpacity
           onPress={onRetry}
-          className="mt-4 flex-row items-center gap-2 rounded-full bg-purple-600 px-6 py-3"
+          className="mt-4 flex-row items-center gap-2 rounded-full bg-primary px-6 py-3"
         >
-          <Icon as={RefreshCw} size={18} className="text-white" />
-          <Text className="font-semibold text-white">Try Again</Text>
+          <Icon as={RefreshCw} size={18} className="text-[#002E5F]" />
+          <Text className="font-semibold text-[#002E5F]">Try Again</Text>
         </TouchableOpacity>
       )}
     </View>

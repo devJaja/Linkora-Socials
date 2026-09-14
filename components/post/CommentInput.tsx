@@ -61,10 +61,10 @@ export function CommentInput({
         onPress={handleSubmit}
         disabled={!content.trim() || isSubmitting}
         className={`rounded-xl py-3 ${
-          content.trim() && !isSubmitting ? 'bg-purple-600' : 'bg-gray-300'
+          content.trim() && !isSubmitting ? 'bg-primary' : 'bg-gray-300'
         }`}
       >
-        <Text className="text-center font-semibold text-white">
+        <Text className="text-center font-semibold text-[#002E5F]">
           {isSubmitting ? 'Posting...' : replyingTo ? 'Post Reply' : 'Post Comment'}
         </Text>
       </TouchableOpacity>

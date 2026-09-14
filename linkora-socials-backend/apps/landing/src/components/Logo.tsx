@@ -28,10 +28,10 @@ export default function Logo({ size = 64, className = '' }: LogoProps) {
         className="relative"
       >
         {/* Outer circle with gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-purple-600 to-blue-600 rounded-full shadow-2xl shadow-purple-500/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FDDB24] via-[#B7ACE8] to-[#00A8B5] rounded-full shadow-2xl shadow-[#FDDB24]/30" />
         
         {/* Inner design */}
-        <div className="absolute inset-2 bg-white rounded-full flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-2 bg-[#002E5F] rounded-full flex items-center justify-center overflow-hidden">
           <Image
             src="/appicon.png"
             alt="Linkora Logo"
@@ -52,7 +52,7 @@ export default function Logo({ size = 64, className = '' }: LogoProps) {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute inset-0 border-4 border-purple-400 rounded-full"
+          className="absolute inset-0 border-4 border-[#FDDB24] rounded-full"
         />
       </motion.div>
     </motion.div>

@@ -100,7 +100,7 @@ export function FeedPostCard({
                 as={Heart}
                 size={18}
                 className={post.isLiked ? "text-purple-600" : "text-muted-foreground"}
-                fill={post.isLiked ? "#673AB7" : "none"}
+                fill={post.isLiked ? "#002E5F" : "none"}
               />
               <Text className={`text-sm ${post.isLiked ? 'text-purple-600 font-semibold' : 'text-muted-foreground'}`}>
                 {post.likesCount}

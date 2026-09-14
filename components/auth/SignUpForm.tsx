@@ -54,12 +54,12 @@ export function SignUpForm({ onSubmit, isSubmitting }: SignUpFormProps) {
         <Button
           onPress={handleSubmit}
           disabled={isSubmitting}
-          className="h-14 rounded-2xl bg-purple-600 active:bg-purple-700"
+          className="h-14 rounded-2xl bg-primary active:bg-primary/90"
         >
           {isSubmitting ? (
-            <ActivityIndicator color="white" />
+            <ActivityIndicator color="#002E5F" />
           ) : (
-            <Text className="text-base font-medium text-white">{t('auth.signUp')}</Text>
+            <Text className="text-base font-medium text-[#002E5F]">{t('auth.signUp')}</Text>
           )}
         </Button>
       </View>

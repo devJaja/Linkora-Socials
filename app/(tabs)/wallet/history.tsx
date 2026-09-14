@@ -13,7 +13,7 @@ export default function TransactionHistoryScreen() {
   return (
     <View className="flex-1 bg-background">
       {/* Header */}
-      <View className="bg-purple-600 px-4 pb-6 pt-12">
+      <View className="bg-[#002E5F] px-4 pb-6 pt-12">
         <View className="flex-row items-center gap-4">
           <TouchableOpacity onPress={() => router.back()}>
             <Icon as={ArrowLeft} size={24} className="text-white" />
@@ -37,7 +37,7 @@ export default function TransactionHistoryScreen() {
         <View className="mt-6 pb-6">
           {isLoadingTransactions && transactions.length === 0 ? (
             <View className="items-center py-10">
-              <ActivityIndicator size="large" color="#673AB7" />
+              <ActivityIndicator size="large" color="#002E5F" />
             </View>
           ) : transactions.length === 0 ? (
             <View className="items-center py-10">
@@ -60,7 +60,7 @@ export default function TransactionHistoryScreen() {
               ))}
               {isFetchingNextPage && (
                 <View className="py-4">
-                  <ActivityIndicator size="small" color="#673AB7" />
+                  <ActivityIndicator size="small" color="#002E5F" />
                 </View>
               )}
               {!hasNextPage && transactions.length > 0 && (

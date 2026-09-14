@@ -83,12 +83,12 @@ export function VerificationInput({
         <Button
           onPress={handleVerify}
           disabled={isVerifying}
-          className="mb-4 h-14 rounded-2xl bg-purple-600 active:bg-purple-700"
+          className="mb-4 h-14 rounded-2xl bg-primary active:bg-primary/90"
         >
           {isVerifying ? (
-            <ActivityIndicator color="white" />
+            <ActivityIndicator color="#002E5F" />
           ) : (
-            <Text className="text-base font-medium text-white">{t('auth.verify')}</Text>
+            <Text className="text-base font-medium text-[#002E5F]">{t('auth.verify')}</Text>
           )}
         </Button>
 

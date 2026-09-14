@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --primary: #9333ea;
-  --secondary: #6366f1;
+  --primary: #FDDB24;
+  --secondary: #B7ACE8;
+  --stellar-teal: #00A8B5;
+  --stellar-navy: #002E5F;
+  --stellar-cream: #D6D3C4;
 }
 
 body {
@@ -12,11 +15,11 @@ body {
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6366f1 100%);
+  background: linear-gradient(135deg, #002E5F 0%, #00A8B5 50%, #B7ACE8 100%);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #9333ea 0%, #6366f1 100%);
+  background: linear-gradient(135deg, #FDDB24 0%, #B7ACE8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

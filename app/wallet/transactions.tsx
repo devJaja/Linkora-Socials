@@ -21,7 +21,7 @@ export default function TransactionsScreen() {
   return (
     <View className="flex-1 bg-background">
       {/* Header */}
-      <View className="bg-purple-600 px-4 pb-6 pt-12">
+      <View className="bg-[#002E5F] px-4 pb-6 pt-12">
         <View className="flex-row items-center gap-3">
           <TouchableOpacity onPress={() => router.back()}>
             <Icon as={ArrowLeft} size={24} className="text-white" />
@@ -45,7 +45,7 @@ export default function TransactionsScreen() {
         <View className="px-4 py-6">
           {isLoadingTransactions && transactions.length === 0 ? (
             <View className="items-center py-10">
-              <ActivityIndicator size="large" color="#673AB7" />
+              <ActivityIndicator size="large" color="#002E5F" />
             </View>
           ) : transactions.length === 0 ? (
             <View className="items-center py-10">
@@ -87,7 +87,7 @@ export default function TransactionsScreen() {
               
               {isFetchingNextPage && (
                 <View className="py-4">
-                  <ActivityIndicator size="small" color="#673AB7" />
+                  <ActivityIndicator size="small" color="#002E5F" />
                 </View>
               )}
               

@@ -63,7 +63,7 @@ export default function SecurityPrivacyScreen() {
                 setTwoFactorEnabled(value);
                 toast.success(value ? '2FA enabled' : '2FA disabled');
               }}
-              trackColor={{ false: '#D6D3C4', true: '#673AB7' }}
+              trackColor={{ false: '#D6D3C4', true: '#002E5F' }}
               thumbColor="#ffffff"
             />
           </View>
@@ -84,7 +84,7 @@ export default function SecurityPrivacyScreen() {
                 setBiometricEnabled(value);
                 toast.success(value ? 'Biometric enabled' : 'Biometric disabled');
               }}
-              trackColor={{ false: '#D6D3C4', true: '#673AB7' }}
+              trackColor={{ false: '#D6D3C4', true: '#002E5F' }}
               thumbColor="#ffffff"
             />
           </View>
@@ -163,9 +163,9 @@ export default function SecurityPrivacyScreen() {
 
           <TouchableOpacity
             onPress={handleChangePassword}
-            className="items-center rounded-2xl bg-purple-600 py-4"
+            className="items-center rounded-2xl bg-primary py-4"
           >
-            <Text className="text-lg font-semibold text-white">Update Password</Text>
+            <Text className="text-lg font-semibold text-[#002E5F]">Update Password</Text>
           </TouchableOpacity>
         </View>
 
