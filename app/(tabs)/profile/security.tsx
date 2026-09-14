@@ -1,33 +1,50 @@
-import { View, ScrollView, TouchableOpacity, TextInput, Switch } from 'react-native';
+import { View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
-import { ArrowLeft, Lock, Shield, Key, Eye, EyeOff, ChevronRight } from 'lucide-react-native';
+import { ArrowLeft, Lock, Shield, Eye, EyeOff, ChevronRight } from 'lucide-react-native';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { toast } from 'sonner-native';
+import { TwoFactorSettings, BiometricSettings } from '@/components/settings';
+import { api } from '@/lib/api';
 
 export default function SecurityPrivacyScreen() {
-  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
-  const [biometricEnabled, setBiometricEnabled] = useState(true);
+  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleChangePassword = () => {
+  const handleChangePassword = async () => {
     if (!currentPassword || !newPassword || !confirmPassword) {
       toast.error('Please fill all password fields');
+      return;
+    }
+    if (newPassword.length < 8) {
+      toast.error('New password must be at least 8 characters long');
       return;
     }
     if (newPassword !== confirmPassword) {
       toast.error('New passwords do not match');
       return;
     }
-    toast.success('Password changed successfully');
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
+
+    setIsUpdatingPassword(true);
+    try {
+      const response = await api.changePassword(currentPassword, newPassword);
+      if (response.error) throw new Error(response.error);
+
+      toast.success('Password changed successfully');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to change password');
+      console.error('Change password error:', error);
+    } finally {
+      setIsUpdatingPassword(false);
+    }
   };
 
   return (
@@ -47,46 +64,10 @@ export default function SecurityPrivacyScreen() {
             AUTHENTICATION
           </Text>
 
-          <View className="mb-3 flex-row items-center gap-4 rounded-2xl bg-card p-4">
-            <View className="h-12 w-12 items-center justify-center rounded-full bg-purple-100">
-              <Icon as={Shield} size={24} className="text-purple-600" />
-            </View>
-            <View className="flex-1">
-              <Text className="font-semibold">Two-Factor Authentication</Text>
-              <Text className="text-sm text-muted-foreground">
-                Add extra security to your account
-              </Text>
-            </View>
-            <Switch
-              value={twoFactorEnabled}
-              onValueChange={(value) => {
-                setTwoFactorEnabled(value);
-                toast.success(value ? '2FA enabled' : '2FA disabled');
-              }}
-              trackColor={{ false: '#D6D3C4', true: '#002E5F' }}
-              thumbColor="#ffffff"
-            />
-          </View>
+          <View className="mb-3 gap-3">
+            <TwoFactorSettings />
 
-          <View className="flex-row items-center gap-4 rounded-2xl bg-card p-4">
-            <View className="h-12 w-12 items-center justify-center rounded-full bg-purple-100">
-              <Icon as={Key} size={24} className="text-purple-600" />
-            </View>
-            <View className="flex-1">
-              <Text className="font-semibold">Biometric Login</Text>
-              <Text className="text-sm text-muted-foreground">
-                Use fingerprint or face ID
-              </Text>
-            </View>
-            <Switch
-              value={biometricEnabled}
-              onValueChange={(value) => {
-                setBiometricEnabled(value);
-                toast.success(value ? 'Biometric enabled' : 'Biometric disabled');
-              }}
-              trackColor={{ false: '#D6D3C4', true: '#002E5F' }}
-              thumbColor="#ffffff"
-            />
+            <BiometricSettings />
           </View>
         </View>
 
@@ -163,9 +144,14 @@ export default function SecurityPrivacyScreen() {
 
           <TouchableOpacity
             onPress={handleChangePassword}
-            className="items-center rounded-2xl bg-primary py-4"
+            disabled={isUpdatingPassword}
+            className={`items-center rounded-2xl py-4 ${
+              isUpdatingPassword ? 'bg-gray-300' : 'bg-primary active:bg-primary/90'
+            }`}
           >
-            <Text className="text-lg font-semibold text-[#002E5F]">Update Password</Text>
+            <Text className="text-lg font-semibold text-[#002E5F]">
+              {isUpdatingPassword ? 'Updating...' : 'Update Password'}
+            </Text>
           </TouchableOpacity>
         </View>
 

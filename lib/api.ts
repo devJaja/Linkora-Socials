@@ -489,21 +489,17 @@ class ApiClient {
   }
 
   async resetPassword(data: { token: string; password: string }) {
-    // token field carries the 6-digit code; email is passed separately via params
-    // The backend expects { email, code, password } — callers must pass email in token
-    // For the reset-password screen, token = code and we need email from navigation params.
-    // This method is called with { token: code, password } from the screen.
-    // We re-map here: the screen passes email via useLocalSearchParams separately.
+    // Backend expects { token (6-digit code), password }
     return this.request('/auth/password/reset', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
-  async resetPasswordWithCode(email: string, code: string, password: string) {
-    return this.request('/auth/password/reset', {
+  async changePassword(currentPassword: string, newPassword: string) {
+    return this.request('/auth/change-password', {
       method: 'POST',
-      body: JSON.stringify({ email, code, password }),
+      body: JSON.stringify({ currentPassword, newPassword }),
     });
   }
 }

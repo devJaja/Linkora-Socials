@@ -70,7 +70,10 @@ export default function SettingsScreen() {
 
             <TwoFactorSettings />
 
-            <TouchableOpacity className="flex-row items-center justify-between rounded-2xl bg-card p-4">
+            <TouchableOpacity
+              onPress={() => router.push('/(tabs)/profile/security')}
+              className="flex-row items-center justify-between rounded-2xl bg-card p-4"
+            >
               <View className="flex-row items-center gap-3">
                 <View className="h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
                   <Icon as={Lock} size={20} className="text-green-600 dark:text-green-300" />

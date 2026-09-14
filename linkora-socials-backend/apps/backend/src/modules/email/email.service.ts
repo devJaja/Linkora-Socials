@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 @Injectable()
 export class EmailService {
-  private resend: Resend;
+  private resend: Resend | null = null;
   private readonly logger = new Logger(EmailService.name);
   private readonly fromEmail = 'Linkora <noreply@linkora.social>';
 
@@ -11,12 +11,16 @@ export class EmailService {
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
       this.logger.warn('RESEND_API_KEY not set — email sending disabled');
+      return;
     }
-    this.resend = new Resend(apiKey ?? '');
-    this.logger.log('✅ Resend email service initialized with custom domain');
+    this.resend = new Resend(apiKey);
+    this.logger.log('✅ Resend email service initialized');
   }
 
   async sendVerificationEmail(email: string, code: string, username: string) {
+    if (!this.resend) {
+      throw new Error('Email service not configured (RESEND_API_KEY missing)');
+    }
     try {
       const { data, error } = await this.resend.emails.send({
         from: this.fromEmail,
@@ -49,6 +53,9 @@ export class EmailService {
     username: string,
     walletAddress: string,
   ) {
+    if (!this.resend) {
+      return { success: false, error: 'Email service not configured' };
+    }
     try {
       const { data, error } = await this.resend.emails.send({
         from: this.fromEmail,
@@ -76,6 +83,9 @@ export class EmailService {
     resetCode: string,
     username: string,
   ) {
+    if (!this.resend) {
+      throw new Error('Email service not configured (RESEND_API_KEY missing)');
+    }
     try {
       const { data, error } = await this.resend.emails.send({
         from: this.fromEmail,
@@ -104,6 +114,9 @@ export class EmailService {
   }
 
   async sendPasswordChangedEmail(email: string, username: string) {
+    if (!this.resend) {
+      return { success: false, error: 'Email service not configured' };
+    }
     try {
       const { data, error } = await this.resend.emails.send({
         from: this.fromEmail,

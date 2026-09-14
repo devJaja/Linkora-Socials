@@ -5,6 +5,7 @@ import { ArrowLeft, Shield } from 'lucide-react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { storage } from '@/lib/storage';
 import { toast } from 'sonner-native';
@@ -12,6 +13,7 @@ import { AuthHeader } from '@/components/auth';
 
 export default function TwoFactorVerifyScreen() {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const { email, tempToken } = useLocalSearchParams<{ email: string; tempToken: string }>();
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
@@ -55,16 +57,23 @@ export default function TwoFactorVerifyScreen() {
         isRecoveryCode: useRecoveryCode,
       });
 
+      if (response.error) {
+        toast.error(response.error);
+        return;
+      }
+
       if (response.data?.token) {
         await storage.saveToken(response.data.token);
         await storage.saveUser(response.data.user);
+        api.setToken(response.data.token);
+        queryClient.setQueryData(['user'], response.data.user as any);
         toast.success(t('auth.signedInSuccessfully'));
         router.replace('/(tabs)/feed');
       } else {
         toast.error(t('auth.invalidCode'));
       }
     } catch (error: any) {
-      toast.error(error.response?.data?.message || t('auth.verificationFailed'));
+      toast.error(error.message || t('auth.verificationFailed'));
       console.error('2FA verification error:', error);
     } finally {
       setIsVerifying(false);

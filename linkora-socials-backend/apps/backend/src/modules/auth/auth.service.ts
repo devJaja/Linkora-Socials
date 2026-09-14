@@ -281,6 +281,7 @@ export class AuthService {
       avatar: user.avatar,
       walletAddress: user.walletAddress,
       emailVerified: user.emailVerified,
+      twoFactorEnabled: user.twoFactorEnabled,
       followersCount: user.followersCount,
       followingCount: user.followingCount,
       postsCount: user.postsCount,
@@ -561,6 +562,44 @@ export class AuthService {
     return {
       success: true,
       message: 'Password reset successfully',
+    };
+  }
+
+  /**
+   * Change password with current password verification
+   */
+  async changePassword(userId: string, currentPassword: string, newPassword: string) {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Current password is incorrect');
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await user.save();
+
+    this.logger.log(`Password changed for user: ${user.email}`);
+
+    // Send confirmation email
+    try {
+      await this.emailService.sendPasswordChangedEmail(
+        user.email,
+        user.username,
+      );
+    } catch (error) {
+      this.logger.error(
+        `Failed to send password changed email: ${error.message}`,
+      );
+    }
+
+    return {
+      success: true,
+      message: 'Password changed successfully',
     };
   }
 }

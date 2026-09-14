@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Switch, Modal, ScrollView, ActivityIndicator } from 'react-native';
+import { View, TouchableOpacity, Switch, Modal, ScrollView, ActivityIndicator, TextInput, Image } from 'react-native';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
 import { Shield, X, Copy, Download, AlertCircle } from 'lucide-react-native';
@@ -7,12 +7,14 @@ import { twoFactor } from '@/lib/twoFactor';
 import { toast } from 'sonner-native';
 import * as Clipboard from 'expo-clipboard';
 import { api } from '@/lib/api';
+import { useAuth } from '@/hooks/useAuth';
 
 interface TwoFactorSettingsProps {
   onToggle?: (enabled: boolean) => void;
 }
 
 export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
+  const { user } = useAuth();
   const [isEnabled, setIsEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showSetupModal, setShowSetupModal] = useState(false);
@@ -29,6 +31,13 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
 
   const checkTwoFactor = async () => {
     setIsLoading(true);
+    // Prefer server truth from the auth profile when available
+    const serverEnabled = (user as any)?.twoFactorEnabled;
+    if (serverEnabled !== undefined) {
+      setIsEnabled(!!serverEnabled);
+      setIsLoading(false);
+      return;
+    }
     const enabled = await twoFactor.isEnabled();
     setIsEnabled(enabled);
     setIsLoading(false);
@@ -38,7 +47,12 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
     try {
       // Request 2FA setup from backend
       const response = await api.setup2FA();
-      
+
+      if (response.error) {
+        toast.error(response.error);
+        return;
+      }
+
       if (response.data) {
         setQrCodeUrl(response.data.qrCode);
         setSecret(response.data.secret);
@@ -60,7 +74,12 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
     try {
       // Verify the code with backend
       const response = await api.verify2FA({ code: verificationCode });
-      
+
+      if (response.error) {
+        toast.error(response.error);
+        return;
+      }
+
       if (response.data?.success) {
         await twoFactor.enable();
         
@@ -89,7 +108,11 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
 
   const handleDisable = async () => {
     try {
-      await api.disable2FA();
+      const response = await api.disable2FA();
+      if (response.error) {
+        toast.error(response.error);
+        return;
+      }
       await twoFactor.disable();
       setIsEnabled(false);
       toast.success('2FA disabled');
@@ -180,12 +203,16 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
                 Scan this QR code with your authenticator app (Google Authenticator, Authy, etc.)
               </Text>
 
-              {/* QR Code Placeholder - You'll need to implement actual QR code display */}
-              <View className="items-center justify-center rounded-2xl bg-white p-4 mb-4">
-                <Text className="text-center text-sm text-gray-500">
-                  QR Code: {qrCodeUrl}
-                </Text>
-              </View>
+              {/* QR Code */}
+              {qrCodeUrl ? (
+                <View className="items-center justify-center rounded-2xl bg-white p-4 mb-4">
+                  <Image
+                    source={{ uri: qrCodeUrl }}
+                    style={{ width: 220, height: 220 }}
+                    resizeMode="contain"
+                  />
+                </View>
+              ) : null}
 
               <Text className="mb-2 text-sm font-medium">Or enter this code manually:</Text>
               <View className="flex-row items-center gap-2 rounded-xl bg-card p-3 mb-4">
@@ -196,14 +223,15 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
               </View>
 
               <Text className="mb-2 text-sm font-medium">Enter verification code:</Text>
-              <View className="rounded-xl bg-card p-3 mb-4">
-                <input
-                  type="text"
+              <View className="rounded-xl bg-card p-1 mb-4">
+                <TextInput
                   value={verificationCode}
-                  onChange={(e) => setVerificationCode(e.target.value)}
+                  onChangeText={setVerificationCode}
                   placeholder="000000"
+                  placeholderTextColor="#969696"
                   maxLength={6}
-                  className="w-full text-center text-2xl font-mono bg-transparent text-foreground"
+                  keyboardType="number-pad"
+                  className="text-center text-2xl font-mono text-foreground py-3"
                 />
               </View>
 

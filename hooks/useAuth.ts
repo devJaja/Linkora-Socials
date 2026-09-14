@@ -29,6 +29,7 @@ interface User {
   avatar?: string;
   walletAddress: string;
   emailVerified: boolean;
+  twoFactorEnabled?: boolean;
   followersCount: number;
   followingCount: number;
   postsCount: number;
@@ -96,6 +97,17 @@ export function useAuth() {
       return response.data as AuthResponse;
     },
     onSuccess: async (data) => {
+      // If 2FA is enabled, redirect to 2FA verification
+      const payload = data as unknown as { requires2FA?: boolean; tempToken?: string; email?: string };
+      if (payload.requires2FA) {
+        toast.info('Enter your authenticator code');
+        router.push({
+          pathname: '/auth/2fa-verify',
+          params: { email: payload.email, tempToken: payload.tempToken },
+        });
+        return;
+      }
+
       await storage.saveToken(data.token);
       await storage.saveUser(data.user);
       api.setToken(data.token);
