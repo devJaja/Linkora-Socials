@@ -12,7 +12,7 @@ import Animated, {
   SharedValue,
 } from 'react-native-reanimated';
 import { storage } from '@/lib/storage';
-import { useThemeStore } from '@/store/useThemeStore';
+import { useThemeStore, resolveTheme } from '@/store/useThemeStore';
 import { useOnboarding } from '@/hooks/useOnboarding';
 
 const ONBOARDING_DATA = [
@@ -66,7 +66,7 @@ export default function OnboardingScreen() {
         contentContainerStyle={{ paddingBottom: 200 }}
       >
         {ONBOARDING_DATA.map((item, index) => (
-          <OnboardingSlide key={index} {...item} theme={theme} screenWidth={SCREEN_WIDTH} />
+          <OnboardingSlide key={index} {...item} theme={resolveTheme(theme)} screenWidth={SCREEN_WIDTH} />
         ))}
       </Animated.ScrollView>
 

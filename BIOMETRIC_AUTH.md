@@ -1,7 +1,7 @@
 # Biometric Authentication
 
 ## Overview
-Biometric authentication (fingerprint/Face ID) has been added to Solcial for quick and secure sign-in.
+Biometric authentication (fingerprint/Face ID) has been added to Linkora for quick and secure sign-in.
 
 ## Features
 
@@ -66,7 +66,7 @@ import { biometric } from '@/lib/biometric';
 const available = await biometric.canUseBiometric();
 
 // Authenticate user
-const result = await biometric.authenticate('Sign in to Solcial');
+const result = await biometric.authenticate('Sign in to Linkora');
 if (result.success) {
   // Authentication successful
 }

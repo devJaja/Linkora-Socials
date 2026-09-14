@@ -365,7 +365,7 @@ class ApiClient {
   }
 
   // ==================== Wallet ====================
-  async sendSolToUser(username: string, amount: number, memo?: string) {
+  async sendXlmToUser(username: string, amount: number, memo?: string) {
     return this.request('/wallet/send-to-user', {
       method: 'POST',
       body: JSON.stringify({ username, amount, memo }),

@@ -184,6 +184,18 @@ class ApiClient {
     return this.request(`/posts/comments/${commentId}/replies?page=${page}&limit=${limit}`);
   }
 
+  async likeComment(commentId: string) {
+    return this.request(`/posts/comments/${commentId}/like`, { method: 'POST' });
+  }
+
+  async unlikeComment(commentId: string) {
+    return this.request(`/posts/comments/${commentId}/like`, { method: 'DELETE' });
+  }
+
+  async getCommentReplies(commentId: string, page: number = 1, limit: number = 10) {
+    return this.request(`/posts/comments/${commentId}/replies?page=${page}&limit=${limit}`);
+  }
+
   // ==================== Follows ====================
   async followUser(userId: string) {
     return this.request(`/follows/${userId}`, { method: 'POST' });
@@ -384,10 +396,10 @@ class ApiClient {
     });
   }
 
-  async playDice(betAmount: number, prediction: number) {
+  async playDice(betAmount: number, prediction: 'over' | 'under', targetNumber: number) {
     return this.request('/mini-apps/dice/play', {
       method: 'POST',
-      body: JSON.stringify({ betAmount, prediction }),
+      body: JSON.stringify({ betAmount, prediction, targetNumber }),
     });
   }
 
@@ -415,6 +427,16 @@ class ApiClient {
     return this.request(`/mini-apps/swap/history?page=${page}&limit=${limit}`);
   }
 
+  async getAirdropStatus() {
+    return this.request('/mini-apps/airdrop/status');
+  }
+
+  async claimAirdrop() {
+    return this.request('/mini-apps/airdrop/claim', {
+      method: 'POST',
+    });
+  }
+
   // ==================== Health ====================
   async checkHealth() {
     return this.request('/health');
@@ -425,26 +447,26 @@ class ApiClient {
   }
 
   // ==================== Two-Factor Authentication ====================
-  async setup2FA() {
+  async setup2FA(): Promise<ApiResponse<{ qrCode: string; secret: string }>> {
     return this.request('/auth/2fa/setup', {
       method: 'POST',
     });
   }
 
-  async verify2FA(data: { code: string }) {
+  async verify2FA(data: { code: string }): Promise<ApiResponse<{ success: boolean; recoveryCodes?: string[] }>> {
     return this.request('/auth/2fa/verify', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
-  async disable2FA() {
+  async disable2FA(): Promise<ApiResponse<{ success: boolean }>> {
     return this.request('/auth/2fa/disable', {
       method: 'POST',
     });
   }
 
-  async verify2FALogin(data: { email: string; tempToken: string; code: string; isRecoveryCode: boolean }) {
+  async verify2FALogin(data: { email: string; tempToken: string; code: string; isRecoveryCode: boolean }): Promise<ApiResponse<{ token: string; user: { id: string; email: string; username: string } }>> {
     return this.request('/auth/2fa/verify-login', {
       method: 'POST',
       body: JSON.stringify(data),

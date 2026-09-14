@@ -63,11 +63,9 @@ Supported tokens: **XLM** (native), **USDC**, **USDT**, and **SEEKER (SKR)** —
 
 ## Cross-Chain Roadmap · Ika & Encrypt
 
-Stellar is the primary chain today. Non-custodial custody and confidential payments extend the platform toward other ecosystems:
+Stellar is the primary chain today. Non-custodial custody and confidential payments extend the platform toward other ecosystems via external services:
 
 ### Ika — Zero-Trust Custody (dWallets)
-
-**Program:** `programs/linkora-custody` | **SDK:** `ika-dwallet-anchor`
 
 Replaces custodial key storage with **dWallets**: programmable signing keys co-controlled by the user and the Ika Network via 2PC-MPC. Even a fully compromised backend cannot move user funds — signing authority is distributed across the Ika validator network.
 
@@ -75,25 +73,21 @@ Replaces custodial key storage with **dWallets**: programmable signing keys co-c
 User signs up
     → Backend calls Ika gRPC (DKG)
     → Ika Network produces a dWallet keypair
-    → linkora-custody transfers authority to its CPI PDA
     → Backend can enforce rules (2FA, limits) but cannot sign alone
 ```
 
 ### Encrypt — Confidential (FHE) Payments
-
-**Program:** `programs/linkora-privacy` | **SDK:** `encrypt-anchor`, `@encrypt.xyz/pre-alpha-solana-client`
 
 Tip amounts inside Linkora chat are encrypted using **Fully Homomorphic Encryption (FHE)**. Computation runs on ciphertexts — no plaintext amount ever appears on-chain, in logs, or in an explorer.
 
 ```
 User sends a private tip
     → Backend encrypts the amount via Encrypt gRPC → ciphertext account
-    → execute_private_tip runs the confidential_transfer FHE graph on-chain
     → Encrypt executor commits new encrypted balances
     → Chat UI shows a 🔒 "Private tip" — amount hidden from everyone else
 ```
 
-> **Note:** Ika and Encrypt are pre-alpha integrations. The on-chain programs, gRPC APIs, and account structures are fully implemented, but the cryptographic guarantees are currently simulated by a single mock server. No code changes are required at launch — only environment variables.
+> **Note:** Ika and Encrypt are pre-alpha roadmap integrations. The mobile and backend ship dependency-free mock clients; the cryptographic guarantees are currently simulated. No locally deployed on-chain programs are required at launch — only environment variables.
 
 ---
 
@@ -101,7 +95,7 @@ User sends a private tip
 
 - **Mobile:** React Native, Expo (SDK 54) + Expo Router, NativeWind (Tailwind), TanStack Query, Zustand, i18next
 - **Backend:** NestJS, MongoDB, Pusher, Stellar (Horizon)
-- **On-chain (roadmap):** Anchor v1, `ika-dwallet-anchor`, `encrypt-anchor`, `encrypt-dsl`
+- **External (roadmap):** Ika dWallet (2PC-MPC custody) · Encrypt FHE (confidential tips)
 - **Prices:** DexScreener (Stellar pairs) + CoinGecko
 
 ---
@@ -129,7 +123,7 @@ pnpm start
 Copy the values in `.env` (git-ignored) — the app talks to a hosted backend by default:
 
 ```env
-EXPO_PUBLIC_API_URL=https://linkora-backend.onrender.com/api
+EXPO_PUBLIC_API_URL=https://linkora-socials-backend.onrender.com/api
 EXPO_PUBLIC_PUSHER_KEY=<pusher key>
 EXPO_PUBLIC_PUSHER_CLUSTER=mt1
 ```
@@ -158,7 +152,6 @@ pnpm build:ios     # EAS build
 ├── locales/         # 12 language translations (i18next)
 ├── services/        # coingecko · dexscreener · ika (dWallet) · encrypt (FHE)
 ├── store/           # Zustand stores (theme)
-├── programs/        # On-chain reference programs (Solana / Ika / Encrypt)
 ├── scripts/         # Translation + API validation tooling
 └── types/           # Shared TypeScript types
 ```
