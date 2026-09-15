@@ -11,6 +11,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: API_URL
+        value: https://linkora-socials.onrender.com
       - key: PORT
         value: 3000
       - key: NODE_VERSION
