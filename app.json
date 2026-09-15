@@ -32,10 +32,6 @@
       },
       "softwareKeyboardLayoutMode": "pan",
       "package": "app.linkora",
-      "notification": {
-        "icon": "./assets/images/appicon.png",
-        "color": "#ffffff"
-      },
       "intentFilters": [
         {
           "action": "VIEW",
