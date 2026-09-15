@@ -26,6 +26,7 @@ import { WaitlistModule } from './modules/waitlist/waitlist.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: ['.env', '../../.env'],
     }),
     ScheduleModule.forRoot(),
     MongooseModule.forRoot(
