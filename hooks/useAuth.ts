@@ -58,14 +58,24 @@ export function useAuth() {
       if (!token) return null;
       
       api.setToken(token);
-      const { data, error } = await api.getProfile();
+      const { data, error, status } = await api.getProfile();
       
-      if (error) {
+      if (data) {
+        await storage.saveUser(data);
+        return data;
+      }
+
+      // Only wipe the session on a definitive auth failure (401/403).
+      // Network blips / server errors must NOT log the user out.
+      if (status === 401 || status === 403 || String(error || '').toLowerCase().includes('unauthorized') || String(error || '').toLowerCase().includes('invalid token')) {
         await storage.clear();
+        api.clearToken();
         return null;
       }
-      
-      return data;
+
+      // Transient failure: keep the session alive using the cached user.
+      const cachedUser = await storage.getUser();
+      return cachedUser ?? null;
     },
   });
 

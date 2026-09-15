@@ -3,6 +3,7 @@ const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3000/api';
 interface ApiResponse<T = any> {
   data?: T;
   error?: string;
+  status?: number;
 }
 
 class ApiClient {
@@ -42,8 +43,10 @@ class ApiClient {
       const data = await response.json();
 
       if (!response.ok) {
+        const message = (data && data.message) || 'Something went wrong';
         return {
-          error: data.message || 'Something went wrong',
+          error: Array.isArray(message) ? message.join(', ') : message,
+          status: response.status,
         };
       }
 
