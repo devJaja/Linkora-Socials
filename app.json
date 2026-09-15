@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Linkora-Socials",
-    "slug": "linkora",
+    "slug": "linkora-socials",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/appicon.png",
@@ -13,12 +13,16 @@
       "resizeMode": "contain",
       "backgroundColor": "#E6E4DB"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "icon": "./assets/images/appicon.png",
       "bundleIdentifier": "app.linkora",
-      "associatedDomains": ["applinks:linkora.app"]
+      "associatedDomains": [
+        "applinks:linkora.app"
+      ]
     },
     "android": {
       "edgeToEdgeEnabled": true,
@@ -26,7 +30,7 @@
         "foregroundImage": "./assets/images/appicon.png",
         "backgroundColor": "#E6E4DB"
       },
-      "softwareKeyboardLayoutMode":"pan",
+      "softwareKeyboardLayoutMode": "pan",
       "package": "app.linkora",
       "notification": {
         "icon": "./assets/images/appicon.png",
@@ -46,7 +50,10 @@
               "scheme": "linkora"
             }
           ],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
       ]
     },
@@ -56,7 +63,7 @@
       "favicon": "./assets/images/appicon.png"
     },
     "plugins": [
-      "expo-router", 
+      "expo-router",
       "expo-font",
       [
         "expo-notifications",
@@ -73,8 +80,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "56fdee7f-b519-4073-82f5-a101986d5c31"
+        "projectId": "f087d46a-a7df-4b60-a5c5-4babcfcc7738"
       }
-    }
+    },
+    "owner": "devjaja"
   }
 }
