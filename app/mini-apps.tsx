@@ -26,7 +26,7 @@ const liveApps = [
     name: 'Dice Game',
     description: 'Roll the dice and win XLM',
     icon: Gamepad2,
-    color: 'bg-green-500',
+    color: 'bg-success/100',
     route: '/mini-apps/dice',
   },
   {
@@ -77,7 +77,7 @@ export default function MiniAppsScreen() {
     <View className="flex-1 bg-background">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View className="bg-[#002E5F] px-4 pb-8 pt-12">
+        <View className="bg-[#3E1BDB] px-4 pb-8 pt-12">
           <View className="flex-row items-center gap-3">
             <TouchableOpacity onPress={() => router.back()}>
               <Icon as={ArrowLeft} size={24} className="text-white" />
@@ -102,7 +102,7 @@ export default function MiniAppsScreen() {
         {/* Live Apps */}
         <View className="mt-6 px-4">
           <View className="flex-row items-center gap-2">
-            <View className="h-2 w-2 rounded-full bg-green-500" />
+            <View className="h-2 w-2 rounded-full bg-success/100" />
             <Text className="text-xl font-bold">Live Now</Text>
           </View>
           <Text className="mt-1 text-sm text-muted-foreground">
@@ -116,7 +116,7 @@ export default function MiniAppsScreen() {
                 onPress={() => router.push(app.route as any)}
                 className="overflow-hidden rounded-2xl bg-card active:opacity-80"
               >
-                <View className="bg-[#002E5F] p-4">
+                <View className="bg-[#3E1BDB] p-4">
                   <View className="flex-row items-center gap-3">
                     <View className="h-14 w-14 items-center justify-center rounded-2xl bg-white/20">
                       <Icon as={app.icon} size={28} className="text-white" />

@@ -21,7 +21,7 @@ export default function TransactionsScreen() {
   return (
     <View className="flex-1 bg-background">
       {/* Header */}
-      <View className="bg-[#002E5F] px-4 pb-6 pt-12">
+      <View className="bg-[#3E1BDB] px-4 pb-6 pt-12">
         <View className="flex-row items-center gap-3">
           <TouchableOpacity onPress={() => router.back()}>
             <Icon as={ArrowLeft} size={24} className="text-white" />
@@ -45,7 +45,7 @@ export default function TransactionsScreen() {
         <View className="px-4 py-6">
           {isLoadingTransactions && transactions.length === 0 ? (
             <View className="items-center py-10">
-              <ActivityIndicator size="large" color="#002E5F" />
+              <ActivityIndicator size="large" color="#3E1BDB" />
             </View>
           ) : transactions.length === 0 ? (
             <View className="items-center py-10">
@@ -60,11 +60,11 @@ export default function TransactionsScreen() {
                   className="mb-3 flex-row items-center justify-between rounded-2xl bg-card p-4"
                 >
                   <View className="flex-row items-center gap-3">
-                    <View className={`h-12 w-12 items-center justify-center rounded-full ${tx.type === 'receive' ? 'bg-green-100' : 'bg-purple-100'}`}>
+                    <View className={`h-12 w-12 items-center justify-center rounded-full ${tx.type === 'receive' ? 'bg-success/10' : 'bg-purple-100'}`}>
                       <Icon 
                         as={tx.type === 'receive' ? ArrowDownLeft : ArrowUpRight} 
                         size={20} 
-                        className={tx.type === 'receive' ? 'text-green-600' : 'text-purple-600'}
+                        className={tx.type === 'receive' ? 'text-success' : 'text-purple-600'}
                       />
                     </View>
                     <View>
@@ -77,7 +77,7 @@ export default function TransactionsScreen() {
                     </View>
                   </View>
                   <View className="items-end">
-                    <Text className={`font-semibold ${tx.type === 'receive' ? 'text-green-600' : 'text-foreground'}`}>
+                    <Text className={`font-semibold ${tx.type === 'receive' ? 'text-success' : 'text-foreground'}`}>
                       {tx.type === 'receive' ? '+' : '-'}{tx.amount.toFixed(4)} XLM
                     </Text>
                     <Text className="text-sm text-muted-foreground capitalize">{tx.status}</Text>
@@ -87,7 +87,7 @@ export default function TransactionsScreen() {
               
               {isFetchingNextPage && (
                 <View className="py-4">
-                  <ActivityIndicator size="small" color="#002E5F" />
+                  <ActivityIndicator size="small" color="#3E1BDB" />
                 </View>
               )}
               

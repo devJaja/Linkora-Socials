@@ -31,7 +31,7 @@ export function FeedActions({
           as={Heart}
           size={20}
           className={isLiked ? 'text-red-500' : 'text-muted-foreground'}
-          fill={isLiked ? '#FF3F00' : 'none'}
+          fill={isLiked ? '#E5484D' : 'none'}
         />
         <Text className={isLiked ? 'text-red-500' : 'text-muted-foreground'}>
           {likesCount || 0}
@@ -51,8 +51,8 @@ export function FeedActions({
 
       {showTip && onTip && (
         <TouchableOpacity onPress={onTip} className="ml-auto flex-row items-center gap-2">
-          <Icon as={DollarSign} size={20} className="text-purple-600" />
-          <Text className="text-purple-600 font-semibold">Tip</Text>
+          <Icon as={DollarSign} size={20} className="text-success" />
+          <Text className="text-success font-semibold">Tip</Text>
         </TouchableOpacity>
       )}
     </View>

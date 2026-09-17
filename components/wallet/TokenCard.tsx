@@ -50,9 +50,9 @@ export function TokenCard({
               <Icon
                 as={isPositive ? TrendingUp : TrendingDown}
                 size={12}
-                className={isPositive ? 'text-green-600' : 'text-red-600'}
+                className={isPositive ? 'text-success' : 'text-red-600'}
               />
-              <Text className={`text-xs ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+              <Text className={`text-xs ${isPositive ? 'text-success' : 'text-red-600'}`}>
                 {isPositive ? '+' : ''}{change24h.toFixed(2)}%
               </Text>
             </View>

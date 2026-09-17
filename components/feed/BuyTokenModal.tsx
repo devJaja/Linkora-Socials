@@ -37,7 +37,8 @@ export function BuyTokenModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View className="flex-1 items-center justify-center bg-black/50 p-4">
-        <View className="w-full max-w-sm rounded-2xl bg-background p-6">
+        <View className="w-full max-w-sm rounded-3xl bg-card p-6">
+          <View className="mb-4 h-1.5 w-12 self-center rounded-full bg-border" />
           <Text className="text-xl font-bold">{t('feed.buy')} {t('common.post')} {t('wallet.tokens')}</Text>
           <Text className="mt-2 text-sm text-muted-foreground">
             {t('wallet.price')}: {tokenPrice} XLM {t('wallet.perToken')}
@@ -50,7 +51,8 @@ export function BuyTokenModal({
               onChangeText={setAmount}
               placeholder="10"
               keyboardType="numeric"
-              className="rounded-lg border border-border bg-background px-4 py-3 text-foreground"
+              placeholderTextColor="#8C8C98"
+              className="rounded-xl border border-border bg-background px-4 py-3 text-foreground"
             />
             {amount && (
               <Text className="mt-2 text-sm text-muted-foreground">
@@ -62,16 +64,16 @@ export function BuyTokenModal({
           <View className="mt-6 flex-row gap-3">
             <TouchableOpacity
               onPress={onClose}
-              className="flex-1 rounded-xl border border-border py-3"
+              className="flex-1 rounded-xl border border-border py-3 active:opacity-70"
             >
               <Text className="text-center font-semibold">{t('common.cancel')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleSubmit}
               disabled={isSubmitting}
-              className="flex-1 rounded-xl bg-primary py-3"
+              className="flex-1 rounded-xl bg-primary py-3 active:opacity-90"
             >
-              <Text className="text-center font-semibold text-[#002E5F]">
+              <Text className="text-center font-semibold text-white">
                 {isSubmitting ? t('wallet.buying') : t('feed.buy')} {t('wallet.tokens')}
               </Text>
             </TouchableOpacity>

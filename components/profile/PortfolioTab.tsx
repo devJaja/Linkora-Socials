@@ -19,7 +19,7 @@ export function PortfolioTab({ portfolio, isLoading, isOwnProfile, onNavigateToP
   if (isLoading) {
     return (
       <View className="items-center py-20">
-        <ActivityIndicator size="large" color="#002E5F" />
+        <ActivityIndicator size="large" color="#3E1BDB" />
       </View>
     );
   }
@@ -37,7 +37,7 @@ export function PortfolioTab({ portfolio, isLoading, isOwnProfile, onNavigateToP
   return (
     <View className="px-4 py-4">
       {/* Portfolio Summary */}
-      <View className="mb-4 rounded-2xl bg-[#002E5F] p-6">
+      <View className="mb-4 rounded-2xl bg-[#3E1BDB] p-6">
         <Text className="text-sm text-white/80">{t('profile.totalPortfolioValue')}</Text>
         <Text className="mt-1 text-3xl font-bold text-white">
           {portfolio.totalValue.toFixed(4)} XLM
@@ -46,12 +46,12 @@ export function PortfolioTab({ portfolio, isLoading, isOwnProfile, onNavigateToP
           <Icon 
             as={portfolio.totalProfitLoss >= 0 ? TrendingUp : TrendingDown} 
             size={16} 
-            className={portfolio.totalProfitLoss >= 0 ? "text-green-300" : "text-red-300"}
+            className={portfolio.totalProfitLoss >= 0 ? "text-success" : "text-red-300"}
           />
-          <Text className={`font-semibold ${portfolio.totalProfitLoss >= 0 ? 'text-green-300' : 'text-red-300'}`}>
+          <Text className={`font-semibold ${portfolio.totalProfitLoss >= 0 ? 'text-success' : 'text-red-300'}`}>
             {portfolio.totalProfitLoss >= 0 ? '+' : ''}{portfolio.totalProfitLoss.toFixed(4)} XLM
           </Text>
-          <Text className={`text-sm ${portfolio.totalProfitLoss >= 0 ? 'text-green-300' : 'text-red-300'}`}>
+          <Text className={`text-sm ${portfolio.totalProfitLoss >= 0 ? 'text-success' : 'text-red-300'}`}>
             ({portfolio.totalProfitLossPercentage >= 0 ? '+' : ''}{portfolio.totalProfitLossPercentage.toFixed(2)}%)
           </Text>
         </View>
@@ -94,9 +94,9 @@ export function PortfolioTab({ portfolio, isLoading, isOwnProfile, onNavigateToP
                 <Icon 
                   as={holding.profitLoss >= 0 ? TrendingUp : TrendingDown} 
                   size={14} 
-                  className={holding.profitLoss >= 0 ? "text-green-600" : "text-red-600"}
+                  className={holding.profitLoss >= 0 ? "text-success" : "text-red-600"}
                 />
-                <Text className={`text-sm font-semibold ${holding.profitLoss >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                <Text className={`text-sm font-semibold ${holding.profitLoss >= 0 ? 'text-success' : 'text-red-600'}`}>
                   {holding.profitLossPercentage >= 0 ? '+' : ''}{holding.profitLossPercentage.toFixed(1)}%
                 </Text>
               </View>

@@ -23,9 +23,9 @@ export function MessageInput({ onSend, onTip, isSending }: MessageInputProps) {
       {onTip && (
         <TouchableOpacity
           onPress={onTip}
-          className="h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-950"
+          className="h-10 w-10 items-center justify-center rounded-full bg-success/10"
         >
-          <Icon as={DollarSign} size={20} className="text-green-600" />
+          <Icon as={DollarSign} size={20} className="text-success" />
         </TouchableOpacity>
       )}
 
@@ -33,7 +33,7 @@ export function MessageInput({ onSend, onTip, isSending }: MessageInputProps) {
         value={message}
         onChangeText={setMessage}
         placeholder="Type a message..."
-        placeholderTextColor="#969696"
+        placeholderTextColor="#8C8C98"
         multiline
         maxLength={500}
         className="flex-1 max-h-24 rounded-full border border-border bg-card px-4 py-2 text-foreground"
@@ -46,7 +46,7 @@ export function MessageInput({ onSend, onTip, isSending }: MessageInputProps) {
           message.trim() && !isSending ? 'bg-primary' : 'bg-gray-300'
         }`}
       >
-        <Icon as={Send} size={20} className="text-[#002E5F]" />
+        <Icon as={Send} size={20} className="text-white" />
       </TouchableOpacity>
     </View>
   );

@@ -151,7 +151,7 @@ export default function SendMoneyScreen() {
                 setErrors({ ...errors, recipient: '' });
               }}
               placeholder="Enter Stellar wallet address"
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
               className="text-base text-foreground"
               autoCapitalize="none"
               autoCorrect={false}
@@ -197,7 +197,7 @@ export default function SendMoneyScreen() {
               keyboardType="decimal-pad"
               className="text-2xl font-semibold text-foreground"
               placeholder="0.00"
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
             />
           </View>
           {errors.amount ? (
@@ -229,7 +229,7 @@ export default function SendMoneyScreen() {
               value={memo}
               onChangeText={setMemo}
               placeholder="Add a note..."
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
               className="text-base text-foreground"
               maxLength={100}
             />
@@ -265,8 +265,8 @@ export default function SendMoneyScreen() {
             <ActivityIndicator size="small" color="#ffffff" />
           ) : (
             <>
-              <Icon as={Send} size={20} className="text-[#002E5F]" />
-              <Text className="text-lg font-semibold text-[#002E5F]">
+              <Icon as={Send} size={20} className="text-white" />
+              <Text className="text-lg font-semibold text-white">
                 Send {amount || '0'} XLM
               </Text>
             </>
@@ -331,9 +331,9 @@ export default function SendMoneyScreen() {
                 className="flex-1 items-center rounded-2xl bg-primary py-4"
               >
                 {isSending ? (
-                  <ActivityIndicator size="small" color="#002E5F" />
+                  <ActivityIndicator size="small" color="#3E1BDB" />
                 ) : (
-                  <Text className="text-lg font-semibold text-[#002E5F]">Confirm</Text>
+                  <Text className="text-lg font-semibold text-white">Confirm</Text>
                 )}
               </TouchableOpacity>
             </View>
@@ -399,7 +399,7 @@ export default function SendMoneyScreen() {
                 value={searchQuery}
                 onChangeText={handleSearch}
                 placeholder="Search by username or name..."
-                placeholderTextColor="#969696"
+                placeholderTextColor="#8C8C98"
                 className="flex-1 text-base text-foreground"
                 autoCapitalize="none"
               />
@@ -410,7 +410,7 @@ export default function SendMoneyScreen() {
           <View className="flex-1 px-4 pt-4">
             {isSearching ? (
               <View className="items-center py-20">
-                <ActivityIndicator size="large" color="#002E5F" />
+                <ActivityIndicator size="large" color="#3E1BDB" />
               </View>
             ) : searchResults.length === 0 ? (
               <View className="items-center py-20">

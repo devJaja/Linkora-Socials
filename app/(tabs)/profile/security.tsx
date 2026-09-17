@@ -87,7 +87,7 @@ export default function SecurityPrivacyScreen() {
                 value={currentPassword}
                 onChangeText={setCurrentPassword}
                 placeholder="Enter current password"
-                placeholderTextColor="#969696"
+                placeholderTextColor="#8C8C98"
                 secureTextEntry={!showCurrentPassword}
                 className="flex-1 py-4 text-base text-foreground"
               />
@@ -111,7 +111,7 @@ export default function SecurityPrivacyScreen() {
                 value={newPassword}
                 onChangeText={setNewPassword}
                 placeholder="Enter new password"
-                placeholderTextColor="#969696"
+                placeholderTextColor="#8C8C98"
                 secureTextEntry={!showNewPassword}
                 className="flex-1 py-4 text-base text-foreground"
               />
@@ -135,7 +135,7 @@ export default function SecurityPrivacyScreen() {
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
                 placeholder="Confirm new password"
-                placeholderTextColor="#969696"
+                placeholderTextColor="#8C8C98"
                 secureTextEntry
                 className="text-base text-foreground"
               />
@@ -149,7 +149,7 @@ export default function SecurityPrivacyScreen() {
               isUpdatingPassword ? 'bg-gray-300' : 'bg-primary active:bg-primary/90'
             }`}
           >
-            <Text className="text-lg font-semibold text-[#002E5F]">
+            <Text className="text-lg font-semibold text-white">
               {isUpdatingPassword ? 'Updating...' : 'Update Password'}
             </Text>
           </TouchableOpacity>

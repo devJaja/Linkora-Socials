@@ -11,7 +11,7 @@
     "splash": {
       "image": "./assets/images/appicon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#E6E4DB"
+      "backgroundColor": "#3E1BDB"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,14 +21,18 @@
       "icon": "./assets/images/appicon.png",
       "bundleIdentifier": "app.linkora",
       "associatedDomains": [
+        "applinks:linkora.app",
         "applinks:linkora.app"
-      ]
+      ],
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "edgeToEdgeEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/appicon.png",
-        "backgroundColor": "#E6E4DB"
+        "backgroundColor": "#3E1BDB"
       },
       "softwareKeyboardLayoutMode": "pan",
       "package": "app.linkora",

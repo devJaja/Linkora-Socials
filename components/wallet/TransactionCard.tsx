@@ -41,7 +41,7 @@ export function TransactionCard({
       case 'send':
         return 'text-red-600';
       case 'receive':
-        return 'text-green-600';
+        return 'text-success';
       case 'swap':
         return 'text-purple-600';
     }
@@ -50,7 +50,7 @@ export function TransactionCard({
   const getStatusColor = () => {
     switch (status) {
       case 'confirmed':
-        return 'text-green-600';
+        return 'text-success';
       case 'pending':
         return 'text-yellow-600';
       case 'failed':
@@ -75,7 +75,7 @@ export function TransactionCard({
         <View className="flex-row items-center gap-3">
           <View className={`h-10 w-10 items-center justify-center rounded-full ${
             type === 'send' ? 'bg-red-100 dark:bg-red-950' :
-            type === 'receive' ? 'bg-green-100 dark:bg-green-950' :
+            type === 'receive' ? 'bg-success/10' :
             'bg-purple-100 dark:bg-purple-950'
           }`}>
             <Icon as={getIcon()} size={20} className={getColor()} />

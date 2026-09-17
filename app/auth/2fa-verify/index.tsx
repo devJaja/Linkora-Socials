@@ -129,7 +129,7 @@ export default function TwoFactorVerifyScreen() {
                     focusedIndex === index ? 'border-purple-600' : 'border-transparent'
                   }`}
                   placeholder="0"
-                  placeholderTextColor="#D6D3C4"
+                  placeholderTextColor="#D1C9F7"
                   autoFocus={index === 0}
                 />
               ))}
@@ -142,7 +142,7 @@ export default function TwoFactorVerifyScreen() {
               value={recoveryCode}
               onChangeText={setRecoveryCode}
               placeholder="XXXX-XXXX"
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
               className="rounded-xl bg-card px-4 py-4 text-center text-lg font-mono text-foreground"
               autoCapitalize="characters"
               maxLength={9}
@@ -160,7 +160,7 @@ export default function TwoFactorVerifyScreen() {
           {isVerifying ? (
             <ActivityIndicator color="white" />
           ) : (
-            <Text className="text-base font-medium text-[#002E5F]">{t('auth.verify')}</Text>
+            <Text className="text-base font-medium text-white">{t('auth.verify')}</Text>
           )}
         </TouchableOpacity>
 

@@ -38,7 +38,7 @@ export default function PayScreen() {
           <View className="flex-row gap-4">
             <TouchableOpacity
               onPress={() => router.push('/wallet/send')}
-              className="flex-1 rounded-3xl bg-[#002E5F] p-6"
+              className="flex-1 rounded-3xl bg-[#3E1BDB] p-6"
             >
               <Icon as={ArrowUpRight} size={32} className="text-white" />
               <Text className="mt-4 text-xl font-bold text-white">Send</Text>

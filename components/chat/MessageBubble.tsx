@@ -29,13 +29,13 @@ export function MessageBubble({
     <View className={`mb-3 flex-row ${isOwn ? 'justify-end' : 'justify-start'}`}>
       <View className={`max-w-[75%] rounded-2xl px-4 py-2 ${
         type === 'tip'
-          ? 'bg-green-100 dark:bg-green-950'
+          ? 'bg-success/10'
           : isOwn
-          ? 'bg-[#002E5F]'
+          ? 'bg-[#3E1BDB]'
           : 'bg-card'
       }`}>
         {type === 'tip' && tipAmount && (
-          <Text className="mb-1 text-xs font-semibold text-green-700 dark:text-green-300">
+          <Text className="mb-1 text-xs font-semibold text-success dark:text-success">
             💰 Tip: {tipAmount} XLM
           </Text>
         )}

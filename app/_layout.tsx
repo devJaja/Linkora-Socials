@@ -8,12 +8,17 @@ import { PortalHost } from '@rn-primitives/portal';
 import { Stack, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import {
-  Geist_400Regular,
-  Geist_500Medium,
-  Geist_600SemiBold,
-  Geist_700Bold,
-  useFonts,
-} from '@expo-google-fonts/geist';
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  useFonts as useInterFonts,
+} from '@expo-google-fonts/inter';
+import {
+  Inconsolata_400Regular,
+  Inconsolata_500Medium,
+  useFonts as useInconsolataFonts,
+} from '@expo-google-fonts/inconsolata';
 import { Toaster } from 'sonner-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -187,7 +192,7 @@ function RootLayoutContent() {
     <ThemeProvider value={theme === 'dark' ? NAV_THEME.dark : NAV_THEME.light}>
       <StatusBar 
         style={getStatusBarStyle()} 
-        backgroundColor={pathname === '/feed' ? '#002E5F' : undefined}
+        backgroundColor={pathname === '/feed' ? '#3E1BDB' : undefined}
       />
       <Stack screenOptions={{ headerShown: false }} />
       <PortalHost />
@@ -197,12 +202,18 @@ function RootLayoutContent() {
 }
 
 export default function RootLayout() {
-  const [isFontsLoaded] = useFonts({
-    Geist_400Regular,
-    Geist_500Medium,
-    Geist_600SemiBold,
-    Geist_700Bold,
+  const [interLoaded] = useInterFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
   });
+  const [monoLoaded] = useInconsolataFonts({
+    Inconsolata_400Regular,
+    Inconsolata_500Medium,
+  });
+
+  const isFontsLoaded = interLoaded && monoLoaded;
 
   useEffect(() => {
     if (isFontsLoaded) {

@@ -103,9 +103,9 @@ export default function FollowsScreen() {
             <Icon 
               as={isFollowingUser ? UserMinus : UserPlus} 
               size={16} 
-              className={isFollowingUser ? "text-foreground" : "text-[#002E5F]"}
+              className={isFollowingUser ? "text-foreground" : "text-white"}
             />
-            <Text className={`font-semibold text-sm ${isFollowingUser ? 'text-foreground' : 'text-[#002E5F]'}`}>
+            <Text className={`font-semibold text-sm ${isFollowingUser ? 'text-foreground' : 'text-white'}`}>
               {isFollowingUser ? 'Unfollow' : 'Follow'}
             </Text>
           </TouchableOpacity>
@@ -168,7 +168,7 @@ export default function FollowsScreen() {
               value={searchQuery}
               onChangeText={setSearchQuery}
               placeholder={`Search ${activeTab}...`}
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
               className="flex-1 text-foreground"
             />
             {searchQuery.length > 0 && (
@@ -183,7 +183,7 @@ export default function FollowsScreen() {
       {/* Users List */}
       {isLoading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#002E5F" />
+          <ActivityIndicator size="large" color="#3E1BDB" />
         </View>
       ) : filteredUsers.length === 0 ? (
         <View className="flex-1 items-center justify-center px-8">

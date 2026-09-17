@@ -27,10 +27,10 @@ export function NotificationCard({ notification, onPress }: NotificationCardProp
       case 'comment':
         return <Icon as={MessageCircle} size={20} className="text-blue-600" />;
       case 'follow':
-        return <Icon as={UserPlus} size={20} className="text-green-600" />;
+        return <Icon as={UserPlus} size={20} className="text-success" />;
       case 'tip':
       case 'payment_received':
-        return <Icon as={DollarSign} size={20} className="text-green-600" />;
+        return <Icon as={DollarSign} size={20} className="text-success" />;
       case 'token_purchase':
         return <Icon as={Coins} size={20} className="text-purple-600" />;
       default:
@@ -63,7 +63,7 @@ export function NotificationCard({ notification, onPress }: NotificationCardProp
             <View className="flex-1">
               <Text className="font-medium">{notification.message}</Text>
               {notification.amount && (
-                <Text className="mt-1 text-sm font-semibold text-green-600">
+                <Text className="mt-1 text-sm font-semibold text-success">
                   {notification.amount} XLM
                 </Text>
               )}
@@ -74,7 +74,7 @@ export function NotificationCard({ notification, onPress }: NotificationCardProp
               )}
             </View>
             {!notification.isRead && (
-              <View className="ml-2 h-2 w-2 rounded-full bg-[#002E5F]" />
+              <View className="ml-2 h-2 w-2 rounded-full bg-[#3E1BDB]" />
             )}
           </View>
           <Text className="mt-1 text-xs text-muted-foreground">

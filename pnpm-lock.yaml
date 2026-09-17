@@ -11,6 +11,12 @@ importers:
       '@expo-google-fonts/geist':
         specifier: ^0.4.1
         version: 0.4.1
+      '@expo-google-fonts/inconsolata':
+        specifier: ^0.4.2
+        version: 0.4.2
+      '@expo-google-fonts/inter':
+        specifier: ^0.4.2
+        version: 0.4.2
       '@expo-google-fonts/montserrat':
         specifier: ^0.4.2
         version: 0.4.2
@@ -713,6 +719,12 @@ packages:
 
   '@expo-google-fonts/geist@0.4.1':
     resolution: {integrity: sha512-UOBwoTJkKC0ViMOS8gjlQyUcT/5PX0phCroz/8z0DP1+7FcoD1RGGeG//nVQYWbT3y/ze4XoE63gSunml9Wdbw==}
+
+  '@expo-google-fonts/inconsolata@0.4.2':
+    resolution: {integrity: sha512-4U9XnnqMK30hbCrGoioCyHxzPdLorY7LV6toNKnBxjVJU04vv9GI/GA+0XjlrKev/iONL8kaPqXCETf52ocGFA==}
+
+  '@expo-google-fonts/inter@0.4.2':
+    resolution: {integrity: sha512-syfiImMaDmq7cFi0of+waE2M4uSCyd16zgyWxdPOY7fN2VBmSLKEzkfbZgeOjJq61kSqPBNNtXjggiQiSD6gMQ==}
 
   '@expo-google-fonts/montserrat@0.4.2':
     resolution: {integrity: sha512-Xyq7rKJhhZOE1Xk4wKSSVoUeOkFmQEMhtZ3pdFrgYckGZMs115Apmld1AI8Ju+yrl5GzDdfRCCqRr33dvEDYUA==}
@@ -5045,6 +5057,10 @@ snapshots:
       '@types/hammerjs': 2.0.46
 
   '@expo-google-fonts/geist@0.4.1': {}
+
+  '@expo-google-fonts/inconsolata@0.4.2': {}
+
+  '@expo-google-fonts/inter@0.4.2': {}
 
   '@expo-google-fonts/montserrat@0.4.2': {}
 

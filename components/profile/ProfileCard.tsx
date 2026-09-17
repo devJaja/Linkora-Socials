@@ -53,8 +53,8 @@ export function ProfileCard({
               onPress={onFollowToggle}
               className={`flex-row items-center gap-2 rounded-full px-4 py-2 ${isFollowing ? 'bg-gray-200 dark:bg-black' : 'bg-primary'}`}
             >
-              <Icon as={isFollowing ? UserMinus : UserPlus} size={18} className={isFollowing ? "text-foreground" : "text-[#002E5F]"} />
-              <Text className={`font-semibold ${isFollowing ? 'text-foreground' : 'text-[#002E5F]'}`}>
+              <Icon as={isFollowing ? UserMinus : UserPlus} size={18} className={isFollowing ? "text-foreground" : "text-white"} />
+              <Text className={`font-semibold ${isFollowing ? 'text-foreground' : 'text-white'}`}>
                 {isFollowing ? 'Unfollow' : 'Follow'}
               </Text>
             </TouchableOpacity>
@@ -88,10 +88,10 @@ export function ProfileCard({
       </View>
 
       {/* Wallet Address */}
-      <View className="mt-4 rounded-2xl bg-gray-50 dark:bg-muted-foreground p-4">
+      <View className="mt-4 rounded-2xl bg-gray-50 dark:bg-gray-800 p-4">
         <Text className="text-sm text-muted-foreground">Wallet Address</Text>
         <View className="mt-1 flex-row items-center justify-between">
-          <Text className="text-lg font-bold">
+          <Text className="font-mono text-lg font-semibold">
             {user.walletAddress?.slice(0, 8)}...{user.walletAddress?.slice(-4)}
           </Text>
           <TouchableOpacity onPress={onCopyAddress}>

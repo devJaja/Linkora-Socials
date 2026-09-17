@@ -13,7 +13,7 @@ export function PostsTab({ posts, isLoading }: PostsTabProps) {
   if (isLoading) {
     return (
       <View className="items-center py-20">
-        <ActivityIndicator size="large" color="#002E5F" />
+        <ActivityIndicator size="large" color="#3E1BDB" />
       </View>
     );
   }

@@ -23,7 +23,7 @@ export function FeedPostCard({
   onNavigateToProfile,
 }: FeedPostCardProps) {
   const { t } = useTranslation();
-  
+
   const formatTime = (date: string) => {
     try {
       return formatDistanceToNow(new Date(date), { addSuffix: false }).replace('about ', '');
@@ -35,15 +35,15 @@ export function FeedPostCard({
   return (
     <TouchableOpacity
       onPress={() => router.push(`/post/${post.id}`)}
-      className="border-b border-border bg-card p-4"
+      className="mx-4 mb-4 rounded-[24px] border border-border bg-card p-4 shadow-sm shadow-black/5"
     >
       <View className="flex-row gap-3">
         <TouchableOpacity onPress={() => onNavigateToProfile(post.author.username)}>
           {post.author.avatar ? (
-            <Image source={{ uri: post.author.avatar }} className="h-10 w-10 rounded-full" />
+            <Image source={{ uri: post.author.avatar }} className="h-11 w-11 rounded-full" />
           ) : (
-            <View className="h-10 w-10 items-center justify-center rounded-full bg-purple-200 dark:bg-purple-900">
-              <Icon as={User} size={20} className="text-purple-600 dark:text-purple-300" />
+            <View className="h-11 w-11 items-center justify-center rounded-full bg-purple-200 dark:bg-purple-950">
+              <Icon as={User} size={22} className="text-brand-600 dark:text-purple-300" />
             </View>
           )}
         </TouchableOpacity>
@@ -54,19 +54,18 @@ export function FeedPostCard({
               <Text className="font-semibold">{post.author.name || post.author.username}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => onNavigateToProfile(post.author.username)}>
-              <Text className="text-sm text-muted-foreground">@{post.author.username}</Text>
+              <Text className="text-[13px] text-muted-foreground">@{post.author.username}</Text>
             </TouchableOpacity>
-            <Text className="text-sm text-muted-foreground">· {formatTime(post.createdAt)}</Text>
+            <Text className="text-[13px] text-muted-foreground">· {formatTime(post.createdAt)}</Text>
           </View>
 
-          <Text className="mt-2">{post.content}</Text>
-
+          <Text className="mt-2 text-[15px] leading-relaxed">{post.content}</Text>
 
           {/* Token Badge */}
           {post.isTokenized && (
-            <View className="mt-2 flex-row items-center gap-2 self-start rounded-full bg-purple-100 dark:bg-purple-950 px-3 py-1">
-              <Icon as={Coins} size={14} className="text-purple-600 dark:text-purple-400" />
-              <Text className="text-xs font-medium text-purple-600 dark:text-purple-400">
+            <View className="mt-2.5 flex-row items-center gap-2 self-start rounded-full bg-brand-50 px-3 py-1 dark:bg-purple-950">
+              <Icon as={Coins} size={14} className="text-brand-600 dark:text-purple-300" />
+              <Text className="text-xs font-medium text-brand-600 dark:text-purple-300">
                 {post.tokenSupply} tokens @ {post.tokenPrice} XLM
               </Text>
             </View>
@@ -79,7 +78,7 @@ export function FeedPostCard({
                 <Image
                   key={idx}
                   source={{ uri: img }}
-                  className={`rounded-xl ${
+                  className={`rounded-2xl ${
                     post.images.length === 1 ? 'h-64 w-full' : 'h-32 w-[48%]'
                   }`}
                   resizeMode="cover"
@@ -89,54 +88,58 @@ export function FeedPostCard({
           )}
 
           {/* Action Buttons */}
-          <View className="mt-3 flex-row flex-wrap gap-4">
-            <TouchableOpacity
-              onPress={() => onLike(post.id, post.isLiked)}
-              className={`flex-row items-center gap-1 rounded-full px-3 py-1.5 ${
-                post.isLiked ? 'bg-purple-50 dark:bg-purple-950' : ''
-              }`}
-            >
-              <Icon
-                as={Heart}
-                size={18}
-                className={post.isLiked ? "text-purple-600" : "text-muted-foreground"}
-                fill={post.isLiked ? "#002E5F" : "none"}
-              />
-              <Text className={`text-sm ${post.isLiked ? 'text-purple-600 font-semibold' : 'text-muted-foreground'}`}>
-                {post.likesCount}
-              </Text>
-            </TouchableOpacity>
+          <View className="mt-3.5 flex-row items-center justify-between">
+            <View className="flex-row items-center gap-5">
+              <TouchableOpacity
+                onPress={() => onLike(post.id, post.isLiked)}
+                className={`flex-row items-center gap-1.5 rounded-full px-2.5 py-1.5 ${
+                  post.isLiked ? 'bg-red-50 dark:bg-red-950/60' : ''
+                }`}
+              >
+                <Icon
+                  as={Heart}
+                  size={19}
+                  className={post.isLiked ? 'text-red-500' : 'text-muted-foreground'}
+                  fill={post.isLiked ? '#E5484D' : 'none'}
+                />
+                <Text className={`text-sm ${post.isLiked ? 'font-semibold text-red-500' : 'text-muted-foreground'}`}>
+                  {post.likesCount}
+                </Text>
+              </TouchableOpacity>
 
-            <View className="flex-row items-center gap-1">
-              <Icon as={MessageCircle} size={18} className="text-muted-foreground" />
-              <Text className="text-sm text-muted-foreground">{post.commentsCount}</Text>
+              <View className="flex-row items-center gap-1.5">
+                <Icon as={MessageCircle} size={19} className="text-muted-foreground" />
+                <Text className="text-sm text-muted-foreground">{post.commentsCount}</Text>
+              </View>
             </View>
 
-            <TouchableOpacity
-              onPress={() => onTip(post)}
-              className="flex-row items-center gap-1"
-            >
-              <Icon as={DollarSign} size={18} className="text-green-600" />
-              <Text className="text-sm text-green-600">
-                {t('common.tip')} ({post.tipsCount || 0})
-              </Text>
-            </TouchableOpacity>
-
-            {post.isTokenized && (
+            <View className="flex-row items-center gap-4">
               <TouchableOpacity
-                onPress={() => onBuyToken(post)}
-                className="flex-row items-center gap-1 rounded-full bg-purple-100 dark:bg-purple-950 px-3 py-1"
+                onPress={() => onTip(post)}
+                className="flex-row items-center gap-1"
               >
-                <Icon as={Coins} size={16} className="text-purple-600 dark:text-purple-400" />
-                <Text className="text-xs font-medium text-purple-600 dark:text-purple-400">{t('feed.buy')}</Text>
+                <Icon as={DollarSign} size={19} className="text-success" />
+                <Text className="text-sm font-medium text-success">
+                  {post.tipsCount || 0}
+                </Text>
               </TouchableOpacity>
-            )}
+
+              {post.isTokenized && (
+                <TouchableOpacity
+                  onPress={() => onBuyToken(post)}
+                  className="flex-row items-center gap-1 rounded-full bg-purple-100 px-3 py-1.5 dark:bg-purple-950"
+                >
+                  <Icon as={Coins} size={15} className="text-brand-600 dark:text-purple-300" />
+                  <Text className="text-xs font-medium text-brand-600 dark:text-purple-300">{t('feed.buy')}</Text>
+                </TouchableOpacity>
+              )}
+            </View>
           </View>
 
           {/* Tips Display */}
           {post.totalTipsAmount > 0 && (
-            <View className="mt-2 rounded-lg bg-green-50 dark:bg-green-950 p-2">
-              <Text className="text-xs text-green-700 dark:text-green-300">
+            <View className="mt-2.5 rounded-xl bg-success/10 p-2.5 bg-success/15">
+              <Text className="text-xs text-success dark:text-success">
                 💰 {t('feed.receivedTips', { amount: post.totalTipsAmount.toFixed(4) })}
               </Text>
             </View>

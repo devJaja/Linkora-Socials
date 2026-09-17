@@ -50,7 +50,7 @@ export function CommentInput({
         value={content}
         onChangeText={setContent}
         placeholder={replyingTo ? `Reply to @${replyingTo}...` : placeholder}
-        placeholderTextColor="#969696"
+        placeholderTextColor="#8C8C98"
         multiline
         maxLength={500}
         className="mb-3 min-h-[80px] rounded-lg border border-border bg-card px-4 py-3 text-foreground"
@@ -64,7 +64,7 @@ export function CommentInput({
           content.trim() && !isSubmitting ? 'bg-primary' : 'bg-gray-300'
         }`}
       >
-        <Text className="text-center font-semibold text-[#002E5F]">
+        <Text className="text-center font-semibold text-white">
           {isSubmitting ? 'Posting...' : replyingTo ? 'Post Reply' : 'Post Comment'}
         </Text>
       </TouchableOpacity>

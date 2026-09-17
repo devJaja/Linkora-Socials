@@ -16,7 +16,7 @@ export function PusherStatus({ showDetails = false, compact = false }: PusherSta
   const getStatusColor = () => {
     switch (status.state) {
       case 'connected':
-        return 'text-green-600';
+        return 'text-success';
       case 'connecting':
       case 'initialized':
         return 'text-yellow-600';
@@ -73,7 +73,7 @@ export function PusherStatus({ showDetails = false, compact = false }: PusherSta
         {/* Circle indicator */}
         <View className="relative">
           <View className={`h-3 w-3 rounded-full ${
-            status.state === 'connected' ? 'bg-green-500' :
+            status.state === 'connected' ? 'bg-success/100' :
             status.state === 'connecting' || status.state === 'initialized' ? 'bg-yellow-500' :
             'bg-red-500'
           }`} />

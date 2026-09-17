@@ -46,8 +46,8 @@ export function ApiStatus() {
   }
 
   return (
-    <View className="bg-green-100 p-2 border-b border-green-300">
-      <Text className="text-green-800 text-xs text-center">
+    <View className="bg-success/10 p-2 border-b border-green-300">
+      <Text className="text-success text-xs text-center">
         ✅ Connected to API: {apiUrl}
       </Text>
     </View>

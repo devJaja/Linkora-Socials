@@ -69,9 +69,9 @@ export default function ForgotPasswordScreen() {
                 className="h-14 rounded-2xl bg-primary active:bg-primary/90"
               >
                 {isSending ? (
-                  <ActivityIndicator color="#002E5F" />
+                  <ActivityIndicator color="#3E1BDB" />
                 ) : (
-                  <Text className="text-base font-medium text-[#002E5F]">{t('auth.sendResetLink')}</Text>
+                  <Text className="text-base font-medium text-white">{t('auth.sendResetLink')}</Text>
                 )}
               </Button>
             </View>
@@ -79,8 +79,8 @@ export default function ForgotPasswordScreen() {
         ) : (
           <>
             <View className="items-center mb-8">
-              <View className="h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900 mb-4">
-                <Icon as={Mail} size={40} className="text-green-600 dark:text-green-300" />
+              <View className="h-20 w-20 items-center justify-center rounded-full bg-success/10 mb-4">
+                <Icon as={Mail} size={40} className="text-success dark:text-success" />
               </View>
               <Text className="text-2xl font-bold text-center mb-2">{t('auth.checkYourEmail')}</Text>
               <Text className="text-center text-muted-foreground">
@@ -99,7 +99,7 @@ export default function ForgotPasswordScreen() {
                 onPress={() => router.push({ pathname: '/auth/reset-password', params: { email } })}
                 className="h-14 rounded-2xl bg-primary active:bg-primary/90"
               >
-                <Text className="text-base font-medium text-[#002E5F]">Enter Reset Code</Text>
+                <Text className="text-base font-medium text-white">Enter Reset Code</Text>
               </Button>
 
               <TouchableOpacity

@@ -50,7 +50,7 @@ export default function ContactsScreen() {
             <Icon as={Search} size={20} className="text-muted-foreground" />
             <TextInput
               placeholder="Search contacts"
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
               className="flex-1 text-base text-foreground"
             />
           </View>
@@ -77,8 +77,8 @@ export default function ContactsScreen() {
                       <Text className="text-sm text-muted-foreground">{contact.handle}</Text>
                     </View>
                   </View>
-                  <View className="rounded-full bg-green-100 px-3 py-1">
-                    <Text className="text-xs font-semibold text-green-600">Active</Text>
+                  <View className="rounded-full bg-success/10 px-3 py-1">
+                    <Text className="text-xs font-semibold text-success">Active</Text>
                   </View>
                 </TouchableOpacity>
               ))}

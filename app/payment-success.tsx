@@ -21,14 +21,14 @@ export default function PaymentSuccessScreen() {
           {/* Confetti pieces */}
           <View className="absolute left-8 top-4 h-3 w-6 rotate-12 rounded-full bg-red-500" />
           <View className="absolute right-12 top-8 h-4 w-4 -rotate-45 bg-blue-500" />
-          <View className="absolute left-16 top-12 h-3 w-3 rotate-45 rounded-full bg-green-500" />
+          <View className="absolute left-16 top-12 h-3 w-3 rotate-45 rounded-full bg-success/100" />
           <View className="absolute right-8 top-16 h-4 w-6 -rotate-12 rounded-full bg-yellow-500" />
           <View className="absolute left-12 top-20 h-3 w-4 rotate-45 bg-orange-500" />
           <View className="absolute right-16 top-6 h-3 w-3 -rotate-12 rounded-full bg-pink-500" />
           
           {/* Success Circle */}
-          <View className="h-40 w-40 items-center justify-center rounded-full bg-green-100">
-            <Icon as={CheckCircle} size={80} className="text-green-600" />
+          <View className="h-40 w-40 items-center justify-center rounded-full bg-success/10">
+            <Icon as={CheckCircle} size={80} className="text-success" />
           </View>
         </View>
 
@@ -65,7 +65,7 @@ export default function PaymentSuccessScreen() {
           }}
           className="flex-1 items-center rounded-2xl bg-primary py-4"
         >
-          <Text className="text-lg font-semibold text-[#002E5F]">Send Again</Text>
+          <Text className="text-lg font-semibold text-white">Send Again</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -9,14 +9,14 @@ import { toast } from 'sonner-native';
 import { api } from '@/lib/api';
 
 const multipliers = [
-  { value: 0, color: '#FF3F00', label: '0x' },
-  { value: 1.5, color: '#FDDB24', label: '1.5x' },
-  { value: 2, color: '#00A8B5', label: '2x' },
-  { value: 0.5, color: '#7A7A7A', label: '0.5x' },
-  { value: 3, color: '#002E5F', label: '3x' },
-  { value: 1, color: '#B7ACE8', label: '1x' },
-  { value: 5, color: '#7F6FC9', label: '5x' },
-  { value: 0, color: '#FF3F00', label: '0x' },
+  { value: 0, color: '#E5484D', label: '0x' },
+  { value: 1.5, color: '#FDDA24', label: '1.5x' },
+  { value: 2, color: '#05A2C2', label: '2x' },
+  { value: 0.5, color: '#6F6F7A', label: '0.5x' },
+  { value: 3, color: '#3E1BDB', label: '3x' },
+  { value: 1, color: '#B0A2F0', label: '1x' },
+  { value: 5, color: '#8F7CE7', label: '5x' },
+  { value: 0, color: '#E5484D', label: '0x' },
 ];
 
 export default function SpinScreen() {
@@ -157,14 +157,14 @@ export default function SpinScreen() {
 
         {/* Last Result */}
         {lastMultiplier !== null && (
-          <View className={`mx-4 mt-4 rounded-xl p-6 ${lastMultiplier > 0 ? 'bg-green-50 dark:bg-green-950' : 'bg-red-50 dark:bg-red-950'}`}>
-            <Text className={`text-center text-sm ${lastMultiplier > 0 ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
+          <View className={`mx-4 mt-4 rounded-xl p-6 ${lastMultiplier > 0 ? 'bg-success/10' : 'bg-red-50 dark:bg-red-950'}`}>
+            <Text className={`text-center text-sm ${lastMultiplier > 0 ? 'text-success dark:text-success' : 'text-red-700 dark:text-red-300'}`}>
               Last Spin
             </Text>
-            <Text className={`text-center text-6xl font-bold ${lastMultiplier > 0 ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
+            <Text className={`text-center text-6xl font-bold ${lastMultiplier > 0 ? 'text-success dark:text-success' : 'text-red-700 dark:text-red-300'}`}>
               {lastMultiplier}x
             </Text>
-            <Text className={`text-center text-sm ${lastMultiplier > 0 ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
+            <Text className={`text-center text-sm ${lastMultiplier > 0 ? 'text-success dark:text-success' : 'text-red-700 dark:text-red-300'}`}>
               {lastMultiplier > 0 ? '🎉 Winner!' : '😢 Try Again'}
             </Text>
           </View>
@@ -181,7 +181,7 @@ export default function SpinScreen() {
               placeholder="0.1"
               keyboardType="decimal-pad"
               className="mt-2 text-2xl font-bold text-foreground"
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
             />
             <Text className="mt-2 text-sm text-muted-foreground">
               Balance: {balance.toFixed(4)} XLM
@@ -198,7 +198,7 @@ export default function SpinScreen() {
                   className={`rounded-full px-3 py-1 ${
                     mult === 5 ? 'bg-pink-100 dark:bg-pink-900' :
                     mult === 3 ? 'bg-purple-100 dark:bg-purple-900' :
-                    mult === 2 ? 'bg-green-100 dark:bg-green-900' :
+                    mult === 2 ? 'bg-success/10' :
                     mult === 1.5 ? 'bg-orange-100 dark:bg-orange-900' :
                     mult === 1 ? 'bg-blue-100 dark:bg-blue-900' :
                     mult === 0.5 ? 'bg-gray-100 dark:bg-gray-900' :
@@ -208,7 +208,7 @@ export default function SpinScreen() {
                   <Text className={`text-sm font-semibold ${
                     mult === 5 ? 'text-pink-700 dark:text-pink-300' :
                     mult === 3 ? 'text-purple-700 dark:text-purple-300' :
-                    mult === 2 ? 'text-green-700 dark:text-green-300' :
+                    mult === 2 ? 'text-success dark:text-success' :
                     mult === 1.5 ? 'text-orange-700 dark:text-orange-300' :
                     mult === 1 ? 'text-blue-700 dark:text-blue-300' :
                     mult === 0.5 ? 'text-gray-700 dark:text-gray-300' :

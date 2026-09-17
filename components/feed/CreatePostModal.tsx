@@ -84,7 +84,7 @@ export function CreatePostModal({
               disabled={!content.trim() || isSubmitting || isUploadingImages}
               className={`rounded-full px-4 py-2 ${content.trim() && !isUploadingImages ? 'bg-primary' : 'bg-gray-300'}`}
             >
-              <Text className={`font-semibold ${content.trim() && !isUploadingImages ? 'text-[#002E5F]' : 'text-gray-500'}`}>
+              <Text className={`font-semibold ${content.trim() && !isUploadingImages ? 'text-white' : 'text-gray-500'}`}>
                 {isUploadingImages ? t('feed.uploading') : isSubmitting ? t('feed.posting') : t('common.post')}
               </Text>
             </TouchableOpacity>
@@ -96,7 +96,7 @@ export function CreatePostModal({
               value={content}
               onChangeText={setContent}
               placeholder={t('feed.whatsHappening')}
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
               multiline
               autoFocus
               className="min-h-[100px] text-base text-foreground"
@@ -130,7 +130,7 @@ export function CreatePostModal({
                 <Switch
                   value={isTokenized}
                   onValueChange={setIsTokenized}
-                  trackColor={{ false: '#D6D3C4', true: '#002E5F' }}
+                  trackColor={{ false: '#D1C9F7', true: '#3E1BDB' }}
                   thumbColor="#ffffff"
                 />
               </View>

@@ -22,14 +22,14 @@ export function CreatePostButton({ onPress }: CreatePostButtonProps) {
       onPress={handlePress}
       className="absolute bottom-6 right-6 h-14 w-14 items-center justify-center rounded-full bg-primary shadow-lg"
       style={{
-        shadowColor: '#002E5F',
+        shadowColor: '#3E1BDB',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
         elevation: 8,
       }}
     >
-      <Icon as={Plus} size={28} className="text-[#002E5F]" />
+      <Icon as={Plus} size={28} className="text-white" />
     </TouchableOpacity>
   );
 }

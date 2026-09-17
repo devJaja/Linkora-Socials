@@ -118,8 +118,8 @@ export default function RecoveryPhraseScreen() {
             </View>
 
             <View className="flex-row items-start gap-3">
-              <View className="h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-                <Icon as={Shield} size={20} className="text-green-600 dark:text-green-300" />
+              <View className="h-10 w-10 items-center justify-center rounded-full bg-success/10">
+                <Icon as={Shield} size={20} className="text-success dark:text-success" />
               </View>
               <View className="flex-1">
                 <Text className="font-semibold">Account Security</Text>

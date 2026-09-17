@@ -150,14 +150,22 @@ export default function FeedScreen() {
         <MiniAppsCard />
 
         {/* Feed Header */}
-        <View className="mt-6 flex-row items-center justify-between px-4">
-          <Text className="text-xl font-bold">{t('common.feed')}</Text>
-          <TouchableOpacity 
+        <View className="mt-7 flex-row items-center justify-between px-4">
+          <View>
+            <View className="flex-row items-center gap-2">
+              <View className="h-2 w-2 rounded-full bg-brand" />
+              <Text className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                {t('common.feed')}
+              </Text>
+            </View>
+            <Text className="mt-0.5 text-[26px] font-bold leading-8">Home</Text>
+          </View>
+          <TouchableOpacity
             onPress={() => router.push('/explore')}
-            className="flex-row items-center gap-1"
+            className="flex-row items-center gap-1.5 rounded-full bg-secondary px-3.5 py-2"
           >
-            <Icon as={Search} size={20} className="text-purple-600" />
-            <Text className="font-semibold text-purple-600">{t('feed.explore')}</Text>
+            <Icon as={Search} size={17} className="text-brand-600 dark:text-purple-300" />
+            <Text className="font-semibold text-brand-600 dark:text-purple-300">{t('feed.explore')}</Text>
           </TouchableOpacity>
         </View>
 

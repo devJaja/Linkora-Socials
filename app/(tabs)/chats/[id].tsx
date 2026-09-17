@@ -100,7 +100,7 @@ export default function ChatScreen() {
       >
         {isLoading && messages.length === 0 ? (
           <View className="items-center py-20">
-            <ActivityIndicator size="large" color="#002E5F" />
+            <ActivityIndicator size="large" color="#3E1BDB" />
           </View>
         ) : messages.length === 0 ? (
           <View className="items-center py-20">
@@ -142,10 +142,10 @@ export default function ChatScreen() {
                       </Text>
                     </View>
                   ) : (
-                    <View className="rounded-2xl bg-green-100 p-4">
+                    <View className="rounded-2xl bg-success/10 p-4">
                       <View className="flex-row items-center gap-2">
-                        <Icon as={DollarSign} size={16} className="text-green-600" />
-                        <Text className="font-semibold text-green-600">
+                        <Icon as={DollarSign} size={16} className="text-success" />
+                        <Text className="font-semibold text-success">
                           {msg.isMine ? 'Sent' : 'Received'} {msg.paymentAmount} XLM
                         </Text>
                       </View>
@@ -171,7 +171,7 @@ export default function ChatScreen() {
                   )}
                   <View
                     className={`max-w-[75%] rounded-2xl px-4 py-3 ${
-                      msg.isMine ? 'bg-[#002E5F]' : 'bg-card'
+                      msg.isMine ? 'bg-[#3E1BDB]' : 'bg-card'
                     }`}
                   >
                     <Text className={msg.isMine ? 'text-white' : 'text-foreground'}>
@@ -199,7 +199,7 @@ export default function ChatScreen() {
             value={message}
             onChangeText={setMessage}
             placeholder="Type a message..."
-            placeholderTextColor="#969696"
+            placeholderTextColor="#8C8C98"
             className="flex-1 text-base text-foreground"
             onSubmitEditing={handleSendMessage}
           />
@@ -213,9 +213,9 @@ export default function ChatScreen() {
           className="h-14 w-14 items-center justify-center rounded-2xl bg-primary"
         >
           {isSendingMessage ? (
-            <ActivityIndicator size="small" color="#002E5F" />
+            <ActivityIndicator size="small" color="#3E1BDB" />
           ) : (
-            <Icon as={Send} size={20} className="text-[#002E5F]" />
+            <Icon as={Send} size={20} className="text-white" />
           )}
         </TouchableOpacity>
       </View>
@@ -264,7 +264,7 @@ export default function ChatScreen() {
               <Switch
                 value={isPrivateTip}
                 onValueChange={setIsPrivateTip}
-                trackColor={{ true: '#002E5F' }}
+                trackColor={{ true: '#3E1BDB' }}
               />
             </View>
 
@@ -295,9 +295,9 @@ export default function ChatScreen() {
                 }`}
               >
                 {(isSendingTip || isSendingPrivateTip) ? (
-                  <ActivityIndicator size="small" color="#002E5F" />
+                  <ActivityIndicator size="small" color="#3E1BDB" />
                 ) : (
-                  <Text className={`text-lg font-semibold ${tipAmount && parseFloat(tipAmount) > 0 ? 'text-[#002E5F]' : 'text-gray-500'}`}>
+                  <Text className={`text-lg font-semibold ${tipAmount && parseFloat(tipAmount) > 0 ? 'text-white' : 'text-gray-500'}`}>
                     {isPrivateTip ? 'Send Privately' : 'Send'}
                   </Text>
                 )}

@@ -91,7 +91,7 @@ export default function HelpSupportScreen() {
               value={searchQuery}
               onChangeText={setSearchQuery}
               placeholder="Search for help..."
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
               className="flex-1 text-base text-foreground"
             />
           </View>

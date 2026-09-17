@@ -24,19 +24,38 @@ export default function TabsLayout() {
   const effectiveTheme = theme === 'system' ? systemTheme : theme;
   const isDark = effectiveTheme === 'dark';
   
-  const tabBarBg = isDark ? '#1C1C1C' : '#ffffff';
-  const tabBarBorderColor = isDark ? '#5E5E5E' : '#E4E2D8';
+const tabBarBg = isDark ? '#151518' : '#FFFFFF';
+  const tabBarBorderColor = isDark ? '#26262B' : '#EFEFF1';
 
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#002E5F',
-        tabBarInactiveTintColor: isDark ? '#969696' : '#7A7A7A',
+        tabBarActiveTintColor: '#3E1BDB',
+        tabBarInactiveTintColor: isDark ? '#8C8C98' : '#AEAEB8',
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '600',
+          marginBottom: 2,
+        },
+        tabBarIconStyle: {
+          marginTop: 2,
+        },
         tabBarStyle: {
           backgroundColor: tabBarBg,
           borderTopColor: tabBarBorderColor,
           borderTopWidth: 1,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          overflow: 'hidden',
+          height: 62,
+          paddingTop: 6,
+          paddingBottom: 6,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: isDark ? 0.2 : 0.06,
+          shadowRadius: 12,
+          elevation: 10,
         },
       }}
     >

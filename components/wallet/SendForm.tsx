@@ -55,7 +55,7 @@ export function SendForm({ balance, onSubmit, isSubmitting, onScanQR }: SendForm
             value={toAddress}
             onChangeText={setToAddress}
             placeholder="Enter Stellar address"
-            placeholderTextColor="#969696"
+            placeholderTextColor="#8C8C98"
             className="flex-1 rounded-lg border border-border bg-background px-4 py-3 text-foreground"
           />
           {onScanQR && (
@@ -82,7 +82,7 @@ export function SendForm({ balance, onSubmit, isSubmitting, onScanQR }: SendForm
           onChangeText={setAmount}
           placeholder="0.00"
           keyboardType="decimal-pad"
-          placeholderTextColor="#969696"
+          placeholderTextColor="#8C8C98"
           className="rounded-lg border border-border bg-background px-4 py-3 text-foreground"
         />
       </View>
@@ -94,7 +94,7 @@ export function SendForm({ balance, onSubmit, isSubmitting, onScanQR }: SendForm
           value={memo}
           onChangeText={setMemo}
           placeholder="Add a note"
-          placeholderTextColor="#969696"
+          placeholderTextColor="#8C8C98"
           className="rounded-lg border border-border bg-background px-4 py-3 text-foreground"
         />
       </View>
@@ -105,7 +105,7 @@ export function SendForm({ balance, onSubmit, isSubmitting, onScanQR }: SendForm
         disabled={isSubmitting}
         className={`rounded-xl py-4 ${isSubmitting ? 'bg-gray-400' : 'bg-primary'}`}
       >
-        <Text className="text-center font-semibold text-[#002E5F]">
+        <Text className="text-center font-semibold text-white">
           {isSubmitting ? 'Sending...' : 'Send XLM'}
         </Text>
       </TouchableOpacity>

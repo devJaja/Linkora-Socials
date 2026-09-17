@@ -152,8 +152,8 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
       <View className="rounded-2xl bg-card p-4">
         <View className="flex-row items-center justify-between">
           <View className="flex-row items-center gap-3 flex-1">
-            <View className="h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-              <Icon as={Shield} size={20} className="text-green-600 dark:text-green-300" />
+            <View className="h-10 w-10 items-center justify-center rounded-full bg-success/10">
+              <Icon as={Shield} size={20} className="text-success dark:text-success" />
             </View>
             <View className="flex-1">
               <Text className="font-semibold">Two-Factor Authentication</Text>
@@ -165,7 +165,7 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
           <Switch
             value={isEnabled}
             onValueChange={(value) => value ? handleEnable() : handleDisable()}
-            trackColor={{ false: '#D6D3C4', true: '#002E5F' }}
+            trackColor={{ false: '#D1C9F7', true: '#3E1BDB' }}
             thumbColor="#ffffff"
           />
         </View>
@@ -228,7 +228,7 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
                   value={verificationCode}
                   onChangeText={setVerificationCode}
                   placeholder="000000"
-                  placeholderTextColor="#969696"
+                  placeholderTextColor="#8C8C98"
                   maxLength={6}
                   keyboardType="number-pad"
                   className="text-center text-2xl font-mono text-foreground py-3"
@@ -243,9 +243,9 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
                 }`}
               >
                 {isVerifying ? (
-                  <ActivityIndicator color="#002E5F" />
+                  <ActivityIndicator color="#3E1BDB" />
                 ) : (
-                  <Text className="text-center font-semibold text-[#002E5F]">
+                  <Text className="text-center font-semibold text-white">
                     Verify and Enable
                   </Text>
                 )}
@@ -295,7 +295,7 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
               onPress={() => setShowRecoveryModal(false)}
               className="mt-4 rounded-2xl bg-primary py-4"
             >
-              <Text className="text-center font-semibold text-[#002E5F]">Done</Text>
+              <Text className="text-center font-semibold text-white">Done</Text>
             </TouchableOpacity>
           </View>
         </View>

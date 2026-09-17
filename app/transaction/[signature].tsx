@@ -57,7 +57,7 @@ export default function TransactionDetailsScreen() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'confirmed':
-        return <Icon as={CheckCircle} size={24} className="text-green-600" />;
+        return <Icon as={CheckCircle} size={24} className="text-success" />;
       case 'failed':
         return <Icon as={XCircle} size={24} className="text-red-600" />;
       default:
@@ -68,7 +68,7 @@ export default function TransactionDetailsScreen() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'confirmed':
-        return 'bg-green-100 text-green-700';
+        return 'bg-success/10 text-success';
       case 'failed':
         return 'bg-red-100 text-red-700';
       default:
@@ -81,7 +81,7 @@ export default function TransactionDetailsScreen() {
       case 'send':
         return <Icon as={ArrowUpRight} size={20} className="text-red-600" />;
       case 'receive':
-        return <Icon as={ArrowDownLeft} size={20} className="text-green-600" />;
+        return <Icon as={ArrowDownLeft} size={20} className="text-success" />;
       default:
         return <Icon as={ArrowDownLeft} size={20} className="text-blue-600" />;
     }
@@ -99,7 +99,7 @@ export default function TransactionDetailsScreen() {
   if (isLoading) {
     return (
       <View className="flex-1 items-center justify-center bg-background">
-        <ActivityIndicator size="large" color="#002E5F" />
+        <ActivityIndicator size="large" color="#3E1BDB" />
       </View>
     );
   }
@@ -109,7 +109,7 @@ export default function TransactionDetailsScreen() {
       <View className="flex-1 items-center justify-center bg-background">
         <Text className="text-muted-foreground">Transaction not found</Text>
         <TouchableOpacity onPress={() => router.back()} className="mt-4 rounded-xl bg-primary px-6 py-3">
-          <Text className="font-semibold text-[#002E5F]">Go Back</Text>
+          <Text className="font-semibold text-white">Go Back</Text>
         </TouchableOpacity>
       </View>
     );
@@ -139,7 +139,7 @@ export default function TransactionDetailsScreen() {
         </View>
 
         {/* Amount Card */}
-        <View className="mx-4 mb-4 rounded-2xl bg-gradient-to-r from-[#002E5F] to-[#00A8B5] p-6">
+        <View className="mx-4 mb-4 rounded-2xl bg-gradient-to-r from-[#3E1BDB] to-[#05A2C2] p-6">
           <View className="flex-row items-center justify-center gap-2">
             {getTypeIcon(transaction.type)}
             <Text className="text-sm text-white/80 capitalize">{transaction.type}</Text>
@@ -234,8 +234,8 @@ export default function TransactionDetailsScreen() {
             onPress={openInExplorer}
             className="flex-row items-center justify-center gap-2 rounded-xl bg-primary py-4"
           >
-            <Icon as={ExternalLink} size={20} className="text-[#002E5F]" />
-            <Text className="font-semibold text-[#002E5F]">View on StellarExpert</Text>
+            <Icon as={ExternalLink} size={20} className="text-white" />
+            <Text className="font-semibold text-white">View on StellarExpert</Text>
           </TouchableOpacity>
 
           <TouchableOpacity

@@ -51,8 +51,8 @@ export default function ResetPasswordScreen() {
     return (
       <AuthLayout>
         <View className="flex-1 items-center justify-center px-5">
-          <View className="h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900 mb-4">
-            <Icon as={CheckCircle} size={40} className="text-green-600 dark:text-green-300" />
+          <View className="h-20 w-20 items-center justify-center rounded-full bg-success/10 mb-4">
+            <Icon as={CheckCircle} size={40} className="text-success dark:text-success" />
           </View>
           <Text className="text-2xl font-bold text-center mb-2">{t('auth.passwordResetSuccess')}</Text>
           <Text className="text-center text-muted-foreground mb-8">
@@ -62,7 +62,7 @@ export default function ResetPasswordScreen() {
             onPress={() => router.replace('/auth/signin')}
             className="w-full h-14 rounded-2xl bg-primary"
           >
-            <Text className="text-base font-medium text-[#002E5F]">{t('auth.signIn')}</Text>
+            <Text className="text-base font-medium text-white">{t('auth.signIn')}</Text>
           </Button>
         </View>
       </AuthLayout>
@@ -113,9 +113,9 @@ export default function ResetPasswordScreen() {
             className="h-14 rounded-2xl bg-primary active:bg-primary/90"
           >
             {isResetting ? (
-              <ActivityIndicator color="#002E5F" />
+              <ActivityIndicator color="#3E1BDB" />
             ) : (
-              <Text className="text-base font-medium text-[#002E5F]">{t('auth.resetPassword')}</Text>
+              <Text className="text-base font-medium text-white">{t('auth.resetPassword')}</Text>
             )}
           </Button>
         </View>

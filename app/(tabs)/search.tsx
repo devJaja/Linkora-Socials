@@ -119,7 +119,7 @@ export default function SearchScreen() {
     if (isSearching) {
       return (
         <View className="items-center py-20">
-          <ActivityIndicator size="large" color="#002E5F" />
+          <ActivityIndicator size="large" color="#3E1BDB" />
         </View>
       );
     }
@@ -147,7 +147,7 @@ export default function SearchScreen() {
     if (isSearching) {
       return (
         <View className="items-center py-20">
-          <ActivityIndicator size="large" color="#002E5F" />
+          <ActivityIndicator size="large" color="#3E1BDB" />
         </View>
       );
     }
@@ -175,7 +175,7 @@ export default function SearchScreen() {
     if (isSearching) {
       return (
         <View className="items-center py-20">
-          <ActivityIndicator size="large" color="#002E5F" />
+          <ActivityIndicator size="large" color="#3E1BDB" />
         </View>
       );
     }
@@ -212,7 +212,7 @@ export default function SearchScreen() {
             placeholder="Search users, posts, or tokens..."
             value={searchQuery}
             onChangeText={handleSearch}
-            placeholderTextColor="#969696"
+            placeholderTextColor="#8C8C98"
             className="flex-1 text-base text-foreground"
             autoCapitalize="none"
           />

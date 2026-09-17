@@ -37,7 +37,7 @@ export function PostActions({
             as={Heart}
             size={24}
             className={isLiked ? 'text-red-500' : 'text-muted-foreground'}
-            fill={isLiked ? '#FF3F00' : 'none'}
+            fill={isLiked ? '#E5484D' : 'none'}
           />
           <Text className={isLiked ? 'text-red-500 font-semibold' : 'text-muted-foreground'}>
             {likesCount}
@@ -60,7 +60,7 @@ export function PostActions({
 
         {onTip && (
           <TouchableOpacity onPress={onTip}>
-            <Icon as={DollarSign} size={24} className="text-green-600" />
+            <Icon as={DollarSign} size={24} className="text-success" />
           </TouchableOpacity>
         )}
 

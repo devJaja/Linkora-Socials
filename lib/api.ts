@@ -1,4 +1,4 @@
-const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3000/api';
+const API_URL = process.env.EXPO_PUBLIC_API_URL || 'https://linkora-socials.onrender.com/api';
 
 interface ApiResponse<T = any> {
   data?: T;

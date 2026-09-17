@@ -125,12 +125,12 @@ export default function CoinFlipScreen() {
 
         {/* Stats */}
         <View className="mx-4 mt-6 flex-row gap-3">
-          <View className="flex-1 rounded-xl bg-green-50 dark:bg-green-950 p-4">
+          <View className="flex-1 rounded-xl bg-success/10 p-4">
             <View className="flex-row items-center gap-2">
-              <Icon as={TrendingUp} size={16} className="text-green-600" />
-              <Text className="text-sm text-green-700 dark:text-green-300">Wins</Text>
+              <Icon as={TrendingUp} size={16} className="text-success" />
+              <Text className="text-sm text-success dark:text-success">Wins</Text>
             </View>
-            <Text className="mt-1 text-2xl font-bold text-green-700 dark:text-green-300">{totalWins}</Text>
+            <Text className="mt-1 text-2xl font-bold text-success dark:text-success">{totalWins}</Text>
           </View>
           <View className="flex-1 rounded-xl bg-red-50 dark:bg-red-950 p-4">
             <View className="flex-row items-center gap-2">
@@ -143,17 +143,17 @@ export default function CoinFlipScreen() {
 
         {/* Last Result */}
         {lastResult && (
-          <View className={`mx-4 mt-4 rounded-xl p-6 ${lastOutcome === 'win' ? 'bg-green-50 dark:bg-green-950' : 'bg-red-50 dark:bg-red-950'}`}>
-            <Text className={`text-center text-sm ${lastOutcome === 'win' ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
+          <View className={`mx-4 mt-4 rounded-xl p-6 ${lastOutcome === 'win' ? 'bg-success/10' : 'bg-red-50 dark:bg-red-950'}`}>
+            <Text className={`text-center text-sm ${lastOutcome === 'win' ? 'text-success dark:text-success' : 'text-red-700 dark:text-red-300'}`}>
               Last Flip
             </Text>
-            <Text className={`text-center text-5xl font-bold ${lastOutcome === 'win' ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
+            <Text className={`text-center text-5xl font-bold ${lastOutcome === 'win' ? 'text-success dark:text-success' : 'text-red-700 dark:text-red-300'}`}>
               {lastResult === 'heads' ? '👑' : '🦅'}
             </Text>
-            <Text className={`text-center text-2xl font-bold ${lastOutcome === 'win' ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
+            <Text className={`text-center text-2xl font-bold ${lastOutcome === 'win' ? 'text-success dark:text-success' : 'text-red-700 dark:text-red-300'}`}>
               {lastResult.toUpperCase()}
             </Text>
-            <Text className={`text-center text-sm ${lastOutcome === 'win' ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
+            <Text className={`text-center text-sm ${lastOutcome === 'win' ? 'text-success dark:text-success' : 'text-red-700 dark:text-red-300'}`}>
               {lastOutcome === 'win' ? '🎉 You Won!' : '😢 You Lost'}
             </Text>
           </View>
@@ -170,7 +170,7 @@ export default function CoinFlipScreen() {
               placeholder="0.1"
               keyboardType="decimal-pad"
               className="mt-2 text-2xl font-bold text-foreground"
-              placeholderTextColor="#969696"
+              placeholderTextColor="#8C8C98"
             />
             <Text className="mt-2 text-sm text-muted-foreground">
               Balance: {balance.toFixed(4)} XLM

@@ -161,7 +161,7 @@ export default function EditProfileScreen() {
   if (isLoadingUser) {
     return (
       <View className="flex-1 items-center justify-center bg-background">
-        <ActivityIndicator size="large" color="#002E5F" />
+        <ActivityIndicator size="large" color="#3E1BDB" />
       </View>
     );
   }
@@ -178,7 +178,7 @@ export default function EditProfileScreen() {
             <Text className="text-2xl font-bold">Edit Profile</Text>
           </View>
           {hasChanges && (
-            <View className="h-2 w-2 rounded-full bg-[#002E5F]" />
+            <View className="h-2 w-2 rounded-full bg-[#3E1BDB]" />
           )}
         </View>
 
@@ -202,7 +202,7 @@ export default function EditProfileScreen() {
               className="absolute bottom-0 right-0 h-10 w-10 items-center justify-center rounded-full bg-primary shadow-lg"
               onPress={() => setShowImageOptions(true)}
             >
-              <Icon as={Camera} size={20} className="text-[#002E5F]" />
+              <Icon as={Camera} size={20} className="text-white" />
             </TouchableOpacity>
           </View>
           <TouchableOpacity onPress={() => setShowImageOptions(true)}>
@@ -242,7 +242,7 @@ export default function EditProfileScreen() {
                   setErrors({ ...errors, name: '' });
                 }}
                 placeholder="Enter your display name"
-                placeholderTextColor="#969696"
+                placeholderTextColor="#8C8C98"
                 className="text-base text-foreground"
                 maxLength={50}
               />
@@ -273,7 +273,7 @@ export default function EditProfileScreen() {
                   setErrors({ ...errors, bio: '' });
                 }}
                 placeholder="Tell us about yourself"
-                placeholderTextColor="#969696"
+                placeholderTextColor="#8C8C98"
                 multiline
                 numberOfLines={4}
                 textAlignVertical="top"
@@ -300,7 +300,7 @@ export default function EditProfileScreen() {
               <Text className="text-base text-muted-foreground">{typedUser?.email}</Text>
             </View>
             <View className="mt-2 flex-row items-center gap-1">
-              <View className="h-1.5 w-1.5 rounded-full bg-green-500" />
+              <View className="h-1.5 w-1.5 rounded-full bg-success/100" />
               <Text className="text-xs text-muted-foreground">
                 Verified • Email cannot be changed
               </Text>
@@ -364,7 +364,7 @@ export default function EditProfileScreen() {
               <ActivityIndicator size="small" color="#ffffff" />
             ) : (
               <Text className={`text-lg font-semibold ${
-                hasChanges ? 'text-[#002E5F]' : 'text-gray-500'
+                hasChanges ? 'text-white' : 'text-gray-500'
               }`}>
                 {isUploadingAvatar ? 'Uploading...' : 'Save Changes'}
               </Text>
