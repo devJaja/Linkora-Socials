@@ -100,7 +100,7 @@ export default function ChatScreen() {
       >
         {isLoading && messages.length === 0 ? (
           <View className="items-center py-20">
-            <ActivityIndicator size="large" color="#3E1BDB" />
+            <ActivityIndicator size="large" color="#002E5D" />
           </View>
         ) : messages.length === 0 ? (
           <View className="items-center py-20">
@@ -171,7 +171,7 @@ export default function ChatScreen() {
                   )}
                   <View
                     className={`max-w-[75%] rounded-2xl px-4 py-3 ${
-                      msg.isMine ? 'bg-[#3E1BDB]' : 'bg-card'
+                      msg.isMine ? 'bg-[#002E5D]' : 'bg-card'
                     }`}
                   >
                     <Text className={msg.isMine ? 'text-white' : 'text-foreground'}>
@@ -213,9 +213,9 @@ export default function ChatScreen() {
           className="h-14 w-14 items-center justify-center rounded-2xl bg-primary"
         >
           {isSendingMessage ? (
-            <ActivityIndicator size="small" color="#3E1BDB" />
+            <ActivityIndicator size="small" color="#002E5D" />
           ) : (
-            <Icon as={Send} size={20} className="text-white" />
+            <Icon as={Send} size={20} className="text-black" />
           )}
         </TouchableOpacity>
       </View>
@@ -264,7 +264,7 @@ export default function ChatScreen() {
               <Switch
                 value={isPrivateTip}
                 onValueChange={setIsPrivateTip}
-                trackColor={{ true: '#3E1BDB' }}
+                trackColor={{ true: '#002E5D' }}
               />
             </View>
 
@@ -295,9 +295,9 @@ export default function ChatScreen() {
                 }`}
               >
                 {(isSendingTip || isSendingPrivateTip) ? (
-                  <ActivityIndicator size="small" color="#3E1BDB" />
+                  <ActivityIndicator size="small" color="#002E5D" />
                 ) : (
-                  <Text className={`text-lg font-semibold ${tipAmount && parseFloat(tipAmount) > 0 ? 'text-white' : 'text-gray-500'}`}>
+                  <Text className={`text-lg font-semibold ${tipAmount && parseFloat(tipAmount) > 0 ? 'text-black' : 'text-gray-500'}`}>
                     {isPrivateTip ? 'Send Privately' : 'Send'}
                   </Text>
                 )}

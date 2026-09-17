@@ -37,7 +37,7 @@ export function PostActions({
             as={Heart}
             size={24}
             className={isLiked ? 'text-red-500' : 'text-muted-foreground'}
-            fill={isLiked ? '#E5484D' : 'none'}
+            fill={isLiked ? '#FF3F00' : 'none'}
           />
           <Text className={isLiked ? 'text-red-500 font-semibold' : 'text-muted-foreground'}>
             {likesCount}

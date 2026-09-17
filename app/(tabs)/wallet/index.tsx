@@ -49,7 +49,7 @@ export default function WalletScreen() {
         }
       >
         {/* Header */}
-        <View className="bg-[#3E1BDB] px-4 pb-8 pt-12">
+        <View className="bg-[#002E5D] px-4 pb-8 pt-12">
           <View className="flex-row items-center justify-between">
             <Text className="text-2xl font-bold text-white">{t('wallet.wallet')}</Text>
             <TouchableOpacity>
@@ -136,7 +136,7 @@ export default function WalletScreen() {
             {/* Token Holdings */}
             {isLoadingHoldings ? (
               <View className="items-center py-4">
-                <ActivityIndicator size="small" color="#3E1BDB" />
+                <ActivityIndicator size="small" color="#002E5D" />
               </View>
             ) : holdings.length > 0 ? (
               <>
@@ -203,7 +203,7 @@ export default function WalletScreen() {
           <View className="mt-4">
             {isLoadingTransactions && transactions.length === 0 ? (
               <View className="items-center py-10">
-                <ActivityIndicator size="large" color="#3E1BDB" />
+                <ActivityIndicator size="large" color="#002E5D" />
               </View>
             ) : transactions.length === 0 ? (
               <View className="items-center py-10">

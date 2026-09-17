@@ -31,7 +31,7 @@ const tabBarBg = isDark ? '#151518' : '#FFFFFF';
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#3E1BDB',
+        tabBarActiveTintColor: '#002E5D',
         tabBarInactiveTintColor: isDark ? '#8C8C98' : '#AEAEB8',
         tabBarLabelStyle: {
           fontSize: 11,

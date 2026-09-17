@@ -9,7 +9,7 @@ interface BadgeProps {
 }
 
 const variantStyles = {
-  primary: 'bg-[#3E1BDB]',
+  primary: 'bg-[#002E5D]',
   success: 'bg-success',
   danger: 'bg-red-600',
   warning: 'bg-yellow-600',

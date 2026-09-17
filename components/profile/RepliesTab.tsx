@@ -17,7 +17,7 @@ export function RepliesTab({ comments, isLoading }: RepliesTabProps) {
   if (isLoading) {
     return (
       <View className="items-center py-20">
-        <ActivityIndicator size="large" color="#3E1BDB" />
+        <ActivityIndicator size="large" color="#002E5D" />
       </View>
     );
   }

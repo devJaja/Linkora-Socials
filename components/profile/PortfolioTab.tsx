@@ -19,7 +19,7 @@ export function PortfolioTab({ portfolio, isLoading, isOwnProfile, onNavigateToP
   if (isLoading) {
     return (
       <View className="items-center py-20">
-        <ActivityIndicator size="large" color="#3E1BDB" />
+        <ActivityIndicator size="large" color="#002E5D" />
       </View>
     );
   }
@@ -37,7 +37,7 @@ export function PortfolioTab({ portfolio, isLoading, isOwnProfile, onNavigateToP
   return (
     <View className="px-4 py-4">
       {/* Portfolio Summary */}
-      <View className="mb-4 rounded-2xl bg-[#3E1BDB] p-6">
+      <View className="mb-4 rounded-2xl bg-[#002E5D] p-6">
         <Text className="text-sm text-white/80">{t('profile.totalPortfolioValue')}</Text>
         <Text className="mt-1 text-3xl font-bold text-white">
           {portfolio.totalValue.toFixed(4)} XLM

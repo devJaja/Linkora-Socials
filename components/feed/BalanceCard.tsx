@@ -32,11 +32,11 @@ export function BalanceCard({
   const isSmall = width < 375;
 
   return (
-    <View className="overflow-hidden rounded-b-[28px] bg-[#3E1BDB]">
+    <View className="overflow-hidden rounded-b-[28px] bg-[#002E5D]">
       {/* Decorative brand shapes */}
-      <View className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-[#2B1292]/40" />
+      <View className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-[#473793]/40" />
       <View className="absolute right-24 -top-6 h-24 w-24 rounded-full bg-purple-400/25" />
-      <View className="absolute -bottom-14 -left-12 h-40 w-40 rounded-full bg-[#160A46]/40" />
+      <View className="absolute -bottom-14 -left-12 h-40 w-40 rounded-full bg-[#1D1740]/40" />
       <View className="absolute bottom-8 right-8 h-3 w-3 rounded-full bg-gold" />
 
       <View className="px-5 pb-6 pt-5">
@@ -98,8 +98,8 @@ export function BalanceCard({
             onPress={() => router.push('/wallet/send')}
             className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl bg-white py-3.5 active:opacity-90"
           >
-            <Icon as={ArrowUpRight} size={18} className="text-[#3E1BDB]" />
-            <Text className="font-semibold text-[#3E1BDB]">{t('common.send')}</Text>
+            <Icon as={ArrowUpRight} size={18} className="text-[#002E5D]" />
+            <Text className="font-semibold text-[#002E5D]">{t('common.send')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity

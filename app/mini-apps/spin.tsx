@@ -9,14 +9,14 @@ import { toast } from 'sonner-native';
 import { api } from '@/lib/api';
 
 const multipliers = [
-  { value: 0, color: '#E5484D', label: '0x' },
+  { value: 0, color: '#FF3F00', label: '0x' },
   { value: 1.5, color: '#FDDA24', label: '1.5x' },
   { value: 2, color: '#05A2C2', label: '2x' },
   { value: 0.5, color: '#6F6F7A', label: '0.5x' },
-  { value: 3, color: '#3E1BDB', label: '3x' },
-  { value: 1, color: '#B0A2F0', label: '1x' },
-  { value: 5, color: '#8F7CE7', label: '5x' },
-  { value: 0, color: '#E5484D', label: '0x' },
+  { value: 3, color: '#002E5D', label: '3x' },
+  { value: 1, color: '#B7ACE8', label: '1x' },
+  { value: 5, color: '#9A8CE0', label: '5x' },
+  { value: 0, color: '#FF3F00', label: '0x' },
 ];
 
 export default function SpinScreen() {

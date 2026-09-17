@@ -161,7 +161,7 @@ export default function EditProfileScreen() {
   if (isLoadingUser) {
     return (
       <View className="flex-1 items-center justify-center bg-background">
-        <ActivityIndicator size="large" color="#3E1BDB" />
+        <ActivityIndicator size="large" color="#002E5D" />
       </View>
     );
   }
@@ -178,7 +178,7 @@ export default function EditProfileScreen() {
             <Text className="text-2xl font-bold">Edit Profile</Text>
           </View>
           {hasChanges && (
-            <View className="h-2 w-2 rounded-full bg-[#3E1BDB]" />
+            <View className="h-2 w-2 rounded-full bg-[#002E5D]" />
           )}
         </View>
 
@@ -202,7 +202,7 @@ export default function EditProfileScreen() {
               className="absolute bottom-0 right-0 h-10 w-10 items-center justify-center rounded-full bg-primary shadow-lg"
               onPress={() => setShowImageOptions(true)}
             >
-              <Icon as={Camera} size={20} className="text-white" />
+              <Icon as={Camera} size={20} className="text-black" />
             </TouchableOpacity>
           </View>
           <TouchableOpacity onPress={() => setShowImageOptions(true)}>
@@ -364,7 +364,7 @@ export default function EditProfileScreen() {
               <ActivityIndicator size="small" color="#ffffff" />
             ) : (
               <Text className={`text-lg font-semibold ${
-                hasChanges ? 'text-white' : 'text-gray-500'
+                hasChanges ? 'text-black' : 'text-gray-500'
               }`}>
                 {isUploadingAvatar ? 'Uploading...' : 'Save Changes'}
               </Text>

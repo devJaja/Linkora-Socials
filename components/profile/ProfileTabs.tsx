@@ -21,7 +21,7 @@ export function ProfileTabs({ tabs, activeTab, onTabChange }: ProfileTabsProps) 
           >
             <Text
               className={`font-semibold ${
-                activeTab === tab ? 'text-[#3E1BDB]' : 'text-foreground'
+                activeTab === tab ? 'text-[#002E5D]' : 'text-foreground'
               }`}
             >
               {tab}

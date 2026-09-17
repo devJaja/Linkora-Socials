@@ -119,7 +119,7 @@ export default function SearchScreen() {
     if (isSearching) {
       return (
         <View className="items-center py-20">
-          <ActivityIndicator size="large" color="#3E1BDB" />
+          <ActivityIndicator size="large" color="#002E5D" />
         </View>
       );
     }
@@ -147,7 +147,7 @@ export default function SearchScreen() {
     if (isSearching) {
       return (
         <View className="items-center py-20">
-          <ActivityIndicator size="large" color="#3E1BDB" />
+          <ActivityIndicator size="large" color="#002E5D" />
         </View>
       );
     }
@@ -175,7 +175,7 @@ export default function SearchScreen() {
     if (isSearching) {
       return (
         <View className="items-center py-20">
-          <ActivityIndicator size="large" color="#3E1BDB" />
+          <ActivityIndicator size="large" color="#002E5D" />
         </View>
       );
     }

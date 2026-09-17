@@ -203,7 +203,7 @@ export default function SwapScreen() {
     <View className="flex-1 bg-background">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View className="bg-[#3E1BDB] px-4 pb-8 pt-12">
+        <View className="bg-[#002E5D] px-4 pb-8 pt-12">
           <View className="flex-row items-center gap-3">
             <TouchableOpacity onPress={() => router.back()}>
               <Icon as={ArrowLeft} size={24} className="text-white" />
@@ -257,7 +257,7 @@ export default function SwapScreen() {
               onPress={switchTokens}
               className="h-12 w-12 items-center justify-center rounded-full bg-primary"
             >
-              <Icon as={ArrowDownUp} size={24} className="text-white" />
+              <Icon as={ArrowDownUp} size={24} className="text-black" />
             </TouchableOpacity>
           </View>
 
@@ -267,7 +267,7 @@ export default function SwapScreen() {
             <View className="mt-2 flex-row items-center justify-between">
               <View className="flex-1 flex-row items-center gap-2">
                 {isCalculating ? (
-                  <ActivityIndicator size="small" color="#3E1BDB" />
+                  <ActivityIndicator size="small" color="#002E5D" />
                 ) : (
                   <Text className="text-3xl font-bold">{toAmount}</Text>
                 )}
@@ -314,7 +314,7 @@ export default function SwapScreen() {
             {isSwapping ? (
               <ActivityIndicator color="#ffffff" />
             ) : (
-              <Text className="font-semibold text-white">
+              <Text className="font-semibold text-black">
                 {fromAmount ? 'Swap Tokens' : 'Enter Amount'}
               </Text>
             )}
@@ -325,7 +325,7 @@ export default function SwapScreen() {
         <View className="mx-4 mt-6">
           <View className="flex-row items-center justify-between">
             <Text className="text-lg font-bold">Available Tokens</Text>
-            {isLoadingPrices && <ActivityIndicator size="small" color="#3E1BDB" />}
+            {isLoadingPrices && <ActivityIndicator size="small" color="#002E5D" />}
           </View>
           <View className="mt-3 gap-2">
             {TOKENS.map((token) => (

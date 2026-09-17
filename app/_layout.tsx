@@ -15,10 +15,10 @@ import {
   useFonts as useInterFonts,
 } from '@expo-google-fonts/inter';
 import {
-  Inconsolata_400Regular,
-  Inconsolata_500Medium,
-  useFonts as useInconsolataFonts,
-} from '@expo-google-fonts/inconsolata';
+  IBMPlexMono_400Regular,
+  IBMPlexMono_500Medium,
+  useFonts as useMonoFonts,
+} from '@expo-google-fonts/ibm-plex-mono';
 import { Toaster } from 'sonner-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -192,7 +192,7 @@ function RootLayoutContent() {
     <ThemeProvider value={theme === 'dark' ? NAV_THEME.dark : NAV_THEME.light}>
       <StatusBar 
         style={getStatusBarStyle()} 
-        backgroundColor={pathname === '/feed' ? '#3E1BDB' : undefined}
+        backgroundColor={pathname === '/feed' ? '#002E5D' : undefined}
       />
       <Stack screenOptions={{ headerShown: false }} />
       <PortalHost />
@@ -208,9 +208,9 @@ export default function RootLayout() {
     Inter_600SemiBold,
     Inter_700Bold,
   });
-  const [monoLoaded] = useInconsolataFonts({
-    Inconsolata_400Regular,
-    Inconsolata_500Medium,
+  const [monoLoaded] = useMonoFonts({
+    IBMPlexMono_400Regular,
+    IBMPlexMono_500Medium,
   });
 
   const isFontsLoaded = interLoaded && monoLoaded;

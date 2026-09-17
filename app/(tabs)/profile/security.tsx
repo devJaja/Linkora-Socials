@@ -149,7 +149,7 @@ export default function SecurityPrivacyScreen() {
               isUpdatingPassword ? 'bg-gray-300' : 'bg-primary active:bg-primary/90'
             }`}
           >
-            <Text className="text-lg font-semibold text-white">
+            <Text className="text-lg font-semibold text-black">
               {isUpdatingPassword ? 'Updating...' : 'Update Password'}
             </Text>
           </TouchableOpacity>

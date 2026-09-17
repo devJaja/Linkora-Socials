@@ -265,8 +265,8 @@ export default function SendMoneyScreen() {
             <ActivityIndicator size="small" color="#ffffff" />
           ) : (
             <>
-              <Icon as={Send} size={20} className="text-white" />
-              <Text className="text-lg font-semibold text-white">
+              <Icon as={Send} size={20} className="text-black" />
+              <Text className="text-lg font-semibold text-black">
                 Send {amount || '0'} XLM
               </Text>
             </>
@@ -331,9 +331,9 @@ export default function SendMoneyScreen() {
                 className="flex-1 items-center rounded-2xl bg-primary py-4"
               >
                 {isSending ? (
-                  <ActivityIndicator size="small" color="#3E1BDB" />
+                  <ActivityIndicator size="small" color="#002E5D" />
                 ) : (
-                  <Text className="text-lg font-semibold text-white">Confirm</Text>
+                  <Text className="text-lg font-semibold text-black">Confirm</Text>
                 )}
               </TouchableOpacity>
             </View>
@@ -410,7 +410,7 @@ export default function SendMoneyScreen() {
           <View className="flex-1 px-4 pt-4">
             {isSearching ? (
               <View className="items-center py-20">
-                <ActivityIndicator size="large" color="#3E1BDB" />
+                <ActivityIndicator size="large" color="#002E5D" />
               </View>
             ) : searchResults.length === 0 ? (
               <View className="items-center py-20">

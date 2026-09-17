@@ -46,7 +46,7 @@ export function MessageInput({ onSend, onTip, isSending }: MessageInputProps) {
           message.trim() && !isSending ? 'bg-primary' : 'bg-gray-300'
         }`}
       >
-        <Icon as={Send} size={20} className="text-white" />
+        <Icon as={Send} size={20} className="text-black" />
       </TouchableOpacity>
     </View>
   );

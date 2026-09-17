@@ -74,7 +74,7 @@ export function NotificationCard({ notification, onPress }: NotificationCardProp
               )}
             </View>
             {!notification.isRead && (
-              <View className="ml-2 h-2 w-2 rounded-full bg-[#3E1BDB]" />
+              <View className="ml-2 h-2 w-2 rounded-full bg-[#002E5D]" />
             )}
           </View>
           <Text className="mt-1 text-xs text-muted-foreground">

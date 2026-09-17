@@ -165,7 +165,7 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
           <Switch
             value={isEnabled}
             onValueChange={(value) => value ? handleEnable() : handleDisable()}
-            trackColor={{ false: '#D1C9F7', true: '#3E1BDB' }}
+            trackColor={{ false: '#D5CDF3', true: '#002E5D' }}
             thumbColor="#ffffff"
           />
         </View>
@@ -243,9 +243,9 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
                 }`}
               >
                 {isVerifying ? (
-                  <ActivityIndicator color="#3E1BDB" />
+                  <ActivityIndicator color="#002E5D" />
                 ) : (
-                  <Text className="text-center font-semibold text-white">
+                  <Text className="text-center font-semibold text-black">
                     Verify and Enable
                   </Text>
                 )}
@@ -295,7 +295,7 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
               onPress={() => setShowRecoveryModal(false)}
               className="mt-4 rounded-2xl bg-primary py-4"
             >
-              <Text className="text-center font-semibold text-white">Done</Text>
+              <Text className="text-center font-semibold text-black">Done</Text>
             </TouchableOpacity>
           </View>
         </View>
