@@ -48,7 +48,7 @@ export function ConfirmDialog({
                 destructive ? 'bg-red-600' : 'bg-primary'
               }`}
             >
-              <Text className={`text-center font-semibold ${destructive ? 'text-white' : 'text-black'}`}>{confirmText}</Text>
+              <Text className={`text-center font-semibold ${destructive ? 'text-white' : 'text-primary-foreground'}`}>{confirmText}</Text>
             </TouchableOpacity>
           </View>
         </View>

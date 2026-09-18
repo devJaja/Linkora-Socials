@@ -59,7 +59,7 @@ export function SignUpForm({ onSubmit, isSubmitting }: SignUpFormProps) {
           {isSubmitting ? (
             <ActivityIndicator color="#002E5D" />
           ) : (
-            <Text className="text-base font-medium text-black">{t('auth.signUp')}</Text>
+            <Text className="text-base font-medium text-primary-foreground">{t('auth.signUp')}</Text>
           )}
         </Button>
       </View>

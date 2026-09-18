@@ -109,7 +109,7 @@ export default function TransactionDetailsScreen() {
       <View className="flex-1 items-center justify-center bg-background">
         <Text className="text-muted-foreground">Transaction not found</Text>
         <TouchableOpacity onPress={() => router.back()} className="mt-4 rounded-xl bg-primary px-6 py-3">
-          <Text className="font-semibold text-black">Go Back</Text>
+          <Text className="font-semibold text-primary-foreground">Go Back</Text>
         </TouchableOpacity>
       </View>
     );
@@ -234,8 +234,8 @@ export default function TransactionDetailsScreen() {
             onPress={openInExplorer}
             className="flex-row items-center justify-center gap-2 rounded-xl bg-primary py-4"
           >
-            <Icon as={ExternalLink} size={20} className="text-black" />
-            <Text className="font-semibold text-black">View on StellarExpert</Text>
+            <Icon as={ExternalLink} size={20} className="text-primary-foreground" />
+            <Text className="font-semibold text-primary-foreground">View on StellarExpert</Text>
           </TouchableOpacity>
 
           <TouchableOpacity

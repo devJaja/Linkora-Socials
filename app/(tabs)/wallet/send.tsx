@@ -265,8 +265,8 @@ export default function SendMoneyScreen() {
             <ActivityIndicator size="small" color="#ffffff" />
           ) : (
             <>
-              <Icon as={Send} size={20} className="text-black" />
-              <Text className="text-lg font-semibold text-black">
+              <Icon as={Send} size={20} className="text-primary-foreground" />
+              <Text className="text-lg font-semibold text-primary-foreground">
                 Send {amount || '0'} XLM
               </Text>
             </>
@@ -333,7 +333,7 @@ export default function SendMoneyScreen() {
                 {isSending ? (
                   <ActivityIndicator size="small" color="#002E5D" />
                 ) : (
-                  <Text className="text-lg font-semibold text-black">Confirm</Text>
+                  <Text className="text-lg font-semibold text-primary-foreground">Confirm</Text>
                 )}
               </TouchableOpacity>
             </View>

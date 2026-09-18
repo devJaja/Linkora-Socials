@@ -71,7 +71,7 @@ export default function ForgotPasswordScreen() {
                 {isSending ? (
                   <ActivityIndicator color="#002E5D" />
                 ) : (
-                  <Text className="text-base font-medium text-black">{t('auth.sendResetLink')}</Text>
+                  <Text className="text-base font-medium text-primary-foreground">{t('auth.sendResetLink')}</Text>
                 )}
               </Button>
             </View>
@@ -99,7 +99,7 @@ export default function ForgotPasswordScreen() {
                 onPress={() => router.push({ pathname: '/auth/reset-password', params: { email } })}
                 className="h-14 rounded-2xl bg-primary active:bg-primary/90"
               >
-                <Text className="text-base font-medium text-black">Enter Reset Code</Text>
+                <Text className="text-base font-medium text-primary-foreground">Enter Reset Code</Text>
               </Button>
 
               <TouchableOpacity

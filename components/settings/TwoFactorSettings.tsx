@@ -245,7 +245,7 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
                 {isVerifying ? (
                   <ActivityIndicator color="#002E5D" />
                 ) : (
-                  <Text className="text-center font-semibold text-black">
+                  <Text className="text-center font-semibold text-primary-foreground">
                     Verify and Enable
                   </Text>
                 )}
@@ -295,7 +295,7 @@ export function TwoFactorSettings({ onToggle }: TwoFactorSettingsProps) {
               onPress={() => setShowRecoveryModal(false)}
               className="mt-4 rounded-2xl bg-primary py-4"
             >
-              <Text className="text-center font-semibold text-black">Done</Text>
+              <Text className="text-center font-semibold text-primary-foreground">Done</Text>
             </TouchableOpacity>
           </View>
         </View>

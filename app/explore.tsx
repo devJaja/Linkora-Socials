@@ -184,8 +184,8 @@ export default function ExploreScreen() {
 
                   {post.isTokenized && (
                     <TouchableOpacity className="ml-auto flex-row items-center gap-1 rounded-lg bg-primary px-3 py-1.5">
-                      <Icon as={Coins} size={16} className="text-black" />
-                      <Text className="text-sm font-medium text-black">Buy</Text>
+                      <Icon as={Coins} size={16} className="text-primary-foreground" />
+                      <Text className="text-sm font-medium text-primary-foreground">Buy</Text>
                     </TouchableOpacity>
                   )}
                 </View>

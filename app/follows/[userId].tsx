@@ -103,9 +103,9 @@ export default function FollowsScreen() {
             <Icon 
               as={isFollowingUser ? UserMinus : UserPlus} 
               size={16} 
-              className={isFollowingUser ? "text-foreground" : "text-black"}
+              className={isFollowingUser ? "text-foreground" : "text-primary-foreground"}
             />
-            <Text className={`font-semibold text-sm ${isFollowingUser ? 'text-foreground' : 'text-black'}`}>
+            <Text className={`font-semibold text-sm ${isFollowingUser ? 'text-foreground' : 'text-primary-foreground'}`}>
               {isFollowingUser ? 'Unfollow' : 'Follow'}
             </Text>
           </TouchableOpacity>

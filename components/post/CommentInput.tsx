@@ -64,7 +64,7 @@ export function CommentInput({
           content.trim() && !isSubmitting ? 'bg-primary' : 'bg-gray-300'
         }`}
       >
-        <Text className="text-center font-semibold text-black">
+        <Text className="text-center font-semibold text-primary-foreground">
           {isSubmitting ? 'Posting...' : replyingTo ? 'Post Reply' : 'Post Comment'}
         </Text>
       </TouchableOpacity>

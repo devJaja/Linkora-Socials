@@ -160,7 +160,7 @@ export default function TwoFactorVerifyScreen() {
           {isVerifying ? (
             <ActivityIndicator color="white" />
           ) : (
-            <Text className="text-base font-medium text-black">{t('auth.verify')}</Text>
+            <Text className="text-base font-medium text-primary-foreground">{t('auth.verify')}</Text>
           )}
         </TouchableOpacity>
 

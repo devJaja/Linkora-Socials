@@ -91,7 +91,7 @@ export default function SignUpScreen() {
           onPress={handleSetup}
           className="mb-4 h-14 rounded-2xl bg-primary active:bg-primary/90"
         >
-          <Text className="text-base font-medium text-black">Setup and Continue</Text>
+          <Text className="text-base font-medium text-primary-foreground">Setup and Continue</Text>
         </Button>
 
         <Pressable onPress={handleBack}>

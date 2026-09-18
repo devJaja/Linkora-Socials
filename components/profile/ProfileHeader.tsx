@@ -17,14 +17,14 @@ export function ProfileHeader({ isOwnProfile, onSettingsPress }: ProfileHeaderPr
     <View className="flex-row items-center justify-between px-4 pt-12">
       {!isOwnProfile ? (
         <TouchableOpacity onPress={() => router.back()}>
-          <Icon as={ArrowLeft} size={24} className="text-white" />
+          <Icon as={ArrowLeft} size={24} className="text-foreground" />
         </TouchableOpacity>
       ) : (
-        <Text className="text-2xl font-bold text-white">{t('profile.profile')}</Text>
+        <Text className="text-2xl font-bold text-foreground">{t('profile.profile')}</Text>
       )}
       {isOwnProfile && (
         <TouchableOpacity onPress={onSettingsPress}>
-          <Icon as={Settings} size={24} className="text-white" />
+          <Icon as={Settings} size={24} className="text-foreground" />
         </TouchableOpacity>
       )}
     </View>

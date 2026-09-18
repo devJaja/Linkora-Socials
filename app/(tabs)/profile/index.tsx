@@ -114,8 +114,8 @@ export default function ProfileScreen() {
 
   if (isLoadingUser || isLoadingProfile) {
     return (
-      <View className="flex-1 items-center justify-center bg-[#002E5D]">
-        <ActivityIndicator size="large" color="#ffffff" />
+      <View className="flex-1 items-center justify-center bg-background">
+        <ActivityIndicator size="large" color="#FDDA24" />
       </View>
     );
   }
@@ -125,7 +125,7 @@ export default function ProfileScreen() {
   }
 
   return (
-    <View className="flex-1 bg-[#002E5D]">
+    <View className="flex-1 bg-background">
       <ScrollView 
         className="flex-1"
         showsVerticalScrollIndicator={false}
@@ -133,8 +133,8 @@ export default function ProfileScreen() {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={handleRefresh}
-            tintColor="#ffffff"
-            colors={['#002E5D']}
+            tintColor="#FDDA24"
+            colors={['#FDDA24']}
           />
         }
       >

@@ -78,7 +78,7 @@ export default function OnboardingScreen() {
         </View>
 
         <Button className="mb-4 h-14 rounded-2xl bg-primary active:bg-primary/90" onPress={handleCreateAccount}>
-          <Text className="text-base font-medium text-black">Create Account</Text>
+          <Text className="text-base font-medium text-primary-foreground">Create Account</Text>
         </Button>
 
         <Button variant="ghost" className="h-14" onPress={handleSignIn}>

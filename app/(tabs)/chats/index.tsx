@@ -136,7 +136,7 @@ export default function ChatsScreen() {
         onPress={() => setShowNewMessageModal(true)}
         className="absolute bottom-6 right-6 h-14 w-14 items-center justify-center rounded-full bg-primary shadow-lg"
       >
-        <Icon as={Plus} size={24} className="text-black" />
+        <Icon as={Plus} size={24} className="text-primary-foreground" />
       </TouchableOpacity>
 
       {/* New Message Modal */}

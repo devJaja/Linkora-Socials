@@ -29,7 +29,7 @@ export function CreatePostButton({ onPress }: CreatePostButtonProps) {
         elevation: 8,
       }}
     >
-      <Icon as={Plus} size={28} className="text-black" />
+      <Icon as={Plus} size={28} className="text-primary-foreground" />
     </TouchableOpacity>
   );
 }

@@ -202,7 +202,7 @@ export default function EditProfileScreen() {
               className="absolute bottom-0 right-0 h-10 w-10 items-center justify-center rounded-full bg-primary shadow-lg"
               onPress={() => setShowImageOptions(true)}
             >
-              <Icon as={Camera} size={20} className="text-black" />
+              <Icon as={Camera} size={20} className="text-primary-foreground" />
             </TouchableOpacity>
           </View>
           <TouchableOpacity onPress={() => setShowImageOptions(true)}>
@@ -364,7 +364,7 @@ export default function EditProfileScreen() {
               <ActivityIndicator size="small" color="#ffffff" />
             ) : (
               <Text className={`text-lg font-semibold ${
-                hasChanges ? 'text-black' : 'text-gray-500'
+                hasChanges ? 'text-primary-foreground' : 'text-gray-500'
               }`}>
                 {isUploadingAvatar ? 'Uploading...' : 'Save Changes'}
               </Text>

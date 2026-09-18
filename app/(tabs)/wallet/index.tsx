@@ -49,50 +49,52 @@ export default function WalletScreen() {
         }
       >
         {/* Header */}
-        <View className="bg-[#002E5D] px-4 pb-8 pt-12">
+        <View className="px-4 pt-12">
           <View className="flex-row items-center justify-between">
-            <Text className="text-2xl font-bold text-white">{t('wallet.wallet')}</Text>
+            <Text className="text-2xl font-bold">{t('wallet.wallet')}</Text>
             <TouchableOpacity>
-              <Icon as={PieChart} size={24} className="text-white" />
+              <Icon as={PieChart} size={24} />
             </TouchableOpacity>
           </View>
 
           {/* Balance Card */}
-          <View className="mt-6 items-center">
-            <Text className="text-sm text-purple-200">{t('wallet.totalBalance')}</Text>
-            {isLoadingBalance || isLoadingPrices ? (
-              <ActivityIndicator size="large" color="#ffffff" className="mt-2" />
-            ) : (
-              <>
-                <Text className={`mt-2 ${isSmall ? 'text-4xl' : 'text-5xl'} font-bold text-white`}>
-                  ${usdValue.toFixed(2)}
-                </Text>
-                <Text className="mt-1 text-lg text-purple-200">
-                  {balance.toFixed(4)} XLM
-                </Text>
-                <Text className="mt-1 text-sm text-purple-200">
-                  {walletAddress?.slice(0, 8)}...{walletAddress?.slice(-8)}
-                </Text>
-              </>
-            )}
-          </View>
+          <View className="mt-5 rounded-3xl border border-border bg-card px-4 pb-5 pt-6">
+            <View className="items-center">
+              <Text className="text-sm text-muted-foreground">{t('wallet.totalBalance')}</Text>
+              {isLoadingBalance || isLoadingPrices ? (
+                <ActivityIndicator size="large" className="mt-2" />
+              ) : (
+                <>
+                  <Text className={`mt-2 ${isSmall ? 'text-4xl' : 'text-5xl'} font-bold`}>
+                    ${usdValue.toFixed(2)}
+                  </Text>
+                  <Text className="mt-1 text-lg text-muted-foreground">
+                    {balance.toFixed(4)} XLM
+                  </Text>
+                  <Text className="mt-1 text-sm font-mono text-muted-foreground">
+                    {walletAddress?.slice(0, 8)}...{walletAddress?.slice(-8)}
+                  </Text>
+                </>
+              )}
+            </View>
 
-          {/* Action Buttons */}
-          <View className="mt-6 flex-row gap-3">
-            <TouchableOpacity
-              onPress={() => router.push('/wallet/send')}
-              className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl bg-white py-4"
-            >
-              <Icon as={ArrowUpRight} size={20} className="text-purple-600" />
-              <Text className="font-semibold text-purple-600">{t('wallet.send')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => router.push('/wallet/receive')}
-              className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl bg-purple-700 py-4"
-            >
-              <Icon as={ArrowDownLeft} size={20} className="text-white" />
-              <Text className="font-semibold text-white">{t('wallet.receive')}</Text>
-            </TouchableOpacity>
+            {/* Action Buttons */}
+            <View className="mt-6 flex-row gap-3">
+              <TouchableOpacity
+                onPress={() => router.push('/wallet/send')}
+                className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl bg-primary py-4"
+              >
+                <Icon as={ArrowUpRight} size={20} className="text-primary-foreground" />
+                <Text className="font-semibold text-primary-foreground">{t('wallet.send')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => router.push('/wallet/receive')}
+                className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl bg-[#002E5D] py-4"
+              >
+                <Icon as={ArrowDownLeft} size={20} className="text-white" />
+                <Text className="font-semibold text-white">{t('wallet.receive')}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
 

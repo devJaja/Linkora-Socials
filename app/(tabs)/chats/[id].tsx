@@ -171,15 +171,15 @@ export default function ChatScreen() {
                   )}
                   <View
                     className={`max-w-[75%] rounded-2xl px-4 py-3 ${
-                      msg.isMine ? 'bg-[#002E5D]' : 'bg-card'
+                      msg.isMine ? 'bg-primary' : 'bg-card'
                     }`}
                   >
-                    <Text className={msg.isMine ? 'text-white' : 'text-foreground'}>
+                    <Text className={msg.isMine ? 'text-primary-foreground' : 'text-foreground'}>
                       {msg.content}
                     </Text>
                     <Text
                       className={`mt-1 text-xs ${
-                        msg.isMine ? 'text-purple-200' : 'text-muted-foreground'
+                        msg.isMine ? 'text-primary-foreground/60' : 'text-muted-foreground'
                       }`}
                     >
                       {formatTime(msg.createdAt)}
@@ -215,7 +215,7 @@ export default function ChatScreen() {
           {isSendingMessage ? (
             <ActivityIndicator size="small" color="#002E5D" />
           ) : (
-            <Icon as={Send} size={20} className="text-black" />
+            <Icon as={Send} size={20} className="text-primary-foreground" />
           )}
         </TouchableOpacity>
       </View>
@@ -297,7 +297,7 @@ export default function ChatScreen() {
                 {(isSendingTip || isSendingPrivateTip) ? (
                   <ActivityIndicator size="small" color="#002E5D" />
                 ) : (
-                  <Text className={`text-lg font-semibold ${tipAmount && parseFloat(tipAmount) > 0 ? 'text-black' : 'text-gray-500'}`}>
+                  <Text className={`text-lg font-semibold ${tipAmount && parseFloat(tipAmount) > 0 ? 'text-primary-foreground' : 'text-gray-500'}`}>
                     {isPrivateTip ? 'Send Privately' : 'Send'}
                   </Text>
                 )}

@@ -65,7 +65,7 @@ export default function PaymentSuccessScreen() {
           }}
           className="flex-1 items-center rounded-2xl bg-primary py-4"
         >
-          <Text className="text-lg font-semibold text-black">Send Again</Text>
+          <Text className="text-lg font-semibold text-primary-foreground">Send Again</Text>
         </TouchableOpacity>
       </View>
     </View>

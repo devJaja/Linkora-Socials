@@ -31,7 +31,7 @@ export function MessageBubble({
         type === 'tip'
           ? 'bg-success/10'
           : isOwn
-          ? 'bg-[#002E5D]'
+          ? 'bg-primary'
           : 'bg-card'
       }`}>
         {type === 'tip' && tipAmount && (
@@ -39,11 +39,11 @@ export function MessageBubble({
             💰 Tip: {tipAmount} XLM
           </Text>
         )}
-        <Text className={isOwn ? 'text-white' : 'text-foreground'}>
+        <Text className={isOwn ? 'text-primary-foreground' : 'text-foreground'}>
           {content}
         </Text>
         <Text className={`mt-1 text-xs ${
-          isOwn ? 'text-purple-200' : 'text-muted-foreground'
+          isOwn ? 'text-primary-foreground/60' : 'text-muted-foreground'
         }`}>
           {formatTime(timestamp)}
         </Text>

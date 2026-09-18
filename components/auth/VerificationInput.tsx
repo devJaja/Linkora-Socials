@@ -88,7 +88,7 @@ export function VerificationInput({
           {isVerifying ? (
             <ActivityIndicator color="#002E5D" />
           ) : (
-            <Text className="text-base font-medium text-black">{t('auth.verify')}</Text>
+            <Text className="text-base font-medium text-primary-foreground">{t('auth.verify')}</Text>
           )}
         </Button>
 

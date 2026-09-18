@@ -105,7 +105,7 @@ export function SendForm({ balance, onSubmit, isSubmitting, onScanQR }: SendForm
         disabled={isSubmitting}
         className={`rounded-xl py-4 ${isSubmitting ? 'bg-gray-400' : 'bg-primary'}`}
       >
-        <Text className="text-center font-semibold text-black">
+        <Text className="text-center font-semibold text-primary-foreground">
           {isSubmitting ? 'Sending...' : 'Send XLM'}
         </Text>
       </TouchableOpacity>

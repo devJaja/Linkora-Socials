@@ -73,7 +73,7 @@ export function BuyTokenModal({
               disabled={isSubmitting}
               className="flex-1 rounded-xl bg-primary py-3 active:opacity-90"
             >
-              <Text className="text-center font-semibold text-black">
+              <Text className="text-center font-semibold text-primary-foreground">
                 {isSubmitting ? t('wallet.buying') : t('feed.buy')} {t('wallet.tokens')}
               </Text>
             </TouchableOpacity>

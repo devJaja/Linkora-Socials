@@ -66,16 +66,16 @@ export default function ReceiveMoneyScreen() {
                   onPress={copyToClipboard}
                   className="flex-1 flex-row items-center justify-center gap-2 rounded-xl bg-primary py-3"
                 >
-                  <Icon as={Copy} size={18} className="text-black" />
-                  <Text className="font-semibold text-black">Copy</Text>
+                  <Icon as={Copy} size={18} className="text-primary-foreground" />
+                  <Text className="font-semibold text-primary-foreground">Copy</Text>
                 </TouchableOpacity>
                 
                 <TouchableOpacity 
                   onPress={shareAddress}
                   className="flex-1 flex-row items-center justify-center gap-2 rounded-xl bg-primary py-3"
                 >
-                  <Icon as={Share2} size={18} className="text-black" />
-                  <Text className="font-semibold text-black">Share</Text>
+                  <Icon as={Share2} size={18} className="text-primary-foreground" />
+                  <Text className="font-semibold text-primary-foreground">Share</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -136,8 +136,8 @@ export default function ReceiveMoneyScreen() {
               onPress={shareAddress}
               className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl bg-primary py-3"
             >
-              <Icon as={Share2} size={18} className="text-black" />
-              <Text className="font-semibold text-black">Share</Text>
+              <Icon as={Share2} size={18} className="text-primary-foreground" />
+              <Text className="font-semibold text-primary-foreground">Share</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -149,7 +149,7 @@ export default function ReceiveMoneyScreen() {
             <View className="mt-4 gap-3">
               <View className="flex-row gap-3">
                 <View className="h-6 w-6 items-center justify-center rounded-full bg-primary">
-                  <Text className="text-xs font-bold text-black">1</Text>
+                  <Text className="text-xs font-bold text-primary-foreground">1</Text>
                 </View>
                 <Text className="flex-1 text-sm text-muted-foreground">
                   Share your wallet address or QR code with the sender
@@ -158,7 +158,7 @@ export default function ReceiveMoneyScreen() {
               
               <View className="flex-row gap-3">
                 <View className="h-6 w-6 items-center justify-center rounded-full bg-primary">
-                  <Text className="text-xs font-bold text-black">2</Text>
+                  <Text className="text-xs font-bold text-primary-foreground">2</Text>
                 </View>
                 <Text className="flex-1 text-sm text-muted-foreground">
                   Sender enters the amount and confirms the transaction
@@ -167,7 +167,7 @@ export default function ReceiveMoneyScreen() {
               
               <View className="flex-row gap-3">
                 <View className="h-6 w-6 items-center justify-center rounded-full bg-primary">
-                  <Text className="text-xs font-bold text-black">3</Text>
+                  <Text className="text-xs font-bold text-primary-foreground">3</Text>
                 </View>
                 <Text className="flex-1 text-sm text-muted-foreground">
                   Funds arrive in your wallet within seconds on Stellar

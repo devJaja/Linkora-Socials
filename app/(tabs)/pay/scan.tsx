@@ -46,8 +46,8 @@ export default function ScanQRScreen() {
           onPress={handleStartScan}
           className="flex-row items-center justify-center gap-2 rounded-2xl bg-primary py-4"
         >
-          <Icon as={Zap} size={20} className="text-black" />
-          <Text className="text-lg font-semibold text-black">
+          <Icon as={Zap} size={20} className="text-primary-foreground" />
+          <Text className="text-lg font-semibold text-primary-foreground">
             {isScanning ? 'Scanning...' : 'Start Scan'}
           </Text>
         </TouchableOpacity>

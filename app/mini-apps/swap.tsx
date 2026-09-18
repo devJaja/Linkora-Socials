@@ -257,7 +257,7 @@ export default function SwapScreen() {
               onPress={switchTokens}
               className="h-12 w-12 items-center justify-center rounded-full bg-primary"
             >
-              <Icon as={ArrowDownUp} size={24} className="text-black" />
+              <Icon as={ArrowDownUp} size={24} className="text-primary-foreground" />
             </TouchableOpacity>
           </View>
 
@@ -314,7 +314,7 @@ export default function SwapScreen() {
             {isSwapping ? (
               <ActivityIndicator color="#ffffff" />
             ) : (
-              <Text className="font-semibold text-black">
+              <Text className="font-semibold text-primary-foreground">
                 {fromAmount ? 'Swap Tokens' : 'Enter Amount'}
               </Text>
             )}

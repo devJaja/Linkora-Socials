@@ -340,8 +340,8 @@ export default function SettingsScreen() {
             onPress={handleLogout}
             className="flex-row items-center justify-center gap-2 rounded-2xl bg-primary py-4"
           >
-            <Icon as={LogOut} size={20} className="text-black" />
-            <Text className="text-lg font-semibold text-black">{t('auth.signOut')}</Text>
+            <Icon as={LogOut} size={20} className="text-primary-foreground" />
+            <Text className="text-lg font-semibold text-primary-foreground">{t('auth.signOut')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
