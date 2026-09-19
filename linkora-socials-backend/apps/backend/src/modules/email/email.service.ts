@@ -1,44 +1,60 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Resend } from 'resend';
+import { createTransport, Transporter } from 'nodemailer';
 
 @Injectable()
 export class EmailService {
-  private resend: Resend | null = null;
+  private transporter: Transporter | null = null;
   private readonly logger = new Logger(EmailService.name);
-  private readonly fromEmail = 'Linkora <noreply@linkora.social>';
+  private readonly user: string;
+  private readonly pass: string;
+  private readonly fromEmail: string;
 
   constructor() {
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      this.logger.warn('RESEND_API_KEY not set — email sending disabled');
+    this.user = process.env.GMAIL_USER || '';
+    this.pass = process.env.GMAIL_APP_PASSWORD || '';
+    this.fromEmail =
+      process.env.GMAIL_FROM || 'Linkora <linkora56@gmail.com>';
+
+    if (!this.user || !this.pass) {
+      this.logger.warn(
+        'GMAIL_USER / GMAIL_APP_PASSWORD not set — email sending disabled',
+      );
       return;
     }
-    this.resend = new Resend(apiKey);
-    this.logger.log('✅ Resend email service initialized');
+
+    this.transporter = createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: { user: this.user, pass: this.pass },
+    });
+    this.logger.log('✅ Gmail SMTP email service initialized');
+  }
+
+  private async sendMail(to: string, subject: string, html: string) {
+    if (!this.transporter) {
+      throw new Error(
+        'Email service not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing)',
+      );
+    }
+    const info = await this.transporter.sendMail({
+      from: this.fromEmail,
+      to,
+      subject,
+      html,
+    });
+    return info.messageId;
   }
 
   async sendVerificationEmail(email: string, code: string, username: string) {
-    if (!this.resend) {
-      throw new Error('Email service not configured (RESEND_API_KEY missing)');
-    }
     try {
-      const { data, error } = await this.resend.emails.send({
-        from: this.fromEmail,
-        to: email,
-        subject: 'Verify Your Email - Linkora',
-        html: this.getVerificationEmailTemplate(code, username),
-      });
-
-      if (error) {
-        this.logger.error(
-          `Failed to send verification email to ${email}:`,
-          error,
-        );
-        throw error;
-      }
-
-      this.logger.log(`✅ Verification email sent to ${email}: ${data.id}`);
-      return { success: true, messageId: data.id };
+      const messageId = await this.sendMail(
+        email,
+        'Verify Your Email - Linkora',
+        this.getVerificationEmailTemplate(code, username),
+      );
+      this.logger.log(`✅ Verification email sent to ${email}: ${messageId}`);
+      return { success: true, messageId };
     } catch (error) {
       this.logger.error(
         `❌ Failed to send verification email to ${email}:`,
@@ -53,24 +69,14 @@ export class EmailService {
     username: string,
     walletAddress: string,
   ) {
-    if (!this.resend) {
-      return { success: false, error: 'Email service not configured' };
-    }
     try {
-      const { data, error } = await this.resend.emails.send({
-        from: this.fromEmail,
-        to: email,
-        subject: 'Welcome to Linkora! 🎉',
-        html: this.getWelcomeEmailTemplate(username, walletAddress),
-      });
-
-      if (error) {
-        this.logger.error(`Failed to send welcome email to ${email}:`, error);
-        return { success: false, error: error.message };
-      }
-
-      this.logger.log(`✅ Welcome email sent to ${email}: ${data.id}`);
-      return { success: true, messageId: data.id };
+      const messageId = await this.sendMail(
+        email,
+        'Welcome to Linkora! 🎉',
+        this.getWelcomeEmailTemplate(username, walletAddress),
+      );
+      this.logger.log(`✅ Welcome email sent to ${email}: ${messageId}`);
+      return { success: true, messageId };
     } catch (error) {
       this.logger.error(`❌ Failed to send welcome email to ${email}:`, error);
       // Don't throw - welcome email is not critical
@@ -83,27 +89,14 @@ export class EmailService {
     resetCode: string,
     username: string,
   ) {
-    if (!this.resend) {
-      throw new Error('Email service not configured (RESEND_API_KEY missing)');
-    }
     try {
-      const { data, error } = await this.resend.emails.send({
-        from: this.fromEmail,
-        to: email,
-        subject: 'Reset Your Password - Linkora',
-        html: this.getPasswordResetEmailTemplate(resetCode, username),
-      });
-
-      if (error) {
-        this.logger.error(
-          `Failed to send password reset email to ${email}:`,
-          error,
-        );
-        throw error;
-      }
-
-      this.logger.log(`✅ Password reset email sent to ${email}: ${data.id}`);
-      return { success: true, messageId: data.id };
+      const messageId = await this.sendMail(
+        email,
+        'Reset Your Password - Linkora',
+        this.getPasswordResetEmailTemplate(resetCode, username),
+      );
+      this.logger.log(`✅ Password reset email sent to ${email}: ${messageId}`);
+      return { success: true, messageId };
     } catch (error) {
       this.logger.error(
         `❌ Failed to send password reset email to ${email}:`,
@@ -114,27 +107,16 @@ export class EmailService {
   }
 
   async sendPasswordChangedEmail(email: string, username: string) {
-    if (!this.resend) {
-      return { success: false, error: 'Email service not configured' };
-    }
     try {
-      const { data, error } = await this.resend.emails.send({
-        from: this.fromEmail,
-        to: email,
-        subject: 'Password Changed - Linkora',
-        html: this.getPasswordChangedEmailTemplate(username),
-      });
-
-      if (error) {
-        this.logger.error(
-          `Failed to send password changed email to ${email}:`,
-          error,
-        );
-        return { success: false, error: error.message };
-      }
-
-      this.logger.log(`✅ Password changed email sent to ${email}: ${data.id}`);
-      return { success: true, messageId: data.id };
+      const messageId = await this.sendMail(
+        email,
+        'Password Changed - Linkora',
+        this.getPasswordChangedEmailTemplate(username),
+      );
+      this.logger.log(
+        `✅ Password changed email sent to ${email}: ${messageId}`,
+      );
+      return { success: true, messageId };
     } catch (error) {
       this.logger.error(
         `❌ Failed to send password changed email to ${email}:`,

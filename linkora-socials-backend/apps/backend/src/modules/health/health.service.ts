@@ -35,11 +35,12 @@ export class HealthService {
         stellarStatus = 'unhealthy';
       }
 
-      // Check Email (Resend)
+      // Check Email (Gmail SMTP)
       let emailStatus = 'healthy';
       try {
-        const apiKey = process.env.RESEND_API_KEY;
-        if (!apiKey) {
+        const gmailUser = process.env.GMAIL_USER;
+        const gmailPass = process.env.GMAIL_APP_PASSWORD;
+        if (!gmailUser || !gmailPass) {
           emailStatus = 'unhealthy';
         }
       } catch (error) {
@@ -130,21 +131,23 @@ export class HealthService {
         stellarHealth.error = error.message;
       }
 
-      // Email (Resend) details
+      // Email (Gmail SMTP) details
       const emailHealth: any = {
         status: 'unknown',
-        provider: 'Resend',
-        fromEmail: 'Linkora <noreply@linkora.social>',
+        provider: 'Gmail SMTP',
+        fromEmail: process.env.GMAIL_FROM || 'Linkora <linkora56@gmail.com>',
       };
 
       try {
-        const apiKey = process.env.RESEND_API_KEY;
-        if (apiKey) {
+        const gmailUser = process.env.GMAIL_USER;
+        const gmailPass = process.env.GMAIL_APP_PASSWORD;
+        if (gmailUser && gmailPass) {
           emailHealth.status = 'configured';
+          emailHealth.user = gmailUser;
           emailHealth.apiKeySet = true;
         } else {
           emailHealth.status = 'error';
-          emailHealth.error = 'RESEND_API_KEY not configured';
+          emailHealth.error = 'GMAIL_USER / GMAIL_APP_PASSWORD not configured';
         }
       } catch (error) {
         emailHealth.status = 'error';

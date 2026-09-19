@@ -41,7 +41,11 @@ services:
         sync: false
       - key: PUSHER_CLUSTER
         sync: false
-      - key: RESEND_API_KEY
+      - key: GMAIL_USER
+        value: linkora56@gmail.com
+      - key: GMAIL_FROM
+        value: "Linkora <linkora56@gmail.com>"
+      - key: GMAIL_APP_PASSWORD
         sync: false
       - key: FIREBASE_SERVICE_ACCOUNT
         sync: false
