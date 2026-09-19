@@ -35,12 +35,10 @@ export class HealthService {
         stellarStatus = 'unhealthy';
       }
 
-      // Check Email (Gmail SMTP)
+      // Check Email (Resend primary, Gmail SMTP fallback)
       let emailStatus = 'healthy';
       try {
-        const gmailUser = process.env.GMAIL_USER;
-        const gmailPass = process.env.GMAIL_APP_PASSWORD;
-        if (!gmailUser || !gmailPass) {
+        if (!this.emailService.getProvider()) {
           emailStatus = 'unhealthy';
         }
       } catch (error) {
@@ -131,23 +129,32 @@ export class HealthService {
         stellarHealth.error = error.message;
       }
 
-      // Email (Gmail SMTP) details
+      // Email provider details
       const emailHealth: any = {
         status: 'unknown',
-        provider: 'Gmail SMTP',
-        fromEmail: process.env.GMAIL_FROM || 'Linkora <linkora56@gmail.com>',
+        provider: this.emailService.getProvider() || 'none',
       };
 
       try {
+        const resendKey = process.env.RESEND_API_KEY;
         const gmailUser = process.env.GMAIL_USER;
         const gmailPass = process.env.GMAIL_APP_PASSWORD;
-        if (gmailUser && gmailPass) {
+
+        if (resendKey) {
           emailHealth.status = 'configured';
+          emailHealth.fromEmail =
+            process.env.RESEND_FROM || 'Linkora <noreply@linkora.social>';
+          emailHealth.apiKeySet = true;
+        } else if (gmailUser && gmailPass) {
+          emailHealth.status = 'configured';
+          emailHealth.fromEmail =
+            process.env.GMAIL_FROM || `Linkora <${gmailUser}>`;
           emailHealth.user = gmailUser;
           emailHealth.apiKeySet = true;
         } else {
           emailHealth.status = 'error';
-          emailHealth.error = 'GMAIL_USER / GMAIL_APP_PASSWORD not configured';
+          emailHealth.error =
+            'No provider configured (set RESEND_API_KEY or GMAIL_USER/GMAIL_APP_PASSWORD)';
         }
       } catch (error) {
         emailHealth.status = 'error';

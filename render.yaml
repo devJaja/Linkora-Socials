@@ -47,5 +47,9 @@ services:
         value: "Linkora <linkora56@gmail.com>"
       - key: GMAIL_APP_PASSWORD
         sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM
+        value: "Linkora <noreply@linkora.social>"
       - key: FIREBASE_SERVICE_ACCOUNT
         sync: false

@@ -1,42 +1,52 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { Resend } from 'resend';
 import { createTransport, Transporter } from 'nodemailer';
 
-@Injectable()
-export class EmailService {
-  private transporter: Transporter | null = null;
-  private readonly logger = new Logger(EmailService.name);
-  private readonly user: string;
-  private readonly pass: string;
+interface MailSender {
+  readonly name: string;
+  send(to: string, subject: string, html: string): Promise<string>;
+}
+
+class ResendMailSender implements MailSender {
+  readonly name = 'Resend';
+  private readonly resend: Resend;
   private readonly fromEmail: string;
 
-  constructor() {
-    this.user = process.env.GMAIL_USER || '';
-    this.pass = process.env.GMAIL_APP_PASSWORD || '';
-    this.fromEmail =
-      process.env.GMAIL_FROM || 'Linkora <linkora56@gmail.com>';
+  constructor(apiKey: string, fromEmail: string) {
+    this.resend = new Resend(apiKey);
+    this.fromEmail = fromEmail;
+  }
 
-    if (!this.user || !this.pass) {
-      this.logger.warn(
-        'GMAIL_USER / GMAIL_APP_PASSWORD not set — email sending disabled',
-      );
-      return;
+  async send(to: string, subject: string, html: string): Promise<string> {
+    const { data, error } = await this.resend.emails.send({
+      from: this.fromEmail,
+      to,
+      subject,
+      html,
+    });
+    if (error) {
+      throw new Error(error.message);
     }
+    return data.id;
+  }
+}
 
+class GmailMailSender implements MailSender {
+  readonly name = 'Gmail SMTP';
+  private readonly transporter: Transporter;
+  private readonly fromEmail: string;
+
+  constructor(user: string, pass: string, fromEmail: string) {
     this.transporter = createTransport({
       host: 'smtp.gmail.com',
       port: 465,
       secure: true,
-      auth: { user: this.user, pass: this.pass },
+      auth: { user, pass },
     });
-    this.logger.log('✅ Gmail SMTP email service initialized');
+    this.fromEmail = fromEmail;
   }
 
-  private async sendMail(to: string, subject: string, html: string) {
-    if (!this.transporter) {
-      throw new Error(
-        'Email service not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing)',
-      );
-    }
+  async send(to: string, subject: string, html: string): Promise<string> {
     const info = await this.transporter.sendMail({
       from: this.fromEmail,
       to,
@@ -44,6 +54,51 @@ export class EmailService {
       html,
     });
     return info.messageId;
+  }
+}
+
+@Injectable()
+export class EmailService {
+  private sender: MailSender | null = null;
+  private readonly logger = new Logger(EmailService.name);
+
+  constructor() {
+    const resendKey = process.env.RESEND_API_KEY;
+    const gmailUser = process.env.GMAIL_USER;
+    const gmailPass = process.env.GMAIL_APP_PASSWORD;
+
+    if (resendKey) {
+      const fromEmail =
+        process.env.RESEND_FROM || 'Linkora <noreply@linkora.social>';
+      this.sender = new ResendMailSender(resendKey, fromEmail);
+      this.logger.log('✅ Resend email service initialized (primary)');
+    } else if (gmailUser && gmailPass) {
+      const fromEmail = process.env.GMAIL_FROM || `Linkora <${gmailUser}>`;
+      this.sender = new GmailMailSender(gmailUser, gmailPass, fromEmail);
+      this.logger.log('✅ Gmail SMTP email service initialized (fallback)');
+    } else {
+      this.logger.warn(
+        'No email provider configured (set RESEND_API_KEY or GMAIL_USER/GMAIL_APP_PASSWORD)',
+      );
+    }
+  }
+
+  getProvider(): string | null {
+    return this.sender?.name ?? null;
+  }
+
+  private async sendMail(to: string, subject: string, html: string) {
+    if (!this.sender) {
+      throw new Error(
+        'Email service not configured (RESEND_API_KEY or GMAIL_APP_PASSWORD missing)',
+      );
+    }
+    const started = Date.now();
+    const messageId = await this.sender.send(to, subject, html);
+    this.logger.log(
+      `✉️ [${this.sender.name}] "${subject}" → ${to} in ${Date.now() - started}ms (${messageId})`,
+    );
+    return messageId;
   }
 
   async sendVerificationEmail(email: string, code: string, username: string) {
