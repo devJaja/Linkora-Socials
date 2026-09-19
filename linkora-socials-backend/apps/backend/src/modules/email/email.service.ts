@@ -27,8 +27,24 @@ export class EmailService {
       port: 465,
       secure: true,
       auth: { user: this.user, pass: this.pass },
+      pool: true,
+      maxConnections: 5,
+      maxMessages: 200,
+      connectionTimeout: 15_000,
+      greetingTimeout: 15_000,
+      socketTimeout: 30_000,
     });
-    this.logger.log('✅ Gmail SMTP email service initialized');
+    this.logger.log('✅ Gmail SMTP email service initialized (pooled)');
+    this.verifyConnection();
+  }
+
+  private verifyConnection() {
+    this.transporter
+      ?.verify()
+      .then(() => this.logger.log('✅ Gmail SMTP connection verified'))
+      .catch((error) =>
+        this.logger.error('❌ Gmail SMTP connection failed:', error.message),
+      );
   }
 
   private async sendMail(to: string, subject: string, html: string) {
@@ -37,12 +53,16 @@ export class EmailService {
         'Email service not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing)',
       );
     }
+    const started = Date.now();
     const info = await this.transporter.sendMail({
       from: this.fromEmail,
       to,
       subject,
       html,
     });
+    this.logger.log(
+      `✉️ "${subject}" → ${to} accepted in ${Date.now() - started}ms (${info.messageId})`,
+    );
     return info.messageId;
   }
 
