@@ -35,12 +35,10 @@ export class HealthService {
         stellarStatus = 'unhealthy';
       }
 
-      // Check Email (Gmail SMTP)
+      // Check Email (Brevo primary, Gmail SMTP fallback)
       let emailStatus = 'healthy';
       try {
-        const gmailUser = process.env.GMAIL_USER;
-        const gmailPass = process.env.GMAIL_APP_PASSWORD;
-        if (!gmailUser || !gmailPass) {
+        if (!this.emailService.getProvider()) {
           emailStatus = 'unhealthy';
         }
       } catch (error) {
@@ -131,23 +129,33 @@ export class HealthService {
         stellarHealth.error = error.message;
       }
 
-      // Email (Gmail SMTP) details
+      // Email provider details
       const emailHealth: any = {
         status: 'unknown',
-        provider: 'Gmail SMTP',
-        fromEmail: process.env.GMAIL_FROM || 'Linkora <linkora56@gmail.com>',
+        provider: this.emailService.getProvider() || 'none',
       };
 
       try {
+        const brevoKey = process.env.BREVO_API_KEY;
         const gmailUser = process.env.GMAIL_USER;
         const gmailPass = process.env.GMAIL_APP_PASSWORD;
-        if (gmailUser && gmailPass) {
+
+        if (brevoKey) {
           emailHealth.status = 'configured';
+          emailHealth.fromEmail =
+            process.env.BREVO_SENDER_EMAIL || 'linkora56@gmail.com';
+          emailHealth.senderName = process.env.BREVO_SENDER_NAME || 'Linkora';
+          emailHealth.apiKeySet = true;
+        } else if (gmailUser && gmailPass) {
+          emailHealth.status = 'configured';
+          emailHealth.fromEmail =
+            process.env.GMAIL_FROM || `Linkora <${gmailUser}>`;
           emailHealth.user = gmailUser;
           emailHealth.apiKeySet = true;
         } else {
           emailHealth.status = 'error';
-          emailHealth.error = 'GMAIL_USER / GMAIL_APP_PASSWORD not configured';
+          emailHealth.error =
+            'No provider configured (set BREVO_API_KEY or GMAIL_USER/GMAIL_APP_PASSWORD)';
         }
       } catch (error) {
         emailHealth.status = 'error';

@@ -41,6 +41,12 @@ services:
         sync: false
       - key: PUSHER_CLUSTER
         sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: BREVO_SENDER_EMAIL
+        value: linkora56@gmail.com
+      - key: BREVO_SENDER_NAME
+        value: "Linkora"
       - key: GMAIL_USER
         value: linkora56@gmail.com
       - key: GMAIL_FROM

@@ -1,32 +1,54 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { createTransport, Transporter } from 'nodemailer';
+import axios from 'axios';
 
-@Injectable()
-export class EmailService {
-  private transporter: Transporter | null = null;
-  private readonly logger = new Logger(EmailService.name);
-  private readonly user: string;
-  private readonly pass: string;
+interface MailSender {
+  readonly name: string;
+  send(to: string, subject: string, html: string): Promise<string>;
+}
+
+class BrevoMailSender implements MailSender {
+  readonly name = 'Brevo';
+
+  constructor(
+    private readonly apiKey: string,
+    private readonly fromEmail: string,
+    private readonly fromName: string,
+  ) {}
+
+  async send(to: string, subject: string, html: string): Promise<string> {
+    const { data } = await axios.post(
+      'https://api.brevo.com/v3/smtp/email',
+      {
+        sender: { email: this.fromEmail, name: this.fromName },
+        to: [{ email: to }],
+        subject,
+        htmlContent: html,
+      },
+      {
+        headers: {
+          'api-key': this.apiKey,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        timeout: 15_000,
+      },
+    );
+    return data.messageId;
+  }
+}
+
+class GmailMailSender implements MailSender {
+  readonly name = 'Gmail SMTP';
+  private readonly transporter: Transporter;
   private readonly fromEmail: string;
 
-  constructor() {
-    this.user = process.env.GMAIL_USER || '';
-    this.pass = process.env.GMAIL_APP_PASSWORD || '';
-    this.fromEmail =
-      process.env.GMAIL_FROM || 'Linkora <linkora56@gmail.com>';
-
-    if (!this.user || !this.pass) {
-      this.logger.warn(
-        'GMAIL_USER / GMAIL_APP_PASSWORD not set — email sending disabled',
-      );
-      return;
-    }
-
+  constructor(user: string, pass: string, fromEmail: string) {
     this.transporter = createTransport({
       host: 'smtp.gmail.com',
       port: 587,
       secure: false,
-      auth: { user: this.user, pass: this.pass },
+      auth: { user, pass },
       pool: true,
       maxConnections: 5,
       maxMessages: 200,
@@ -34,36 +56,62 @@ export class EmailService {
       greetingTimeout: 15_000,
       socketTimeout: 30_000,
     });
-    this.logger.log('✅ Gmail SMTP email service initialized (pooled)');
-    this.verifyConnection();
+    this.fromEmail = fromEmail;
   }
 
-  private verifyConnection() {
-    this.transporter
-      ?.verify()
-      .then(() => this.logger.log('✅ Gmail SMTP connection verified'))
-      .catch((error) =>
-        this.logger.error('❌ Gmail SMTP connection failed:', error.message),
-      );
-  }
-
-  private async sendMail(to: string, subject: string, html: string) {
-    if (!this.transporter) {
-      throw new Error(
-        'Email service not configured (GMAIL_USER/GMAIL_APP_PASSWORD missing)',
-      );
-    }
-    const started = Date.now();
+  async send(to: string, subject: string, html: string): Promise<string> {
     const info = await this.transporter.sendMail({
       from: this.fromEmail,
       to,
       subject,
       html,
     });
-    this.logger.log(
-      `✉️ "${subject}" → ${to} accepted in ${Date.now() - started}ms (${info.messageId})`,
-    );
     return info.messageId;
+  }
+}
+
+@Injectable()
+export class EmailService {
+  private sender: MailSender | null = null;
+  private readonly logger = new Logger(EmailService.name);
+
+  constructor() {
+    const brevoKey = process.env.BREVO_API_KEY;
+    const gmailUser = process.env.GMAIL_USER;
+    const gmailPass = process.env.GMAIL_APP_PASSWORD;
+
+    if (brevoKey) {
+      const senderEmail = process.env.BREVO_SENDER_EMAIL || 'linkora56@gmail.com';
+      const senderName = process.env.BREVO_SENDER_NAME || 'Linkora';
+      this.sender = new BrevoMailSender(brevoKey, senderEmail, senderName);
+      this.logger.log('✅ Brevo email service initialized (primary)');
+    } else if (gmailUser && gmailPass) {
+      const fromEmail = process.env.GMAIL_FROM || `Linkora <${gmailUser}>`;
+      this.sender = new GmailMailSender(gmailUser, gmailPass, fromEmail);
+      this.logger.log('✅ Gmail SMTP email service initialized (fallback)');
+    } else {
+      this.logger.warn(
+        'No email provider configured (set BREVO_API_KEY or GMAIL_USER/GMAIL_APP_PASSWORD)',
+      );
+    }
+  }
+
+  getProvider(): string | null {
+    return this.sender?.name ?? null;
+  }
+
+  private async sendMail(to: string, subject: string, html: string) {
+    if (!this.sender) {
+      throw new Error(
+        'Email service not configured (BREVO_API_KEY or GMAIL_APP_PASSWORD missing)',
+      );
+    }
+    const started = Date.now();
+    const messageId = await this.sender.send(to, subject, html);
+    this.logger.log(
+      `✉️ [${this.sender.name}] "${subject}" → ${to} in ${Date.now() - started}ms (${messageId})`,
+    );
+    return messageId;
   }
 
   async sendVerificationEmail(email: string, code: string, username: string) {
