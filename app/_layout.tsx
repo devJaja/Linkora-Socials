@@ -30,6 +30,7 @@ import * as Linking from 'expo-linking';
 import * as SplashScreen from 'expo-splash-screen';
 import {KeyboardProvider} from "react-native-keyboard-controller"
 import { useLanguage } from '@/hooks/useLanguage';
+import AppDownloadBanner from '@/components/web/AppDownloadBanner';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -197,6 +198,7 @@ function RootLayoutContent() {
       <Stack screenOptions={{ headerShown: false }} />
       <PortalHost />
       <Toaster richColors />
+      <AppDownloadBanner />
     </ThemeProvider>
   );
 }

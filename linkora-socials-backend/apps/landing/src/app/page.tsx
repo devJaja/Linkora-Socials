@@ -12,6 +12,9 @@ import {
 } from 'lucide-react'
 import WaitlistForm from '@/components/WaitlistForm'
 import Logo from '@/components/Logo'
+import DownloadSuggestion from '@/components/DownloadSuggestion'
+
+const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL || 'https://linkora.app'
 
 const features = [
   {
@@ -105,6 +108,27 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#001A33] text-white overflow-x-hidden">
+      {/* Top Navigation */}
+      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-4 sm:px-8 py-4 bg-[#001A33]/80 backdrop-blur-sm border-b border-white/5">
+        <a href="#" className="flex items-center gap-3">
+          <Logo size={40} />
+          <span className="font-bold text-lg hidden xs:block">Linkora</span>
+        </a>
+        <div className="flex items-center gap-3 sm:gap-6">
+          <nav className="hidden md:flex items-center gap-6 text-sm text-gray-300">
+            <a href="#features" className="hover:text-[#FDDB24] transition">Features</a>
+            <a href="#mini-apps" className="hover:text-[#FDDB24] transition">Mini Apps</a>
+          </nav>
+          <a
+            href={WEB_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="bg-gradient-to-r from-[#FDDB24] to-[#D4A800] hover:from-[#FFC800] hover:to-[#FDDB24] text-[#002E5F] font-bold rounded-xl px-5 py-2.5 text-sm shadow-lg shadow-[#FDDB24]/25 hover:shadow-[#FDDB24]/40 transition"
+          >
+            Get Started
+          </a>
+        </div>
+      </header>
       {/* Animated Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Animated glowy circles */}
@@ -228,6 +252,25 @@ export default function Home() {
             <br className="hidden md:block" />
             The first <span className="text-[#B7ACE8] font-semibold">SocialFi</span> platform redefining social media.
           </motion.p>
+
+          {/* Get Started (opens the web app) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mb-10 flex flex-col items-center gap-3"
+          >
+            <a
+              href={WEB_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#FDDB24] to-[#D4A800] hover:from-[#FFC800] hover:to-[#FDDB24] text-[#002E5F] font-bold rounded-2xl px-10 py-5 text-xl shadow-2xl shadow-[#FDDB24]/30 hover:shadow-[#FDDB24]/50 transition group"
+            >
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              Get Started
+            </a>
+            <span className="text-gray-500 text-sm">— or join the waitlist —</span>
+          </motion.div>
 
           {/* Waitlist Form */}
           <motion.div
@@ -563,6 +606,16 @@ export default function Home() {
               The future of SocialFi is here.
             </p>
 
+            <a
+              href={WEB_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#FDDB24] to-[#D4A800] hover:from-[#FFC800] hover:to-[#FDDB24] text-[#002E5F] font-bold rounded-2xl px-10 py-5 text-xl shadow-2xl shadow-[#FDDB24]/30 hover:shadow-[#FDDB24]/50 transition mb-10 group"
+            >
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              Get Started
+            </a>
+
             <WaitlistForm />
 
             <motion.div
@@ -632,6 +685,8 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <DownloadSuggestion />
     </main>
   )
 }

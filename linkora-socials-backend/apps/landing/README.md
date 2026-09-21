@@ -101,8 +101,25 @@ pnpm build
 Create a `.env.local` file:
 
 ```env
-NEXT_PUBLIC_API_URL=your_backend_url
+# Where the web app lives — "Get Started" buttons navigate here
+NEXT_PUBLIC_WEB_URL=https://linkora.app
+
+# Android APK download URL (defaults to the current EAS build artifact)
+NEXT_PUBLIC_APK_URL=https://expo.dev/accounts/devjaja/projects/linkora-socials/builds/3cfeba7e-a26c-495d-bbde-152c374d6800
 ```
+
+- `NEXT_PUBLIC_WEB_URL` — target of the **Get Started** buttons (hero, nav, CTA
+  section) and the iOS "continue on web" option in the download suggestion.
+- `NEXT_PUBLIC_APK_URL` — the download hyperlink for the Android banner. It
+  currently points at the EAS build artifact on expo.dev. Note: EAS build links
+  can expire after ~30 days on the free tier — when that happens, generate a new
+  build (or host the APK in `public/linkora.apk` and set the URL to `/linkora.apk`).
+
+## Download suggestion
+
+The landing shows a mobile-only popup (Android: "Download for Android" →
+`NEXT_PUBLIC_APK_URL`; iOS: "Continue on the web" → `NEXT_PUBLIC_WEB_URL`) once
+per device. The logic lives in `src/components/DownloadSuggestion.tsx`.
 
 ## Performance
 
