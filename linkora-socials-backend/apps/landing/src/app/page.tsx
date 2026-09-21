@@ -13,6 +13,7 @@ import {
 import WaitlistForm from '@/components/WaitlistForm'
 import Logo from '@/components/Logo'
 import DownloadSuggestion from '@/components/DownloadSuggestion'
+import Image from 'next/image'
 
 const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL || 'https://linkora-socials.vercel.app'
 
@@ -349,7 +350,7 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDDB24] to-[#B7ACE8]">Linkora</span>?
+              Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FDDB24] to-[#B7ACE8]">Linkora-Socials</span>?
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               The first social platform where creators truly own their success and earn directly from their community.
@@ -637,7 +638,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div>
-              <Logo size={56} className="mb-6" />
+              <Image
+              src="/appicon.png"
+              alt="Linkora"
+              width={56}
+              height={56}
+              priority
+              className="mb-6 w-14 h-14 rounded-xl object-contain"
+            />
               <p className="text-gray-400 text-sm leading-relaxed">
                 Social media powered by Stellar blockchain. Own your content, own your earnings.
                 <br className="hidden md:block" />

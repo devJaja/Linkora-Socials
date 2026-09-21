@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Download, Globe, X } from 'lucide-react'
 
@@ -61,9 +62,15 @@ export default function DownloadSuggestion() {
         </button>
 
         <div className="flex items-start gap-3">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#FDDB24] to-[#D4A800] flex items-center justify-center flex-shrink-0">
-            <span className="text-xl font-bold text-[#002E5F]">L</span>
-          </div>
+<div className="w-11 h-11 flex-shrink-0">
+          <Image
+            src="/appicon.png"
+            alt="Linkora logo"
+            width={44}
+            height={44}
+            className="w-full h-full rounded-xl object-contain"
+          />
+        </div>
           <div>
             <h4 className="text-white font-bold text-base mb-0.5">
               Get the Linkora app
