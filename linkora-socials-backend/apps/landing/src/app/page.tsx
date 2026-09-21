@@ -14,7 +14,7 @@ import WaitlistForm from '@/components/WaitlistForm'
 import Logo from '@/components/Logo'
 import DownloadSuggestion from '@/components/DownloadSuggestion'
 
-const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL || 'https://linkora.app'
+const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL || 'https://linkora-socials.vercel.app'
 
 const features = [
   {

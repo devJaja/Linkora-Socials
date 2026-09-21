@@ -102,7 +102,7 @@ Create a `.env.local` file:
 
 ```env
 # Where the web app lives — "Get Started" buttons navigate here
-NEXT_PUBLIC_WEB_URL=https://linkora.app
+NEXT_PUBLIC_WEB_URL=https://linkora-socials.vercel.app
 
 # Android APK download URL (defaults to the current EAS build artifact)
 NEXT_PUBLIC_APK_URL=https://expo.dev/accounts/devjaja/projects/linkora-socials/builds/3cfeba7e-a26c-495d-bbde-152c374d6800
