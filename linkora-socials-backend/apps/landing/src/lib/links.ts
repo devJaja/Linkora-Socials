@@ -1,9 +1,11 @@
 export const WEB_URL =
   process.env.NEXT_PUBLIC_WEB_URL || 'https://linkora-socials.vercel.app'
 
+// Direct artifact link: EAS build pages sit behind the account console and
+// signed artifact URLs expire, so prefer a Vercel env var once one is set.
 export const APK_URL =
   process.env.NEXT_PUBLIC_APK_URL ||
-  'https://expo.dev/accounts/devjaja/projects/linkora-socials/builds/3cfeba7e-a26c-495d-bbde-152c374d6800'
+  'https://expo.dev/artifacts/eas/-AGBMTI9FdAKGAyjPEdR4GuExpphqrgcyoDYzV1BGak.apk'
 
 export const CONTACT_EMAIL = 'team@linkora.social'
 
