@@ -1,40 +1,142 @@
-import { TouchableOpacity, View, Image } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
-import { Sparkles, ArrowRight } from 'lucide-react-native';
+import { Pressable } from 'react-native';
+import {
+  ArrowRight,
+  ChevronRight,
+  Coins,
+  Dice5,
+  Gift,
+  RotateCw,
+  Sparkles,
+  UtensilsCrossed,
+  type LucideIcon,
+} from 'lucide-react-native';
 import { router } from 'expo-router';
+
+interface MiniApp {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+  route: string;
+  tint: string;
+  tintActive: string;
+}
+
+const MINI_APPS: MiniApp[] = [
+  {
+    id: 'swap',
+    name: 'Swap',
+    icon: Coins,
+    route: '/mini-apps/swap',
+    tint: 'bg-[#EAE6F8]',
+    tintActive: 'text-[#4E448C]',
+  },
+  {
+    id: 'airdrop',
+    name: 'Airdrop',
+    icon: Gift,
+    route: '/mini-apps/airdrop',
+    tint: 'bg-[#E6F8F9]',
+    tintActive: 'text-[#007A85]',
+  },
+  {
+    id: 'dice',
+    name: 'Dice',
+    icon: Dice5,
+    route: '/mini-apps/dice',
+    tint: 'bg-[#FFFCEB]',
+    tintActive: 'text-[#967907]',
+  },
+  {
+    id: 'coinflip',
+    name: 'Coin Flip',
+    icon: Coins,
+    route: '/mini-apps/coinflip',
+    tint: 'bg-[#FFF4EB]',
+    tintActive: 'text-[#B85708]',
+  },
+  {
+    id: 'spin',
+    name: 'Spin',
+    icon: RotateCw,
+    route: '/mini-apps/spin',
+    tint: 'bg-[#F8F6FD]',
+    tintActive: 'text-[#5A46B5]',
+  },
+  {
+    id: 'food',
+    name: 'Food',
+    icon: UtensilsCrossed,
+    route: '/mini-apps/food',
+    tint: 'bg-[#FFF3EF]',
+    tintActive: 'text-[#B82E00]',
+  },
+];
 
 export function MiniAppsCard() {
   return (
-    <TouchableOpacity
-      onPress={() => router.push('/mini-apps')}
-      className="mx-4 mt-4 relative overflow-hidden rounded-[24px] bg-[#002E5D]"
-    >
-      <Image source={require('@/assets/images/ec1.png')} className='absolute w-[57px] h-[57px] bottom-0 left-0'/>
-      <Image source={require('@/assets/images/ec3.png')} className='absolute w-[57px] h-[57px] -bottom-8 right-[120px] rounded-full'/>
-      <Image source={require('@/assets/images/ec3.png')} className='absolute w-[19px] h-[19px] bottom-2 right-[160px] rounded-full'/>
-      <Image source={require('@/assets/images/ec3.png')} className='absolute w-[19px] h-[19px] top-2 right-[160px] rounded-full'/>
-      <Image source={require('@/assets/images/ec2.png')} className='absolute w-[95px] rounded-full h-[95px] -top-16 left-10'/>
-      <View className="p-6">
-        <View className="flex-row items-center justify-between">
-          <View className="flex-1">
-            <View className="flex-row items-center gap-2">
-              <Icon as={Sparkles} size={24} className="text-white" />
-              <Text className="text-xl font-bold text-white">Explore Mini Apps</Text>
-            </View>
-            <Text className="mt-2 text-sm text-white/90">
-              Swap, mint, games & more
-            </Text>
-            <View className="mt-3 flex-row items-center gap-2">
-              <View className="rounded-full bg-white/20 px-3 py-1">
-                <Text className="text-xs font-medium text-white">Coming Soon</Text>
-              </View>
-              <Icon as={ArrowRight} size={14} className="text-white/80" />
-            </View>
-          </View>
-          <Image source={require('@/assets/images/mini.png')} className='w-[96px] h-[101px]'/>
+    <View className="mt-5">
+      <View className="flex-row items-center justify-between px-4">
+        <View className="flex-row items-center gap-2">
+          <Icon as={Sparkles} size={14} className="text-gold" />
+          <Text className="text-[15px] font-semibold text-foreground">Mini Apps</Text>
         </View>
+        <Pressable
+          onPress={() => router.push('/mini-apps')}
+          accessibilityRole="button"
+          accessibilityLabel="See all mini apps"
+          hitSlop={8}
+          className="flex-row items-center gap-0.5 active:opacity-60"
+        >
+          <Text className="text-[13px] font-semibold text-brand-700 dark:text-gold">
+            See all
+          </Text>
+          <Icon as={ChevronRight} size={14} className="text-brand-700 dark:text-gold" />
+        </Pressable>
       </View>
-    </TouchableOpacity>
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ paddingHorizontal: 16, gap: 10, paddingTop: 12 }}
+      >
+        {MINI_APPS.map((app) => (
+          <Pressable
+            key={app.id}
+            onPress={() => router.push(app.route as never)}
+            accessibilityRole="button"
+            accessibilityLabel={app.name}
+            className="w-[86px] items-center rounded-2xl border border-border bg-card px-2 py-3.5 active:opacity-70"
+          >
+            <View className={`h-10 w-10 items-center justify-center rounded-xl ${app.tint}`}>
+              <Icon as={app.icon} size={19} className={app.tintActive} />
+            </View>
+            <Text
+              numberOfLines={1}
+              className="mt-2 text-[11.5px] font-medium text-foreground"
+            >
+              {app.name}
+            </Text>
+          </Pressable>
+        ))}
+
+        <Pressable
+          onPress={() => router.push('/mini-apps')}
+          accessibilityRole="button"
+          accessibilityLabel="Browse all mini apps"
+          className="w-[86px] items-center justify-center rounded-2xl border border-dashed border-border py-3.5 active:opacity-70"
+        >
+          <Icon as={ArrowRight} size={18} className="text-muted-foreground" />
+          <Text
+            numberOfLines={1}
+            className="mt-2 text-[11.5px] font-medium text-muted-foreground"
+          >
+            Browse
+          </Text>
+        </Pressable>
+      </ScrollView>
+    </View>
   );
 }

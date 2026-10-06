@@ -1,7 +1,15 @@
-import { View, TouchableOpacity, ActivityIndicator, Pressable, useWindowDimensions } from 'react-native';
+import { ActivityIndicator, Pressable, View } from 'react-native';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
-import { Eye, EyeOff, Copy, RefreshCw, Bell, ArrowUpRight, ArrowDownLeft, Circle } from 'lucide-react-native';
+import {
+  ArrowUpRight,
+  ArrowDownLeft,
+  Bell,
+  Copy,
+  Eye,
+  EyeOff,
+  RefreshCw,
+} from 'lucide-react-native';
 import { router } from 'expo-router';
 import { Badge } from '@/components/common/Badge';
 import { useTranslation } from 'react-i18next';
@@ -28,94 +36,136 @@ export function BalanceCard({
   onRefresh,
 }: BalanceCardProps) {
   const { t } = useTranslation();
-  const { width } = useWindowDimensions();
-  const isSmall = width < 375;
+
+  const shortAddress = walletAddress
+    ? `${walletAddress.slice(0, 6)}…${walletAddress.slice(-4)}`
+    : '—';
 
   return (
-    <View className="overflow-hidden rounded-b-[28px] bg-[#002E5D]">
-      {/* Decorative brand shapes */}
-      <View className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-[#473793]/40" />
-      <View className="absolute right-24 -top-6 h-24 w-24 rounded-full bg-purple-400/25" />
-      <View className="absolute -bottom-14 -left-12 h-40 w-40 rounded-full bg-[#1D1740]/40" />
-      <View className="absolute bottom-8 right-8 h-3 w-3 rounded-full bg-gold" />
+    <View className="mx-4 overflow-hidden rounded-3xl bg-[#002E5D]">
+      {/* Subtle brand texture */}
+      <View className="absolute -right-12 -top-16 h-44 w-44 rounded-full bg-[#0B4778]" />
+      <View className="absolute -right-4 top-10 h-24 w-24 rounded-full bg-[#00254D]" />
+      <View className="absolute bottom-0 right-10 h-1.5 w-1.5 rounded-full bg-gold" />
 
-      <View className="px-5 pb-6 pt-5">
+      <View className="p-5">
         <View className="flex-row items-start justify-between">
-          <View className="flex-1">
-            <View className="flex-row items-center gap-2">
-              <Text className="text-[11px] font-medium uppercase tracking-[0.14em] text-purple-300">
+          <View className="flex-1 pr-3">
+            <View className="flex-row items-center gap-1.5">
+              <Text className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/55">
                 {t('wallet.totalBalance')}
               </Text>
-              <TouchableOpacity onPress={onToggleBalance} className="rounded-full p-1">
-                <Icon as={showBalance ? Eye : EyeOff} size={14} className="text-purple-300" />
-              </TouchableOpacity>
+              <Pressable
+                onPress={onToggleBalance}
+                hitSlop={10}
+                accessibilityRole="button"
+                accessibilityLabel={showBalance ? 'Hide balance' : 'Show balance'}
+              >
+                <Icon
+                  as={showBalance ? Eye : EyeOff}
+                  size={14}
+                  className="text-white/45"
+                />
+              </Pressable>
             </View>
 
             {isLoading ? (
-              <ActivityIndicator size="large" color="#ffffff" className="mt-3" />
+              <View className="mt-2.5 h-9 w-32 items-center justify-center">
+                <ActivityIndicator size="small" color="#FDDA24" />
+              </View>
             ) : (
-              <View className="mt-2 flex-row items-baseline gap-2">
-                <Text className={`${isSmall ? 'text-3xl' : 'text-[40px]'} font-bold leading-[48px] text-white`}>
+              <View className="mt-1.5 flex-row items-baseline gap-2">
+                <Text className="text-[34px] font-bold leading-[42px] text-white">
                   {showBalance ? balance.toFixed(2) : '••••••'}
                 </Text>
-                <Text className="text-lg font-semibold text-purple-300">XLM</Text>
+                <Text className="text-base font-semibold text-gold">XLM</Text>
               </View>
             )}
-
-            <Pressable onPress={onCopyAddress} className="mt-3 flex-row items-center gap-2 self-start rounded-lg bg-white/10 px-3 py-1.5">
-              <Text className="font-mono text-xs text-purple-200">
-                {walletAddress?.slice(0, 8)}…{walletAddress?.slice(-6)}
-              </Text>
-              <Icon as={Copy} size={13} className="text-purple-300" />
-            </Pressable>
           </View>
 
-          <View className="flex-row gap-3">
-            <TouchableOpacity
+          <View className="flex-row items-center gap-2">
+            <Pressable
               onPress={onRefresh}
               disabled={isLoading}
-              className="h-10 w-10 items-center justify-center rounded-full bg-white/10 active:bg-white/20"
+              accessibilityRole="button"
+              accessibilityLabel={t('feed.balanceRefreshed')}
+              className="h-9 w-9 items-center justify-center rounded-full bg-white/10 active:bg-white/20"
+              style={{ opacity: isLoading ? 0.5 : 1 }}
             >
-              <Icon as={RefreshCw} size={17} className="text-white" />
-            </TouchableOpacity>
-            <TouchableOpacity
+              <Icon as={RefreshCw} size={16} className="text-white" />
+            </Pressable>
+            <Pressable
               onPress={() => router.push('/(tabs)/notifications')}
-              className="relative h-10 w-10 items-center justify-center rounded-full bg-white/10 active:bg-white/20"
+              accessibilityRole="button"
+              accessibilityLabel="Notifications"
+              className="relative h-9 w-9 items-center justify-center rounded-full bg-white/10 active:bg-white/20"
             >
-              <Icon as={Bell} size={17} className="text-white" />
+              <Icon as={Bell} size={16} className="text-white" />
               {unreadCount > 0 && (
-                <View className="absolute -right-1 -top-1">
+                <View className="absolute -right-1.5 -top-1.5">
                   <Badge count={unreadCount} variant="danger" size="sm" />
                 </View>
               )}
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
 
-        {/* Quick Actions */}
-        <View className="mt-6 flex-row gap-3">
-          <TouchableOpacity
-            onPress={() => router.push('/wallet/send')}
-            className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl bg-white py-3.5 active:opacity-90"
-          >
-            <Icon as={ArrowUpRight} size={18} className="text-[#002E5D]" />
-            <Text className="font-semibold text-[#002E5D]">{t('common.send')}</Text>
-          </TouchableOpacity>
+        <Pressable
+          onPress={onCopyAddress}
+          accessibilityRole="button"
+          accessibilityLabel="Copy wallet address"
+          className="mt-3 flex-row items-center gap-2 self-start rounded-full border border-white/10 bg-white/[0.07] px-3 py-1.5 active:bg-white/15"
+        >
+          <Icon as={Copy} size={12} className="text-white/50" />
+          <Text className="font-mono text-[11px] text-white/70">{shortAddress}</Text>
+        </Pressable>
 
-          <TouchableOpacity
-            onPress={() => router.push('/wallet/receive')}
-            className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl border border-white/25 bg-white/10 py-3.5 active:bg-white/20"
+        {/* Quick actions */}
+        <View className="mt-5 flex-row gap-2.5">
+          <Pressable
+            onPress={() => router.push('/(tabs)/wallet/send')}
+            accessibilityRole="button"
+            className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl bg-white py-3.5 active:bg-white/85"
           >
-            <Icon as={ArrowDownLeft} size={18} className="text-white" />
-            <Text className="font-semibold text-white">{t('common.receive')}</Text>
-          </TouchableOpacity>
+            <Icon as={ArrowUpRight} size={17} className="text-[#002E5D]" />
+            <Text className="text-[15px] font-semibold text-[#002E5D]">
+              {t('common.send')}
+            </Text>
+          </Pressable>
+
+          <Pressable
+            onPress={() => router.push('/(tabs)/wallet/receive')}
+            accessibilityRole="button"
+            className="flex-1 flex-row items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/10 py-3.5 active:bg-white/20"
+          >
+            <Icon as={ArrowDownLeft} size={17} className="text-white" />
+            <Text className="text-[15px] font-semibold text-white">
+              {t('common.receive')}
+            </Text>
+          </Pressable>
         </View>
 
-        {/* Network Badge */}
-        <View className="mt-5 flex-row items-center gap-2 self-start rounded-full bg-white/10 px-3 py-1.5">
-          <Icon as={Circle} size={8} className="text-[#30A46C]" fill="#30A46C" />
-          <Text className="text-xs font-medium text-white">{t('wallet.stellarTestnet')}</Text>
+        {/* Network */}
+        <View className="mt-4 flex-row items-center gap-2 self-start rounded-full bg-white/[0.07] px-2.5 py-1">
+          <View className="h-1.5 w-1.5 rounded-full bg-[#30A46C]" />
+          <Text className="text-[10.5px] font-medium text-white/70">
+            {t('wallet.stellarTestnet')}
+          </Text>
         </View>
+      </View>
+    </View>
+  );
+}
+
+export function BalanceCardSkeleton() {
+  return (
+    <View className="mx-4 overflow-hidden rounded-3xl bg-[#002E5D] p-5">
+      <View className="h-3 w-28 rounded-full bg-white/15" />
+      <View className="mt-3 h-9 w-40 rounded-full bg-white/15" />
+      <View className="mt-4 h-7 w-32 rounded-full bg-white/10" />
+      <View className="mt-5 flex-row gap-2.5">
+        <View className="h-12 flex-1 rounded-2xl bg-white/10" />
+        <View className="h-12 flex-1 rounded-2xl bg-white/10" />
       </View>
     </View>
   );

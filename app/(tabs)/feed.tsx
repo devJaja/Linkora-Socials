@@ -1,17 +1,18 @@
-import { View, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
+import { useCallback, useState } from 'react';
+import { FlatList, Image, Pressable, RefreshControl, View } from 'react-native';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
-import { Search } from 'lucide-react-native';
+import { Compass, PenLine, Search, Sparkles } from 'lucide-react-native';
 import { usePosts } from '@/hooks/usePosts';
 import { useWallet } from '@/hooks/useWallet';
 import { useNotifications } from '@/hooks/useNotifications';
+import { useAuth } from '@/hooks/useAuth';
 import { router } from 'expo-router';
-import { useState } from 'react';
 import type { Post } from '@/types';
 import * as Clipboard from 'expo-clipboard';
 import { toast } from 'sonner-native';
 import { uploadMultipleImages } from '@/lib/upload';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import {
   BalanceCard,
@@ -22,19 +23,43 @@ import {
   FeedPostCard,
   CreatePostButton,
 } from '@/components/feed';
-import { LoadingSpinner, ErrorState } from '@/components/common';
+import { EmptyState, LoadingSpinner } from '@/components/common';
+
+const NAVY = '#002E5D';
+const GOLD = '#FDDA24';
 
 export default function FeedScreen() {
   const { t } = useTranslation();
-  const { posts, isLoadingFeed, fetchNextPage, hasNextPage, isFetchingNextPage, refetchFeed, createPost, isCreatingPost, likePost, unlikePost, tipPost, isTippingPost, buyToken, isBuyingToken } = usePosts();
+  const insets = useSafeAreaInsets();
+  const { user } = useAuth();
+  const {
+    posts,
+    isLoadingFeed,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetchFeed,
+    createPost,
+    isCreatingPost,
+    likePost,
+    unlikePost,
+    tipPost,
+    isTippingPost,
+    buyToken,
+    isBuyingToken,
+  } = usePosts();
   const { balance, walletAddress, isLoadingBalance, refetchBalance } = useWallet();
   const { unreadCount } = useNotifications();
+
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [showBalance, setShowBalance] = useState(true);
   const [showTipModal, setShowTipModal] = useState(false);
   const [showBuyTokenModal, setShowBuyTokenModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [isUploadingImages, setIsUploadingImages] = useState(false);
+
+  const displayName = user?.name?.trim() || user?.username || 'Linkora';
+  const initial = displayName.charAt(0).toUpperCase();
 
   const handleCreatePost = async (data: {
     content: string;
@@ -44,22 +69,20 @@ export default function FeedScreen() {
     tokenPrice?: number;
   }) => {
     let imageUrls: string[] = [];
-    
-    // Upload images to Cloudinary if any
+
     if (data.images.length > 0) {
       setIsUploadingImages(true);
       try {
         imageUrls = await uploadMultipleImages(data.images);
-        toast.success(t('feed.imagesUploaded'));
-      } catch (error) {
+      } catch {
         toast.error(t('feed.failedToUploadImages'));
         setIsUploadingImages(false);
         return;
       }
       setIsUploadingImages(false);
     }
-    
-    createPost({ 
+
+    createPost({
       content: data.content,
       images: imageUrls,
       isTokenized: data.isTokenized,
@@ -102,10 +125,9 @@ export default function FeedScreen() {
   };
 
   const copyAddress = async () => {
-    if (walletAddress) {
-      await Clipboard.setStringAsync(walletAddress);
-      toast.success(t('feed.addressCopied'));
-    }
+    if (!walletAddress) return;
+    await Clipboard.setStringAsync(walletAddress);
+    toast.success(t('feed.addressCopied'));
   };
 
   const handleRefreshBalance = async () => {
@@ -113,88 +135,157 @@ export default function FeedScreen() {
     toast.success(t('feed.balanceRefreshed'));
   };
 
-  const navigateToProfile = (username: string) => {
-    router.push(`/(tabs)/profile?username=${username}`);
-  };
+  const handleEndReached = useCallback(() => {
+    if (hasNextPage && !isFetchingNextPage && !isLoadingFeed) {
+      fetchNextPage();
+    }
+  }, [hasNextPage, isFetchingNextPage, isLoadingFeed, fetchNextPage]);
+
+  const listHeader = (
+    <View>
+      <BalanceCard
+        balance={balance}
+        walletAddress={walletAddress}
+        isLoading={isLoadingBalance}
+        showBalance={showBalance}
+        unreadCount={unreadCount}
+        onToggleBalance={() => setShowBalance((prev) => !prev)}
+        onCopyAddress={copyAddress}
+        onRefresh={handleRefreshBalance}
+      />
+
+      <MiniAppsCard />
+
+      <View className="mt-7 flex-row items-end justify-between px-4">
+        <View className="flex-1 pr-3">
+          <View className="flex-row items-center gap-2">
+            <View className="h-1.5 w-1.5 rounded-full bg-gold" />
+            <Text className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {t('common.feed')}
+            </Text>
+          </View>
+          <Text className="mt-1 text-[22px] font-bold leading-7 text-foreground">
+            {t('feed.whatsHappening')}
+          </Text>
+        </View>
+
+        <Pressable
+          onPress={() => router.push('/explore')}
+          accessibilityRole="button"
+          accessibilityLabel={t('feed.explore')}
+          className="flex-row items-center gap-1.5 rounded-full border border-border bg-card px-3.5 py-2 active:bg-secondary"
+        >
+          <Icon as={Compass} size={16} className="text-foreground" />
+          <Text className="text-[13px] font-semibold text-foreground">
+            {t('feed.explore')}
+          </Text>
+        </Pressable>
+      </View>
+    </View>
+  );
 
   return (
-    <SafeAreaView className="flex-1 bg-background">
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        className="flex-1"
-        refreshControl={
-          <RefreshControl refreshing={isLoadingFeed} onRefresh={refetchFeed} />
-        }
-        onScroll={({ nativeEvent }) => {
-          const { layoutMeasurement, contentOffset, contentSize } = nativeEvent;
-          const isCloseToBottom = layoutMeasurement.height + contentOffset.y >= contentSize.height - 20;
-          if (isCloseToBottom && hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
-          }
-        }}
-        scrollEventThrottle={400}
-      >
-        {/* Balance Card */}
-        <BalanceCard
-          balance={balance}
-          walletAddress={walletAddress}
-          isLoading={isLoadingBalance}
-          showBalance={showBalance}
-          unreadCount={unreadCount}
-          onToggleBalance={() => setShowBalance(!showBalance)}
-          onCopyAddress={copyAddress}
-          onRefresh={handleRefreshBalance}
-        />
-
-        {/* Mini Apps Section */}
-        <MiniAppsCard />
-
-        {/* Feed Header */}
-        <View className="mt-7 flex-row items-center justify-between px-4">
-          <View>
-            <View className="flex-row items-center gap-2">
-              <View className="h-2 w-2 rounded-full bg-brand" />
-              <Text className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                {t('common.feed')}
-              </Text>
-            </View>
-            <Text className="mt-0.5 text-[26px] font-bold leading-8">Home</Text>
+    <SafeAreaView className="flex-1 bg-background" edges={['top', 'left', 'right']}>
+      {/* App bar */}
+      <View className="flex-row items-center justify-between px-4 pb-3 pt-2">
+        <View className="flex-row items-center gap-2.5">
+          <View className="h-8 w-8 items-center justify-center rounded-xl bg-[#002E5D]">
+            <Icon as={PenLine} size={15} className="text-gold" strokeWidth={2.4} />
           </View>
-          <TouchableOpacity
-            onPress={() => router.push('/explore')}
-            className="flex-row items-center gap-1.5 rounded-full bg-secondary px-3.5 py-2"
+          <View>
+            <Text className="text-[11px] font-medium leading-4 text-muted-foreground">
+              {greeting()}
+            </Text>
+            <Text numberOfLines={1} className="text-[15px] font-bold leading-5 text-foreground">
+              {displayName}
+            </Text>
+          </View>
+        </View>
+
+        <View className="flex-row items-center gap-2">
+          <Pressable
+            onPress={() => router.push('/(tabs)/search')}
+            accessibilityRole="button"
+            accessibilityLabel={t('common.search')}
+            className="h-9 w-9 items-center justify-center rounded-full border border-border bg-card active:bg-secondary"
           >
-            <Icon as={Search} size={17} className="text-brand-600 dark:text-purple-300" />
-            <Text className="font-semibold text-brand-600 dark:text-purple-300">{t('feed.explore')}</Text>
-          </TouchableOpacity>
+            <Icon as={Search} size={17} className="text-foreground" />
+          </Pressable>
+          <Pressable
+            onPress={() => router.push('/(tabs)/profile')}
+            accessibilityRole="button"
+            accessibilityLabel="Your profile"
+            className="h-9 w-9 items-center justify-center rounded-full active:opacity-70"
+          >
+            {user?.avatar ? (
+              <Image source={{ uri: user.avatar }} className="h-9 w-9 rounded-full bg-secondary" />
+            ) : (
+              <View className="h-9 w-9 items-center justify-center rounded-full bg-[#EAE6F8] dark:bg-[#262147]">
+                <Text className="text-[13px] font-bold text-[#4E448C] dark:text-[#B7ACE8]">
+                  {initial}
+                </Text>
+              </View>
+            )}
+          </Pressable>
         </View>
+      </View>
 
-        {/* Posts */}
-        <View className="mt-4">
-          {isLoadingFeed && posts.length === 0 ? (
-            <LoadingSpinner />
-          ) : posts.length === 0 ? (
-            <ErrorState message="No posts yet" onRetry={refetchFeed} />
+      <FlatList
+        data={posts}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <FeedPostCard
+            post={item}
+            onLike={handleLike}
+            onTip={handleTipPost}
+            onBuyToken={handleBuyToken}
+            onNavigateToProfile={(username) =>
+              router.push(`/(tabs)/profile?username=${username}`)
+            }
+          />
+        )}
+        ListHeaderComponent={listHeader}
+        ListEmptyComponent={
+          isLoadingFeed ? (
+            <View className="pt-16">
+              <LoadingSpinner />
+            </View>
           ) : (
-            posts.map((post: Post) => (
-              <FeedPostCard
-                key={post.id}
-                post={post}
-                onLike={handleLike}
-                onTip={handleTipPost}
-                onBuyToken={handleBuyToken}
-                onNavigateToProfile={navigateToProfile}
-              />
-            ))
-          )}
-          {isFetchingNextPage && <LoadingSpinner size="small" />}
-        </View>
-      </ScrollView>
+            <EmptyState
+              icon={Sparkles}
+              message={t('feed.noPostsYet')}
+              subtitle="Write the first post or follow creators to fill your feed."
+            />
+          )
+        }
+        ListFooterComponent={
+          isFetchingNextPage ? (
+            <View className="py-6">
+              <LoadingSpinner size="small" />
+            </View>
+          ) : null
+        }
+        contentContainerStyle={{
+          paddingBottom: insets.bottom + 130,
+          flexGrow: 1,
+        }}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        onEndReached={handleEndReached}
+        onEndReachedThreshold={0.4}
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoadingFeed && posts.length > 0}
+            onRefresh={refetchFeed}
+            tintColor={NAVY}
+            colors={[NAVY]}
+            progressBackgroundColor={GOLD}
+          />
+        }
+      />
 
-      {/* Floating Post Button */}
       <CreatePostButton onPress={() => setShowCreatePost(true)} />
 
-      {/* Create Post Modal */}
       <CreatePostModal
         visible={showCreatePost}
         onClose={() => setShowCreatePost(false)}
@@ -203,7 +294,6 @@ export default function FeedScreen() {
         isUploadingImages={isUploadingImages}
       />
 
-      {/* Tip Modal */}
       <TipModal
         visible={showTipModal}
         onClose={() => setShowTipModal(false)}
@@ -212,7 +302,6 @@ export default function FeedScreen() {
         isSubmitting={isTippingPost}
       />
 
-      {/* Buy Token Modal */}
       <BuyTokenModal
         visible={showBuyTokenModal}
         onClose={() => setShowBuyTokenModal(false)}
@@ -222,4 +311,11 @@ export default function FeedScreen() {
       />
     </SafeAreaView>
   );
+}
+
+function greeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return 'Good morning';
+  if (hour < 18) return 'Good afternoon';
+  return 'Good evening';
 }

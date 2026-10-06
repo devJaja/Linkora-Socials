@@ -181,9 +181,12 @@ function RootLayoutContent() {
     }
   };
 
-  // Determine StatusBar style based on route
+  // Screens with a full-bleed navy surface need light status bar content.
+  const darkScreens = ['/(tabs)/wallet/history', '/wallet/transactions', '/mini-apps'];
+  const usesNavySurface = darkScreens.some((route) => pathname.startsWith(route));
+
   const getStatusBarStyle = () => {
-    if (pathname === '/feed') {
+    if (usesNavySurface) {
       return 'light';
     }
     return theme === 'dark' ? 'light' : 'dark';
@@ -191,9 +194,9 @@ function RootLayoutContent() {
 
   return (
     <ThemeProvider value={theme === 'dark' ? NAV_THEME.dark : NAV_THEME.light}>
-      <StatusBar 
-        style={getStatusBarStyle()} 
-        backgroundColor={pathname === '/feed' ? '#002E5D' : undefined}
+      <StatusBar
+        style={getStatusBarStyle()}
+        backgroundColor={usesNavySurface ? '#002E5D' : undefined}
       />
       <Stack screenOptions={{ headerShown: false }} />
       <PortalHost />

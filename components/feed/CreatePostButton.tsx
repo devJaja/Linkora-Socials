@@ -1,35 +1,48 @@
-import { TouchableOpacity } from 'react-native';
+import { Platform, Pressable, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
-import { Plus } from 'lucide-react-native';
-import { router } from 'expo-router';
+import { PenLine } from 'lucide-react-native';
 
 interface CreatePostButtonProps {
   onPress?: () => void;
 }
 
 export function CreatePostButton({ onPress }: CreatePostButtonProps) {
-  const handlePress = () => {
-    if (onPress) {
-      onPress();
-    } else {
-      // Navigate to create post screen (to be implemented)
-      console.log('Create post');
-    }
-  };
+  const insets = useSafeAreaInsets();
+
+  // Sits clear of the tab bar so it is never overlapped or pushed off-screen.
+  const bottom = Math.max(insets.bottom, Platform.OS === 'ios' ? 12 : 16) + 62;
 
   return (
-    <TouchableOpacity
-      onPress={handlePress}
-      className="absolute bottom-6 right-6 h-14 w-14 items-center justify-center rounded-full bg-primary shadow-lg"
-      style={{
-        shadowColor: '#002E5D',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 8,
-      }}
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel="Create a new post"
+      className="active:opacity-90"
+      style={[styles.button, { bottom }]}
     >
-      <Icon as={Plus} size={28} className="text-primary-foreground" />
-    </TouchableOpacity>
+      <Icon as={PenLine} size={18} className="text-[#002E5D]" strokeWidth={2.4} />
+      <Text className="text-[14.5px] font-bold text-[#002E5D]">New post</Text>
+    </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    position: 'absolute',
+    right: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingHorizontal: 20,
+    height: 52,
+    borderRadius: 999,
+    backgroundColor: '#FDDA24',
+    shadowColor: '#002E5D',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.28,
+    shadowRadius: 14,
+    elevation: 10,
+  },
+});
