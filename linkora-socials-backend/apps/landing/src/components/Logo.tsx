@@ -1,60 +1,42 @@
-'use client'
-
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 
 interface LogoProps {
   size?: number
   className?: string
+  /** Renders the wordmark next to the mark. */
+  withWordmark?: boolean
 }
 
-export default function Logo({ size = 64, className = '' }: LogoProps) {
+export default function Logo({ size = 40, className = '', withWordmark = false }: LogoProps) {
   return (
-    <motion.div
-      initial={{ scale: 0, rotate: -180 }}
-      animate={{ scale: 1, rotate: 0 }}
-      transition={{ 
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-        duration: 0.8
-      }}
-      className={`inline-flex items-center justify-center ${className}`}
-    >
-      <motion.div
-        whileHover={{ rotate: 360, scale: 1.1 }}
-        transition={{ duration: 0.6 }}
+    <span className={`inline-flex items-center gap-3 ${className}`}>
+      <span
+        className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-navy ring-1 ring-inset ring-white/15"
         style={{ width: size, height: size }}
-        className="relative"
       >
-        {/* Outer circle with gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FDDB24] via-[#B7ACE8] to-[#00A8B5] rounded-full shadow-2xl shadow-[#FDDB24]/30" />
-        
-        {/* Inner design */}
-        <div className="absolute inset-2 bg-[#002E5F] rounded-full flex items-center justify-center overflow-hidden">
+        {/* Brand gradient edge */}
+        <span
+          aria-hidden
+          className="absolute inset-0 opacity-90"
+          style={{
+            background: 'linear-gradient(135deg, #FDDA24 0%, #B7ACE8 52%, #00A8B5 100%)',
+          }}
+        />
+        <span className="absolute inset-[3px] overflow-hidden rounded-[13px] bg-navy-deep">
           <Image
             src="/appicon.png"
-            alt="Linkora Logo"
-            width={size * 0.6}
-            height={size * 0.6}
-            className="object-contain"
+            alt=""
+            width={Math.round(size * 0.72)}
+            height={Math.round(size * 0.72)}
+            priority
+            className="h-full w-full object-contain"
           />
-        </div>
+        </span>
+      </span>
 
-        {/* Animated ring */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.5, 0, 0.5],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute inset-0 border-4 border-[#FDDB24] rounded-full"
-        />
-      </motion.div>
-    </motion.div>
+      {withWordmark && (
+        <span className="text-lg font-bold tracking-tight text-white">Linkora</span>
+      )}
+    </span>
   )
 }

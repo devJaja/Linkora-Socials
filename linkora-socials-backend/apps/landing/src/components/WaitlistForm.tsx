@@ -1,135 +1,138 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Loader2, CheckCircle2, Mail, Sparkles, AlertCircle } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowRight, CheckCircle2, Loader2, Mail } from 'lucide-react'
 
-export default function WaitlistForm() {
+interface WaitlistFormProps {
+  /** Dark surfaces need the light-on-dark treatment; light surfaces the inverse. */
+  tone?: 'dark' | 'light'
+  compact?: boolean
+}
+
+export default function WaitlistForm({ tone = 'dark', compact = false }: WaitlistFormProps) {
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
   const [count, setCount] = useState(1247)
 
+  const isDark = tone === 'dark'
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
     setError('')
+    setIsLoading(true)
 
     try {
-      // TODO: Replace with your actual API endpoint
-      // const response = await axios.post('YOUR_API_URL/waitlist', { email })
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
+      // TODO: Replace with the real waitlist endpoint.
+      await new Promise((resolve) => setTimeout(resolve, 900))
+
       setIsSuccess(true)
       setEmail('')
-      setCount(prev => prev + 1)
+      setCount((prev) => prev + 1)
 
-      // Reset success message after 5 seconds
       setTimeout(() => setIsSuccess(false), 5000)
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Something went wrong. Please try again.')
+    } catch {
+      setError('Something went wrong. Please try again.')
     } finally {
       setIsLoading(false)
     }
   }
 
+  const inputClasses = [
+    'peer w-full rounded-full border bg-transparent pl-12 pr-4 outline-none transition',
+    'placeholder:text-white/30 focus:placeholder:text-white/50',
+    compact ? 'py-3 text-[15px]' : 'py-4 text-base',
+    isDark
+      ? 'border-white/15 text-white focus:border-gold/70 focus:ring-4 focus:ring-gold/15'
+      : 'border-white/60 text-navy placeholder:text-navy/40 focus:border-navy/40 focus:ring-4 focus:ring-navy/10',
+  ].join(' ')
+
   return (
-    <div className="max-w-md mx-auto">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Email Input */}
-        <motion.div
-          whileFocus={{ scale: 1.02 }}
-          className="relative group"
-        >
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Mail className="w-5 h-5 text-gray-400 group-focus-within:text-[#FDDB24] transition-colors" />
+    <div className="w-full">
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="relative flex-1">
+            <Mail
+              aria-hidden
+              className={`pointer-events-none absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 ${
+                isDark ? 'text-white/35' : 'text-navy/40'
+              }`}
+            />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                if (error) setError('')
+              }}
+              placeholder="you@example.com"
+              aria-label="Email address"
+              required
+              disabled={isLoading || isSuccess}
+              className={inputClasses}
+            />
           </div>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email address"
-            required
+
+          <button
+            type="submit"
             disabled={isLoading || isSuccess}
-            className="w-full pl-12 pr-4 py-5 rounded-2xl text-gray-900 text-lg focus:outline-none focus:ring-4 focus:ring-[#FDDB24]/30 disabled:opacity-50 disabled:cursor-not-allowed bg-white/10 backdrop-blur-sm border border-white/10 placeholder-gray-500 transition-all"
-          />
-        </motion.div>
+            className="btn-primary btn-lg shrink-0"
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="h-[18px] w-[18px] animate-spin" />
+                Joining…
+              </>
+            ) : isSuccess ? (
+              <>
+                <CheckCircle2 className="h-[18px] w-[18px]" />
+                You&apos;re in
+              </>
+            ) : (
+              <>
+                Join waitlist
+                <ArrowRight className="h-[18px] w-[18px]" />
+              </>
+            )}
+          </button>
+        </div>
 
-        {/* Submit Button */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          type="submit"
-          disabled={isLoading || isSuccess}
-          className="w-full py-5 bg-gradient-to-r from-[#FDDB24] to-[#D4A800] hover:from-[#FFC800] hover:to-[#FDDB24] text-[#002E5F] font-bold rounded-2xl text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg shadow-[#FDDB24]/30 hover:shadow-[#FDDB24]/50"
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="w-5 h-5 animate-spin" />
-              <span>Joining...</span>
-            </>
-          ) : isSuccess ? (
-            <>
-              <CheckCircle2 className="w-5 h-5" />
-              <span>Joined!</span>
-            </>
-          ) : (
-            <>
-              <Sparkles className="w-5 h-5" />
-              <span>Join Waitlist</span>
-            </>
-          )}
-        </motion.button>
-
-        {/* Success/Error Messages */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false} mode="wait">
           {isSuccess && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
+            <motion.p
+              key="success"
+              initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="flex items-center justify-center gap-2 text-green-400 font-semibold"
+              exit={{ opacity: 0, y: -6 }}
+              className={`text-sm font-medium ${isDark ? 'text-teal-soft' : 'text-navy/70'}`}
             >
-              <CheckCircle2 className="w-5 h-5" />
-              <span>You're on the list! We'll notify you at launch.</span>
-            </motion.div>
+              You&apos;re on the list — we&apos;ll email you the moment Linkora launches.
+            </motion.p>
           )}
 
           {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
+            <motion.p
+              key="error"
+              initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="flex items-center justify-center gap-2 text-red-400 font-semibold"
+              exit={{ opacity: 0, y: -6 }}
+              role="alert"
+              className="text-sm font-medium text-red-400"
             >
-              <AlertCircle className="w-5 h-5" />
-              <span>{error}</span>
-            </motion.div>
+              {error}
+            </motion.p>
           )}
         </AnimatePresence>
 
-        {/* Community Counter */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-center"
-        >
-          <span className="text-gray-400">Join </span>
-          <motion.span
-            key={count}
-            initial={{ scale: 1.5, color: '#fbbf24' }}
-            animate={{ scale: 1, color: '#FDDB24' }}
-            transition={{ duration: 0.3 }}
-            className="font-bold text-lg"
-          >
-            {count.toLocaleString()}
-          </motion.span>
-          <span className="text-gray-400"> early adopters</span>
-        </motion.p>
+        {!compact && !isSuccess && !error && (
+          <p className={`text-xs ${isDark ? 'text-white/40' : 'text-navy/50'}`}>
+            Join{' '}
+            <span className="font-semibold text-gold">{count.toLocaleString()}</span>{' '}
+            early adopters on the waitlist. No spam, ever.
+          </p>
+        )}
       </form>
     </div>
   )
