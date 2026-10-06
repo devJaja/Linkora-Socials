@@ -44,3 +44,5 @@ expo-env.d.ts
 #native builds
 android/
 ios/
+# vercel
+.vercel
