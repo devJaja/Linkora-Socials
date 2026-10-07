@@ -105,7 +105,7 @@ Create a `.env.local` file:
 NEXT_PUBLIC_WEB_URL=https://linkora-socials.vercel.app
 
 # Android APK download URL (defaults to the current EAS build artifact)
-NEXT_PUBLIC_APK_URL=https://expo.dev/accounts/devjaja/projects/linkora-socials/builds/3cfeba7e-a26c-495d-bbde-152c374d6800
+NEXT_PUBLIC_APK_URL=https://expo.dev/artifacts/eas/i0MDQaN_M2TywEuCuYDfQtUcGEDCxZ2XCU3Tsn8nQeU.apk
 ```
 
 - `NEXT_PUBLIC_WEB_URL` — target of the **Get Started** buttons (hero, nav, CTA

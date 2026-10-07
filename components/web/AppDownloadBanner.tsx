@@ -3,7 +3,7 @@ import { Linking as RNLinking, Platform, Pressable, Text, View } from 'react-nat
 
 const APK_URL =
   process.env.EXPO_PUBLIC_APK_URL ||
-  'https://expo.dev/accounts/devjaja/projects/linkora-socials/builds/3cfeba7e-a26c-495d-bbde-152c374d6800';
+  'https://expo.dev/artifacts/eas/i0MDQaN_M2TywEuCuYDfQtUcGEDCxZ2XCU3Tsn8nQeU.apk';
 const DISMISS_KEY = 'linkora:download_banner:dismissed';
 
 function isAndroidWeb() {
