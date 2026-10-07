@@ -10,7 +10,6 @@ const GOLD = '#FDDA24';
 const NAVY = '#002E5D';
 const MUTED = '#8C8C98';
 
-const PILL_WIDTH = 46;
 const PILL_HEIGHT = 28;
 const ITEM_MIN_HEIGHT = 52;
 const EDGE_PADDING = 12;
@@ -32,13 +31,20 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const isDark = resolveTheme(theme === 'system' ? systemTheme : theme) === 'dark';
 
   // `pay` and `notifications` are reachable from elsewhere in the app, so they are
-  // hidden from the bar via `href: null`. Filter them out so they don't take a slot.
+  // hidden from the bar via `href: null` (expo-router mirrors that as
+  // `tabBarItemStyle: { display: 'none' }`). Skip both ways so they never take a slot.
   const routes = useMemo(
     () =>
-      state.routes.filter(
-        (route) =>
-          StyleSheet.flatten(descriptors[route.key]?.options.tabBarItemStyle)?.display !== 'none'
-      ),
+      state.routes.filter((route) => {
+        const options = descriptors[route.key]?.options as
+          | { href?: string | null }
+          | undefined;
+        if (options?.href === null) return false;
+        return (
+          StyleSheet.flatten(descriptors[route.key]?.options.tabBarItemStyle)?.display !==
+          'none'
+        );
+      }),
     [state.routes, descriptors]
   );
 
@@ -135,6 +141,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexDirection: 'row',
     alignItems: 'stretch',
+    justifyContent: 'space-around',
     borderTopWidth: StyleSheet.hairlineWidth,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: -6 },
@@ -160,7 +167,7 @@ const styles = StyleSheet.create({
   },
   iconPill: {
     alignSelf: 'center',
-    width: PILL_WIDTH,
+    paddingHorizontal: 12,
     height: PILL_HEIGHT,
     borderRadius: 999,
     alignItems: 'center',
