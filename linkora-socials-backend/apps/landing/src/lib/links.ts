@@ -5,7 +5,7 @@ export const WEB_URL =
 // signed artifact URLs expire, so prefer a Vercel env var once one is set.
 export const APK_URL =
   process.env.NEXT_PUBLIC_APK_URL ||
-  'https://expo.dev/artifacts/eas/-AGBMTI9FdAKGAyjPEdR4GuExpphqrgcyoDYzV1BGak.apk'
+  'https://expo.dev/artifacts/eas/i0MDQaN_M2TywEuCuYDfQtUcGEDCxZ2XCU3Tsn8nQeU.apk'
 
 export const CONTACT_EMAIL = 'team@linkora.social'
 
