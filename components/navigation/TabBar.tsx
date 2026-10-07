@@ -13,7 +13,7 @@ const MUTED = '#8C8C98';
 const PILL_WIDTH = 46;
 const PILL_HEIGHT = 28;
 const ITEM_MIN_HEIGHT = 52;
-const EDGE_PADDING = 8;
+const EDGE_PADDING = 12;
 
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
@@ -44,7 +44,8 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
   // Never let the bottom padding collapse to 0 on devices with gesture navigation or a
   // 3-button system bar, otherwise the icons and labels slide underneath the system UI.
-  const bottomInset = Math.max(insets.bottom, Platform.OS === 'ios' ? 12 : 16);
+  // Mirrors the web bar's pt-2 / pb-4 rhythm (16px minimum bottom clearance).
+  const bottomInset = Math.max(insets.bottom, 16);
 
   return (
     <View
