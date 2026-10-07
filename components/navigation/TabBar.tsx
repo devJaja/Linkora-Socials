@@ -10,7 +10,10 @@ const GOLD = '#FDDA24';
 const NAVY = '#002E5D';
 const MUTED = '#8C8C98';
 
-const TAB_CONTENT_HEIGHT = 52;
+const PILL_WIDTH = 46;
+const PILL_HEIGHT = 28;
+const ITEM_MIN_HEIGHT = 52;
+const EDGE_PADDING = 8;
 
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
@@ -52,7 +55,9 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
           backgroundColor: isDark ? '#151518' : '#FFFFFF',
           borderTopColor: isDark ? '#26262B' : '#EFEFF1',
           paddingBottom: bottomInset,
-          paddingTop: 7,
+          paddingTop: 8,
+          paddingLeft: Math.max(insets.left, EDGE_PADDING),
+          paddingRight: Math.max(insets.right, EDGE_PADDING),
         },
       ]}
     >
@@ -82,13 +87,19 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             key={route.key}
             accessibilityRole="tab"
             accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
+            accessibilityLabel={options.tabBarAccessibilityLabel ?? label}
             testID={options.tabBarButtonTestID}
             onPress={onPress}
             onLongPress={() =>
               navigation.emit({ type: 'tabLongPress', target: route.key })
             }
-            style={({ pressed }) => [styles.item, pressed && styles.itemPressed]}
+            style={({ pressed }) => [
+              styles.item,
+              pressed && styles.itemPressed,
+              pressed && {
+                backgroundColor: isDark ? '#1E1E24' : 'rgba(0, 0, 0, 0.05)',
+              },
+            ]}
           >
             <View style={[styles.iconPill, isFocused && styles.iconPillActive]}>
               {options.tabBarIcon?.({
@@ -99,10 +110,13 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             </View>
             <Text
               numberOfLines={1}
+              ellipsizeMode="tail"
               className={
                 isFocused
-                  ? 'mt-1 text-[11px] font-bold leading-4 text-brand-700 dark:text-white'
-                  : 'mt-1 text-[11px] font-medium leading-4 text-gray-500'
+                  ? isDark
+                    ? 'mt-1 w-full text-center text-[11px] font-bold leading-4 text-white'
+                    : 'mt-1 w-full text-center text-[11px] font-bold leading-4 text-brand-700'
+                  : 'mt-1 w-full text-center text-[11px] font-medium leading-4 text-gray-500'
               }
             >
               {label}
@@ -116,6 +130,8 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
 const styles = StyleSheet.create({
   bar: {
+    width: '100%',
+    alignSelf: 'stretch',
     flexDirection: 'row',
     alignItems: 'stretch',
     borderTopWidth: StyleSheet.hairlineWidth,
@@ -127,21 +143,28 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 1,
-    minHeight: TAB_CONTENT_HEIGHT,
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    minWidth: 0,
+    minHeight: ITEM_MIN_HEIGHT,
+    alignSelf: 'stretch',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     paddingHorizontal: 2,
+    borderRadius: 14,
   },
   itemPressed: {
     opacity: 0.6,
   },
   iconPill: {
-    minWidth: 46,
-    height: 28,
-    paddingHorizontal: 12,
+    alignSelf: 'center',
+    width: PILL_WIDTH,
+    height: PILL_HEIGHT,
     borderRadius: 999,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   iconPillActive: {
     backgroundColor: GOLD,
